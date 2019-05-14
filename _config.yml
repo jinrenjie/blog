@@ -15,8 +15,8 @@ timezone: PRC
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://george.betterde.tech
 root: /
-permalink: :year/:month/:day/:title/
-permalink_defaults:
+permalink: :category/:title/
+permalink_defaults: :category/:title/
 
 # Directory
 source_dir: source
@@ -54,8 +54,9 @@ index_generator:
   order_by: -date
   
 # Category & Tag
-default_category: uncategorized
+default_category: uncatalog
 category_map:
+  安全: security
 tag_map:
 
 # Date / Time format
