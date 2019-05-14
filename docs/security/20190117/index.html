@@ -7,19 +7,19 @@
 
 
 
-    <meta name="description" content="Let’s Encrypt 终于在社区宣布支持通配子域名的证书免费申请了。对于需要多个子域名证书的个人来说简直就是福音，因为 Let’s Encrypt 是一个 CA 机构，但这个 CA 机构是免费的！也就是说签发证书不需要任何费用。 什么是 Let’s EncryptLet’s Encrypt 由于是非盈利性的组织，需要控制开支，他们搞了一个非常有创意的事情，设计了一个 ACME 协议，目前该协">
+    <meta name="description" content="Let’s Encrypt 终于在社区宣布支持通配子域名的证书免费申请了。对于需要多个子域名证书的个人来说简直就是福音，因为 Let’s Encrypt 是一个 CA 机构，但这个 CA 机构是免费的！也就是说签发证书不需要任何费用。">
 <meta name="keywords" content="HTTPS,Let&#39;s Encrypt,ACME.sh">
 <meta property="og:type" content="article">
 <meta property="og:title" content="为你的域名申请统配证书">
 <meta property="og:url" content="http://george.betterde.tech/security/20190117/index.html">
 <meta property="og:site_name" content="George">
-<meta property="og:description" content="Let’s Encrypt 终于在社区宣布支持通配子域名的证书免费申请了。对于需要多个子域名证书的个人来说简直就是福音，因为 Let’s Encrypt 是一个 CA 机构，但这个 CA 机构是免费的！也就是说签发证书不需要任何费用。 什么是 Let’s EncryptLet’s Encrypt 由于是非盈利性的组织，需要控制开支，他们搞了一个非常有创意的事情，设计了一个 ACME 协议，目前该协">
+<meta property="og:description" content="Let’s Encrypt 终于在社区宣布支持通配子域名的证书免费申请了。对于需要多个子域名证书的个人来说简直就是福音，因为 Let’s Encrypt 是一个 CA 机构，但这个 CA 机构是免费的！也就是说签发证书不需要任何费用。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://george.betterde.tech/cover/let-s_encrypt-3.jpg">
-<meta property="og:updated_time" content="2019-05-14T08:46:22.904Z">
+<meta property="og:updated_time" content="2019-05-14T09:50:29.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为你的域名申请统配证书">
-<meta name="twitter:description" content="Let’s Encrypt 终于在社区宣布支持通配子域名的证书免费申请了。对于需要多个子域名证书的个人来说简直就是福音，因为 Let’s Encrypt 是一个 CA 机构，但这个 CA 机构是免费的！也就是说签发证书不需要任何费用。 什么是 Let’s EncryptLet’s Encrypt 由于是非盈利性的组织，需要控制开支，他们搞了一个非常有创意的事情，设计了一个 ACME 协议，目前该协">
+<meta name="twitter:description" content="Let’s Encrypt 终于在社区宣布支持通配子域名的证书免费申请了。对于需要多个子域名证书的个人来说简直就是福音，因为 Let’s Encrypt 是一个 CA 机构，但这个 CA 机构是免费的！也就是说签发证书不需要任何费用。">
 <meta name="twitter:image" content="http://george.betterde.tech/cover/let-s_encrypt-3.jpg">
 
 
@@ -163,7 +163,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1322 个字)
+                    9 分钟 读完 (大约 1323 个字)
                 </span>
                 
                 
@@ -176,7 +176,7 @@
             
         </h1>
         <div class="content">
-            <p>Let’s Encrypt 终于在社区宣布支持通配子域名的证书免费申请了。对于需要多个子域名证书的个人来说简直就是福音，因为 Let’s Encrypt 是一个 CA 机构，但这个 CA 机构是免费的！也就是说签发证书不需要任何费用。</p>
+            <p>Let’s Encrypt 终于在社区宣布支持通配子域名的证书免费申请了。对于需要多个子域名证书的个人来说简直就是福音，因为 Let’s Encrypt 是一个 CA 机构，但这个 CA 机构是免费的！也就是说签发证书不需要任何费用。<br><a id="more"></a></p>
 <h2 id="什么是-Let’s-Encrypt"><a href="#什么是-Let’s-Encrypt" class="headerlink" title="什么是 Let’s Encrypt"></a>什么是 Let’s Encrypt</h2><p>Let’s Encrypt 由于是非盈利性的组织，需要控制开支，他们搞了一个非常有创意的事情，设计了一个 ACME 协议，目前该协议的版本是 v2。</p>
 <p>那为什么要创建 ACME 协议呢，传统的 CA 机构是人工受理证书申请、证书更新、证书撤销，完全是手动处理的。而 ACME 协议规范化了证书申请、更新、撤销等流程，只要一个客户端实现了该协议的功能，通过客户端就可以向 Let’s Encrypt 申请证书，也就是说 Let’s Encrypt CA 完全是自动化操作的。</p>
 <p>任何人都可以基于 ACME 协议实现一个客户端，官方推荐的客户端是 <a href="https://certbot.eff.org/" target="_blank" rel="noopener">Certbot</a>。本篇博客中我所使用的是 <a href="https://github.com/Neilpang/acme.sh" target="_blank" rel="noopener">acme.sh</a>(ACME Shell script)</p>
@@ -472,6 +472,130 @@
 
     
         
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/security/20190117/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/cover/let-s_encrypt-3.jpg" alt="为你的域名申请统配证书">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-01-17T06:15:06.000Z">2019-01-17</time></div>
+                    <a href="/security/20190117/" class="has-link-black-ter is-size-6">为你的域名申请统配证书</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/security/">安全</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/security/">
+            <span class="level-start">
+                <span class="level-item">安全</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/ACME-sh/" style="font-size: 10px;">ACME.sh</a> <a href="/tags/HTTPS/" style="font-size: 10px;">HTTPS</a> <a href="/tags/Let-s-Encrypt/" style="font-size: 10px;">Let's Encrypt</a>
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ACME-sh/">
+                        <span class="tag">ACME.sh</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTTPS/">
+                        <span class="tag">HTTPS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Let-s-Encrypt/">
+                        <span class="tag">Let&#39;s Encrypt</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+            
 
 <div class="card widget">
     <div class="card-content">
@@ -498,6 +622,17 @@
 </div>
 
 
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
     
         
 <div class="card widget">
@@ -532,138 +667,6 @@
 </div>
 
     
-    
-        <div class="column-right-shadow is-hidden-widescreen is-sticky">
-        
-            
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            最新文章
-        </h3>
-        
-        <article class="media">
-            
-            <a href="/security/20190117/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/cover/let-s_encrypt-3.jpg" alt="为你的域名申请统配证书">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-01-17T06:15:06.000Z">2019-01-17</time></div>
-                    <a href="/security/20190117/" class="has-link-black-ter is-size-6">为你的域名申请统配证书</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/security/">安全</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-    </div>
-</div>
-
-        
-            <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            归档
-        </h3>
-        <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/01/">
-                <span class="level-start">
-                    <span class="level-item">一月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-        
-            <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                标签
-            </h3>
-            <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/ACME-sh/">
-                        <span class="tag">ACME.sh</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/HTTPS/">
-                        <span class="tag">HTTPS</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Let-s-Encrypt/">
-                        <span class="tag">Let&#39;s Encrypt</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-</div>
-        
-        </div>
-    
-</div>
-
-                
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            最新文章
-        </h3>
-        
-        <article class="media">
-            
-            <a href="/security/20190117/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/cover/let-s_encrypt-3.jpg" alt="为你的域名申请统配证书">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-01-17T06:15:06.000Z">2019-01-17</time></div>
-                    <a href="/security/20190117/" class="has-link-black-ter is-size-6">为你的域名申请统配证书</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/security/">安全</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-    </div>
-</div>
-
-    
         <div class="card widget">
     <div class="card-content">
         <div class="menu">
@@ -721,6 +724,34 @@
         </div>
     </div>
 </div>
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://www.betterde.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Betterde</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.betterde.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
     
     
 </div>
