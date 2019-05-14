@@ -12,7 +12,7 @@ button,
 input,
 select,
 textarea {
-  font-family: "Ubuntu", "Roboto", "Open Sans", "Microsoft YaHei", sans-serif;
+  font-family: "PingFang SC", "Ubuntu", "Roboto", "Open Sans", "Microsoft YaHei", sans-serif;
 }
 @media screen and (min-width: 1280px) {
   .is-1-column .container,
@@ -382,6 +382,11 @@ img.thumbnail {
 }
 .content h5 {
   font-size: 1em;
+}
+.content p {
+  line-height: 2.1;
+  text-align: justify;
+  font-weight: 400;
 }
 .content code,
 .content pre {
