@@ -56,7 +56,7 @@ index_generator:
 # Category & Tag
 default_category: uncatalog
 category_map:
-  安全: security
+  技术: technology
 tag_map:
 
 # Date / Time format

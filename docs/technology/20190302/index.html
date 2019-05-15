@@ -2,21 +2,25 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>标签: ACME.sh - George</title>
+<title>Iris 搭载Vue history 路由模式 SPA - George</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="keywords" content="Developer">
-<meta property="og:type" content="website">
-<meta property="og:title" content="George">
-<meta property="og:url" content="http://george.betterde.tech/tags/ACME-sh/index.html">
+    <meta name="description" content="本文意在解决SPA History 路由模式导致的前端路由页面刷新后端报404的错误，以及前端项目资源如何打包进可执行的二进制文件中。">
+<meta name="keywords" content="Go,Iris,Vue,SPA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Iris 搭载Vue history 路由模式 SPA">
+<meta property="og:url" content="http://george.betterde.tech/technology/20190302/index.html">
 <meta property="og:site_name" content="George">
+<meta property="og:description" content="本文意在解决SPA History 路由模式导致的前端路由页面刷新后端报404的错误，以及前端项目资源如何打包进可执行的二进制文件中。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://george.betterde.tech/images/og_image.png">
+<meta property="og:image" content="http://george.betterde.tech/cover/iris-vue-spa.jpg">
+<meta property="og:updated_time" content="2019-05-15T09:51:15.548Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="George">
-<meta name="twitter:image" content="http://george.betterde.tech/images/og_image.png">
+<meta name="twitter:title" content="Iris 搭载Vue history 路由模式 SPA">
+<meta name="twitter:description" content="本文意在解决SPA History 路由模式导致的前端路由页面刷新后端报404的错误，以及前端项目资源如何打包进可执行的二进制文件中。">
+<meta name="twitter:image" content="http://george.betterde.tech/cover/iris-vue-spa.jpg">
 
 
 
@@ -90,7 +94,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="George" height="28">
+                <img src="/images/logo.svg" alt="Iris 搭载Vue history 路由模式 SPA" height="28">
             
             </a>
         </div>
@@ -120,6 +124,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -134,29 +142,18 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">ACME.sh</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-image">
-        <a href="/technology/20190117/" class="image is-7by1">
-            <img class="thumbnail" src="/cover/let-s_encrypt-3.jpg" alt="为你的域名申请统配证书">
-        </a>
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/cover/iris-vue-spa.jpg" alt="Iris 搭载Vue history 路由模式 SPA">
+        </span>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-01-17T06:15:06.000Z">2019-01-17</time>
+                <time class="level-item has-text-grey" datetime="2019-03-02T09:35:59.000Z">2019-03-02</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/technology/">技术</a>
@@ -166,7 +163,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1323 个字)
+                    4 分钟 读完 (大约 645 个字)
                 </span>
                 
                 
@@ -175,33 +172,144 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/technology/20190117/">为你的域名申请统配证书</a>
+                Iris 搭载Vue history 路由模式 SPA
             
         </h1>
         <div class="content">
-            <p>Let’s Encrypt 终于在社区宣布支持通配子域名的证书免费申请了。对于需要多个子域名证书的个人来说简直就是福音，因为 Let’s Encrypt 是一个 CA 机构，但这个 CA 机构是免费的！也就是说签发证书不需要任何费用。<br></p>
+            <p>本文意在解决SPA History 路由模式导致的前端路由页面刷新后端报404的错误，以及前端项目资源如何打包进可执行的二进制文件中。<br><a id="more"></a></p>
+<h2 id="所需环境"><a href="#所需环境" class="headerlink" title="所需环境"></a>所需环境</h2><ul>
+<li>Golang</li>
+<li>cobar     用于快速开发命令行的包</li>
+<li>Iris      Golang Web 框架</li>
+<li>go-bindata</li>
+<li>vue/cli 3.x</li>
+</ul>
+<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><figure class="highlight bash hljs"><figcaption><span>创建项目目录</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir <span class="hljs-variable">$GOPATH</span>/src/project &amp;&amp; <span class="hljs-built_in">cd</span> <span class="hljs-variable">$GOPATH</span>/src/project</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash hljs"><figcaption><span>安装 cobra </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go get -u github.com/spf13/cobra/cobra</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash hljs"><figcaption><span>初始化项目</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cobar init</span><br></pre></td></tr></table></figure>
+<p>此时目录结构如下：<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── LICENSE</span><br><span class="line">├── cmd</span><br><span class="line">│   └── root.go</span><br><span class="line">└── main.go</span><br></pre></td></tr></table></figure></p>
+<p>如果你使用了module，需要执行如下命令：</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go mod init</span><br></pre></td></tr></table></figure>
+<h3 id="创建命令"><a href="#创建命令" class="headerlink" title="创建命令"></a>创建命令</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cobra add web</span><br></pre></td></tr></table></figure>
+<p>执行后将会在cmd目录下创建一个web.go的文件。</p>
+<h2 id="创建SPA"><a href="#创建SPA" class="headerlink" title="创建SPA"></a>创建SPA</h2><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli 或 yarn global add @vue/cli</span><br><span class="line">vue create web</span><br><span class="line"><span class="hljs-built_in">cd</span> web</span><br></pre></td></tr></table></figure>
+<p>此时目录机构如下：</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── LICENSE</span><br><span class="line">├── cmd</span><br><span class="line">│   ├── root.go</span><br><span class="line">│   └── web.go</span><br><span class="line">├── go.mod</span><br><span class="line">├── go.sum</span><br><span class="line">├── main.go</span><br><span class="line">└── web</span><br><span class="line">    ├── README.md</span><br><span class="line">    ├── babel.config.js</span><br><span class="line">    ├── dist</span><br><span class="line">    ├── node_modules</span><br><span class="line">    ├── package.json</span><br><span class="line">    ├── public</span><br><span class="line">    ├── src</span><br><span class="line">    └── yarn.lock</span><br></pre></td></tr></table></figure>
+<h3 id="添加项目依赖"><a href="#添加项目依赖" class="headerlink" title="添加项目依赖"></a>添加项目依赖</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vue add router</span><br><span class="line">vue add vuex</span><br><span class="line">yarn build</span><br></pre></td></tr></table></figure>
+<p>当执行yarn build后，将会在web目录下生成dist目录</p>
+<h2 id="将静态资源打包成二进制"><a href="#将静态资源打包成二进制" class="headerlink" title="将静态资源打包成二进制"></a>将静态资源打包成二进制</h2><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">go get -u github.com/shuLhan/go-bindata/...</span><br><span class="line">go-bindata -pkg web -o web/bindata.go web/dist/...</span><br><span class="line">go build</span><br></pre></td></tr></table></figure>
+<h2 id="编辑-web-go"><a href="#编辑-web-go" class="headerlink" title="编辑 web.go"></a>编辑 web.go</h2><figure class="highlight go hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">package</span> cmd</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> (</span><br><span class="line">	<span class="hljs-string">"fmt"</span></span><br><span class="line">	<span class="hljs-string">"github.com/kataras/iris"</span></span><br><span class="line">	<span class="hljs-string">"github.com/kataras/iris/middleware/logger"</span></span><br><span class="line">	<span class="hljs-string">"github.com/kataras/iris/middleware/recover"</span></span><br><span class="line">	<span class="hljs-string">"github.com/spf13/cobra"</span></span><br><span class="line">	<span class="hljs-string">"log"</span></span><br><span class="line">	<span class="hljs-string">"project/web"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> (</span><br><span class="line">	host <span class="hljs-keyword">string</span></span><br><span class="line">	port <span class="hljs-keyword">int</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// webCmd represents the web command</span></span><br><span class="line"><span class="hljs-keyword">var</span> webCmd = &amp;cobra.Command&#123;</span><br><span class="line">	Use:   <span class="hljs-string">"web"</span>,</span><br><span class="line">	Short: <span class="hljs-string">"Start a web service"</span>,</span><br><span class="line">	Long: <span class="hljs-string">`Start a web service`</span>,</span><br><span class="line">	Run: <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(cmd *cobra.Command, args []<span class="hljs-keyword">string</span>)</span></span> &#123;</span><br><span class="line">		server := iris.New()</span><br><span class="line"></span><br><span class="line">		server.Use(iris.Gzip)</span><br><span class="line">		server.Use(<span class="hljs-built_in">recover</span>.New())</span><br><span class="line">		server.Use(logger.New())</span><br><span class="line"></span><br><span class="line">		<span class="hljs-comment">// SPA 路由刷新404 处理</span></span><br><span class="line">		server.OnErrorCode(<span class="hljs-number">404</span>, <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(ctx iris.Context)</span></span> &#123;</span><br><span class="line">			ctx.StatusCode(<span class="hljs-number">200</span>)</span><br><span class="line">			<span class="hljs-keyword">if</span> err := ctx.View(<span class="hljs-string">"index.html"</span>); err != <span class="hljs-literal">nil</span> &#123;</span><br><span class="line">				log.Println(err)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br><span class="line"></span><br><span class="line">		server.RegisterView(iris.HTML(<span class="hljs-string">"./web/dist"</span>, <span class="hljs-string">".html"</span>).Binary(web.Asset, web.AssetNames))</span><br><span class="line"></span><br><span class="line">		<span class="hljs-comment">// 页面路由</span></span><br><span class="line">		server.Get(<span class="hljs-string">"/"</span>, <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(ctx iris.Context)</span></span> &#123;</span><br><span class="line">			<span class="hljs-keyword">if</span> err := ctx.View(<span class="hljs-string">"index.html"</span>); err != <span class="hljs-literal">nil</span> &#123;</span><br><span class="line">				log.Println(err)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br><span class="line"></span><br><span class="line">		assetHandler := iris.StaticEmbeddedHandler(<span class="hljs-string">"./web/dist"</span>,  web.Asset,  web.AssetNames, <span class="hljs-literal">false</span>)</span><br><span class="line">		server.SPA(assetHandler).AddIndexName(<span class="hljs-string">"index.html"</span>)</span><br><span class="line"></span><br><span class="line">		addr := fmt.Sprintf(<span class="hljs-string">"%s:%d"</span>, host, port)</span><br><span class="line">		<span class="hljs-keyword">if</span> err := server.Run(iris.Addr(addr), iris.WithoutInterruptHandler); err != <span class="hljs-literal">nil</span> &#123;</span><br><span class="line">			log.Println(err)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span> &#123;</span><br><span class="line">	rootCmd.AddCommand(webCmd)</span><br><span class="line">	webCmd.PersistentFlags().StringVar(&amp;host, <span class="hljs-string">"host"</span>, <span class="hljs-string">"0.0.0.0"</span>, <span class="hljs-string">"Set listen on IP"</span>)</span><br><span class="line">	webCmd.PersistentFlags().IntVar(&amp;port, <span class="hljs-string">"port"</span>, <span class="hljs-number">7368</span>, <span class="hljs-string">"Set listen on port"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="编译-Go-项目"><a href="#编译-Go-项目" class="headerlink" title="编译 Go 项目"></a>编译 Go 项目</h2><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">go build -o spa main.go</span><br><span class="line">./spa web --host localhost --port 8080</span><br><span class="line">Now listening on: http://localhost:8080</span><br><span class="line">Application started. Press CMD+C to shut down.</span><br></pre></td></tr></table></figure>
+<p>打开浏览器访问 <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a>，这样就不用担心在Vue的路由页面刷行会导致404报错了！</p>
+<p><img src="/images/article/iris-vue-spa.jpg" alt="效果图"></p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/technology/20190117/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Go/">Go</a>, <a class="has-link-grey -link" href="/tags/Iris/">Iris</a>, <a class="has-link-grey -link" href="/tags/SPA/">SPA</a>, <a class="has-link-grey -link" href="/tags/Vue/">Vue</a>
                 </div>
             </div>
         </div>
         
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">捐款不会让你得到什么，不捐也不会让你失去什么</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/qrcode/alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/qrcode/wechatpay.jpg" alt="微信"></div>
+</a>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<a class="button is-warning donate" href="https://www.paypal.me/jinrenjie" target="_blank">
+    <span class="icon is-small">
+        <i class="fab fa-paypal"></i>
+    </span>
+    <span>Paypal</span>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/technology/20190427/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">使用 Outline 搭建云梯</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/technology/20190215/">
+                <span class="level-item">管理服务配置</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '4d31f85f4e85c10cfdb5',
+        clientSecret: 'd97f370a5e43b6f988502e7eb5ac7f2198f40f99',
+        id: 'c300478b81946618f8d0fb86b5469533',
+        repo: 'blog',
+        owner: 'jinrenjie',
+        admin: "jinrenjie"
+    })
+    gitalk.render('comment-container')
+</script>
+
+    </div>
+</div>
 </div>
                 
 
@@ -314,6 +422,49 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#所需环境">
+        <span class="has-mr-6">1</span>
+        <span>所需环境</span>
+        </a></li><li>
+        <a class="is-flex" href="#创建项目">
+        <span class="has-mr-6">2</span>
+        <span>创建项目</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#创建命令">
+        <span class="has-mr-6">2.1</span>
+        <span>创建命令</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#创建SPA">
+        <span class="has-mr-6">3</span>
+        <span>创建SPA</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#添加项目依赖">
+        <span class="has-mr-6">3.1</span>
+        <span>添加项目依赖</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#将静态资源打包成二进制">
+        <span class="has-mr-6">4</span>
+        <span>将静态资源打包成二进制</span>
+        </a></li><li>
+        <a class="is-flex" href="#编辑-web-go">
+        <span class="has-mr-6">5</span>
+        <span>编辑 web.go</span>
+        </a></li><li>
+        <a class="is-flex" href="#编译-Go-项目">
+        <span class="has-mr-6">6</span>
+        <span>编译 Go 项目</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 <div class="card widget">
@@ -933,7 +1084,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="George" height="28">
+                    <img src="/images/logo.svg" alt="Iris 搭载Vue history 路由模式 SPA" height="28">
                 
                 </a>
                 <p class="is-size-7">

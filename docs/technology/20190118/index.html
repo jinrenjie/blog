@@ -2,21 +2,25 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>标签: ACME.sh - George</title>
+<title>使用 Ghost 搭建博客 - George</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="keywords" content="Developer">
-<meta property="og:type" content="website">
-<meta property="og:title" content="George">
-<meta property="og:url" content="http://george.betterde.tech/tags/ACME-sh/index.html">
+    <meta name="description" content="博客似乎在一步步的衰落，现在都流行着微博之类的短讯平台。其中差别很明显的就是，你2012的博客或许2014也有人在评论，而即便是微博上热门话题，也会被淹没在信息的洪水中。">
+<meta name="keywords" content="Ghost,Blog,Docker,Node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Ghost 搭建博客">
+<meta property="og:url" content="http://george.betterde.tech/technology/20190118/index.html">
 <meta property="og:site_name" content="George">
+<meta property="og:description" content="博客似乎在一步步的衰落，现在都流行着微博之类的短讯平台。其中差别很明显的就是，你2012的博客或许2014也有人在评论，而即便是微博上热门话题，也会被淹没在信息的洪水中。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://george.betterde.tech/images/og_image.png">
+<meta property="og:image" content="http://george.betterde.tech/cover/ghost-blog.png">
+<meta property="og:updated_time" content="2019-05-15T09:36:29.032Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="George">
-<meta name="twitter:image" content="http://george.betterde.tech/images/og_image.png">
+<meta name="twitter:title" content="使用 Ghost 搭建博客">
+<meta name="twitter:description" content="博客似乎在一步步的衰落，现在都流行着微博之类的短讯平台。其中差别很明显的就是，你2012的博客或许2014也有人在评论，而即便是微博上热门话题，也会被淹没在信息的洪水中。">
+<meta name="twitter:image" content="http://george.betterde.tech/cover/ghost-blog.png">
 
 
 
@@ -90,7 +94,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="George" height="28">
+                <img src="/images/logo.svg" alt="使用 Ghost 搭建博客" height="28">
             
             </a>
         </div>
@@ -120,6 +124,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -134,29 +142,18 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">ACME.sh</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-image">
-        <a href="/technology/20190117/" class="image is-7by1">
-            <img class="thumbnail" src="/cover/let-s_encrypt-3.jpg" alt="为你的域名申请统配证书">
-        </a>
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/cover/ghost-blog.png" alt="使用 Ghost 搭建博客">
+        </span>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-01-17T06:15:06.000Z">2019-01-17</time>
+                <time class="level-item has-text-grey" datetime="2019-01-18T08:47:57.000Z">2019-01-18</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/technology/">技术</a>
@@ -166,7 +163,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1323 个字)
+                    7 分钟 读完 (大约 1076 个字)
                 </span>
                 
                 
@@ -175,33 +172,154 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/technology/20190117/">为你的域名申请统配证书</a>
+                使用 Ghost 搭建博客
             
         </h1>
         <div class="content">
-            <p>Let’s Encrypt 终于在社区宣布支持通配子域名的证书免费申请了。对于需要多个子域名证书的个人来说简直就是福音，因为 Let’s Encrypt 是一个 CA 机构，但这个 CA 机构是免费的！也就是说签发证书不需要任何费用。<br></p>
+            <p>博客似乎在一步步的衰落，现在都流行着微博之类的短讯平台。其中差别很明显的就是，你2012的博客或许2014也有人在评论，而即便是微博上热门话题，也会被淹没在信息的洪水中。<br><a id="more"></a></p>
+<h2 id="所需环境"><a href="#所需环境" class="headerlink" title="所需环境"></a>所需环境</h2><ul>
+<li>CentOS 7.x</li>
+<li>Docker</li>
+<li>Ghost</li>
+<li>MySQL 5.7</li>
+</ul>
+<h2 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h2><figure class="highlight bash hljs"><figcaption><span>安装所需依赖</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y yum-utils \</span><br><span class="line">device-mapper-persistent-data \</span><br><span class="line">lvm2</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash hljs"><figcaption><span>添加 Docker 仓库</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum-config-manager \</span><br><span class="line">--add-repo \</span><br><span class="line">https://download.docker.com/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash hljs"><figcaption><span>安装 Docker</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install docker-ce -y</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash hljs"><figcaption><span>启动 Docker 服务</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start docker</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash hljs"><figcaption><span>创建一个 Docker 网络</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create ghost --subnet 10.0.0.0/24</span><br></pre></td></tr></table></figure>
+<p>ghost 可以替换成你自己自定义的网路名称。</p>
+<h2 id="创建博客数据的相关目录"><a href="#创建博客数据的相关目录" class="headerlink" title="创建博客数据的相关目录"></a>创建博客数据的相关目录</h2><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p \</span><br><span class="line">/var/<span class="hljs-built_in">local</span>/blog \</span><br><span class="line">/var/<span class="hljs-built_in">local</span>/nginx \</span><br><span class="line">/var/<span class="hljs-built_in">local</span>/mysql \</span><br><span class="line">/var/<span class="hljs-built_in">local</span>/web/sites \</span><br><span class="line">/var/<span class="hljs-built_in">local</span>/web/logs</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>/var/local/blog</code> 用于存放博客图片等媒体数据；</li>
+<li><code>/var/local/nginx</code> 用于保存nginx配置文件；</li>
+<li><code>/var/local/mysql</code> 用于存放数据库文件；</li>
+<li><code>/var/local/web/sites</code> 用于后期如果你需要在nginx中部署其他网站时使用；</li>
+<li><code>/var/local/web/logs</code> 用于存储日志。</li>
+</ul>
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><figure class="highlight bash hljs"><figcaption><span>运行一个 MySQL 容器</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql \</span><br><span class="line">-h mysql \</span><br><span class="line">-v /var/<span class="hljs-built_in">local</span>/mysql:/var/lib/mysql \</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=Ghost@2019 \</span><br><span class="line">--net ghost \</span><br><span class="line">--ip 10.0.0.2 \</span><br><span class="line">--network-alias mysql \</span><br><span class="line">-d mysql:5.7</span><br></pre></td></tr></table></figure>
+<h2 id="运行一个-Ghost-服务容器"><a href="#运行一个-Ghost-服务容器" class="headerlink" title="运行一个 Ghost 服务容器"></a>运行一个 Ghost 服务容器</h2><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker run --name george \</span><br><span class="line">-h george \</span><br><span class="line">--net ghost \</span><br><span class="line">--ip 10.0.0.3 \</span><br><span class="line">--network-alias george \</span><br><span class="line">-e database__client=mysql \</span><br><span class="line">-e database__connection__host=mysql \</span><br><span class="line">-e database__connection__user=root \</span><br><span class="line">-e database__connection__password=George@1994 \</span><br><span class="line">-e database__connection__database=george \</span><br><span class="line">-e url=https://george.betterde.com \</span><br><span class="line">-v /var/<span class="hljs-built_in">local</span>/blog/george:/var/lib/ghost/content \</span><br><span class="line">-d ghost:latest</span><br></pre></td></tr></table></figure>
+<p>url 根据自己的网站域名填写对应的域名即可。</p>
+<h2 id="运行一个-Nginx-容器"><a href="#运行一个-Nginx-容器" class="headerlink" title="运行一个 Nginx 容器"></a>运行一个 Nginx 容器</h2><p>Nginx 用来代理客户端请求，到 Ghost 的指定端口。开始之前先用 Nginx 的镜像生成默认配置文件.</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run --name nginx \</span><br><span class="line">-v /var/<span class="hljs-built_in">local</span>/nginx:/var/nginx \</span><br><span class="line">--rm nginx sh -c <span class="hljs-string">'cp -Rf /etc/nginx/* /var/nginx'</span> \</span><br><span class="line">nginx:latest</span><br></pre></td></tr></table></figure>
+<p>运行完成后回自动删除容器，如果不出意外的话，此时 <code>/var/local/nginx</code> 这个目录应该就有了nginx的默认配置文件，接下来运行 nginx 容器。</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-p 80:80 \</span><br><span class="line">-p 443:443 \</span><br><span class="line">--name nginx \</span><br><span class="line">-h nginx \</span><br><span class="line">--net betterde \</span><br><span class="line">--ip 10.0.0.4 \</span><br><span class="line">--network-alias nginx \</span><br><span class="line">-v /var/<span class="hljs-built_in">local</span>/web/sites:/web/sites \</span><br><span class="line">-v /var/<span class="hljs-built_in">local</span>/nginx:/etc/nginx \</span><br><span class="line">-v /var/<span class="hljs-built_in">local</span>/web/logs:/web/logs \</span><br><span class="line">-d nginx:latest</span><br></pre></td></tr></table></figure>
+<p>此时访问你的域名或主机IP，应该能看到nginx 的欢迎页面。</p>
+<figure class="highlight bash hljs"><figcaption><span>修改默认的 Nginx 配置文件</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv /var/<span class="hljs-built_in">local</span>/nginx/conf.d/default.conf yourdomain.conf</span><br><span class="line">vim yourdomain.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx hljs"><figcaption><span>如果你只用HTTP贴入如下内容</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-section">server</span> &#123;</span><br><span class="line">    <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;</span><br><span class="line">    <span class="hljs-attribute">server_name</span> yourdomain;</span><br><span class="line">    <span class="hljs-attribute">location</span> / &#123;</span><br><span class="line">        <span class="hljs-attribute">proxy_pass</span> http://george:2368/; <span class="hljs-comment">#这里填写你在运行Ghost镜像时指定的 hostname即可，端口号默认是2368</span></span><br><span class="line">        <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$host</span>;</span><br><span class="line">        <span class="hljs-attribute">proxy_set_header</span> X-Real-IP <span class="hljs-variable">$remote_addr</span>;</span><br><span class="line">        <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># When setting up Harbor behind other proxy, such as an Nginx instance, remove the below line if the proxy already has similar settings.</span></span><br><span class="line">        <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-Proto <span class="hljs-variable">$scheme</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-attribute">proxy_buffering</span> <span class="hljs-literal">off</span>;</span><br><span class="line">        <span class="hljs-attribute">proxy_request_buffering</span> <span class="hljs-literal">off</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx hljs"><figcaption><span>如果你是使用HTTPS的话，配置如下</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-section">server</span> &#123;</span><br><span class="line">    <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;</span><br><span class="line">    <span class="hljs-attribute">server_name</span> yourdomain.com;</span><br><span class="line">    <span class="hljs-attribute">return</span> <span class="hljs-number">308</span> https://<span class="hljs-variable">$host</span><span class="hljs-variable">$request_uri</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-section">server</span> &#123;</span><br><span class="line">    <span class="hljs-attribute">listen</span> <span class="hljs-number">443</span> ssl;</span><br><span class="line">    <span class="hljs-attribute">server_tokens</span> <span class="hljs-literal">off</span>;</span><br><span class="line">    <span class="hljs-attribute">server_name</span> yourdomain.com;</span><br><span class="line">    <span class="hljs-attribute">ssl_certificate</span> /etc/nginx/cert/fullchain.cer;</span><br><span class="line">    <span class="hljs-attribute">ssl_certificate_key</span> /etc/nginx/cert/betterde.com.key;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># Recommendations from https://raymii.org/s/tutorials/Strong_SSL_Security_On_nginx.html</span></span><br><span class="line">    <span class="hljs-attribute">ssl_protocols</span> TLSv1.<span class="hljs-number">1</span> TLSv1.<span class="hljs-number">2</span>;</span><br><span class="line">    <span class="hljs-attribute">ssl_ciphers</span> <span class="hljs-string">'!aNULL:kECDH+AESGCM:ECDH+AESGCM:RSA+AESGCM:kECDH+AES:ECDH+AES:RSA+AES:'</span>;</span><br><span class="line">    <span class="hljs-attribute">ssl_prefer_server_ciphers</span> <span class="hljs-literal">on</span>;</span><br><span class="line">    <span class="hljs-attribute">ssl_session_cache</span> shared:SSL:<span class="hljs-number">10m</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># disable any limits to avoid HTTP 413 for large image uploads</span></span><br><span class="line">    <span class="hljs-attribute">client_max_body_size</span> <span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># required to avoid HTTP 411: see Issue #1486 (https://github.com/docker/docker/issues/1486)</span></span><br><span class="line">    <span class="hljs-attribute">chunked_transfer_encoding</span> <span class="hljs-literal">on</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-attribute">location</span> / &#123;</span><br><span class="line">        <span class="hljs-attribute">proxy_pass</span> http://george:2368/; <span class="hljs-comment">#这里填写你在运行Ghost镜像时指定的 hostname即可，端口号默认是2368</span></span><br><span class="line">        <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$host</span>;</span><br><span class="line">        <span class="hljs-attribute">proxy_set_header</span> X-Real-IP <span class="hljs-variable">$remote_addr</span>;</span><br><span class="line">        <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># When setting up Harbor behind other proxy, such as an Nginx instance, remove the below line if the proxy already has similar settings.</span></span><br><span class="line">        <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-Proto <span class="hljs-variable">$scheme</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-attribute">proxy_buffering</span> <span class="hljs-literal">off</span>;</span><br><span class="line">        <span class="hljs-attribute">proxy_request_buffering</span> <span class="hljs-literal">off</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如何获取HTTPS证书请看我的另一片文章：<a href="/technology/20190117/">为你的域名申请统配证书</a></p>
+<p>将获得的证书拷贝到 <code>/var/local/nginx/cert</code> 目录下，再将对应的文件名改为你自己的证书名称！</p>
+<figure class="highlight bash hljs"><figcaption><span>重启 Nginx 容器</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart nginx</span><br></pre></td></tr></table></figure>
+<p>重启 Nginx 容器后，试着访问你的域名如 <a href="https://yourdomain.com/ghost" target="_blank" rel="noopener">https://yourdomain.com/ghost</a>或<a href="http://yourdomain.com/ghost" target="_blank" rel="noopener">http://yourdomain.com/ghost</a>，如果不出意外的话，将能看到Ghost 的初始化管理后台。</p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/technology/20190117/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Blog/">Blog</a>, <a class="has-link-grey -link" href="/tags/Docker/">Docker</a>, <a class="has-link-grey -link" href="/tags/Ghost/">Ghost</a>, <a class="has-link-grey -link" href="/tags/Node/">Node</a>
                 </div>
             </div>
         </div>
         
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">捐款不会让你得到什么，不捐也不会让你失去什么</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/qrcode/alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/qrcode/wechatpay.jpg" alt="微信"></div>
+</a>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<a class="button is-warning donate" href="https://www.paypal.me/jinrenjie" target="_blank">
+    <span class="icon is-small">
+        <i class="fab fa-paypal"></i>
+    </span>
+    <span>Paypal</span>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/technology/20190215/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">管理服务配置</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/technology/20190117/">
+                <span class="level-item">为你的域名申请统配证书</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '4d31f85f4e85c10cfdb5',
+        clientSecret: 'd97f370a5e43b6f988502e7eb5ac7f2198f40f99',
+        id: 'fab202532df4e8612e839e38be77c80b',
+        repo: 'blog',
+        owner: 'jinrenjie',
+        admin: "jinrenjie"
+    })
+    gitalk.render('comment-container')
+</script>
+
+    </div>
+</div>
 </div>
                 
 
@@ -314,6 +432,41 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#所需环境">
+        <span class="has-mr-6">1</span>
+        <span>所需环境</span>
+        </a></li><li>
+        <a class="is-flex" href="#安装-Docker">
+        <span class="has-mr-6">2</span>
+        <span>安装 Docker</span>
+        </a></li><li>
+        <a class="is-flex" href="#创建博客数据的相关目录">
+        <span class="has-mr-6">3</span>
+        <span>创建博客数据的相关目录</span>
+        </a></li><li>
+        <a class="is-flex" href="#数据库">
+        <span class="has-mr-6">4</span>
+        <span>数据库</span>
+        </a></li><li>
+        <a class="is-flex" href="#运行一个-Ghost-服务容器">
+        <span class="has-mr-6">5</span>
+        <span>运行一个 Ghost 服务容器</span>
+        </a></li><li>
+        <a class="is-flex" href="#运行一个-Nginx-容器">
+        <span class="has-mr-6">6</span>
+        <span>运行一个 Nginx 容器</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 <div class="card widget">
@@ -933,7 +1086,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="George" height="28">
+                    <img src="/images/logo.svg" alt="使用 Ghost 搭建博客" height="28">
                 
                 </a>
                 <p class="is-size-7">
