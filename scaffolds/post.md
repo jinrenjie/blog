@@ -1,6 +1,13 @@
 ---
 title: {{ title }}
 date: {{ date }}
-tags:
 toc: true
+comments: true
+thumbnail: /cover/
+tags:
+- 
+categories:
+- 
 ---
+
+<!-- more -->
