@@ -390,13 +390,14 @@ img.thumbnail {
 }
 .content code,
 .content pre {
-  font-size: 0.85em;
   font-family: "Source Code Pro", monospace, "Microsoft YaHei";
 }
 .content code {
-  color: #ff3860;
-  background: transparent;
+  color: #1a9ff9;
+  font-size: 1.1rem;
+  font-width: 600;
   padding: 0;
+  background: transparent;
 }
 .content blockquote footer strong + cite {
   margin-left: 0.5em;
