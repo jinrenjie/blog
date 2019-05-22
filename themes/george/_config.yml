@@ -221,6 +221,7 @@ plugins:
     # BuSuanZi site/page view counter
     # https://busuanzi.ibruce.info
     busuanzi: false
+    wechat: false
 # CDN provider settings
 # https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/speed-up-your-site-with-custom-cdn/
 providers:

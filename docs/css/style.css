@@ -70,6 +70,12 @@ textarea {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
+.card img.thumbnail {
+  transition: all 0.3s ease;
+}
+.card :hover img.thumbnail {
+  transform: scale(1.2);
+}
 img.thumbnail {
   object-fit: cover;
   width: 100%;
