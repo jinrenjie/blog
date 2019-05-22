@@ -16,7 +16,7 @@
 <meta property="og:description" content="如果你的项目文档或博客是放在 Github Pages 上进行展示，并且自己有域名，需要吧自己的域名解析到某个项目的 Demo 或 Blog 上，那么本文就分享如何实现这一需求。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://george.betterde.tech/cover/github-pages.png">
-<meta property="og:updated_time" content="2019-05-22T03:00:50.522Z">
+<meta property="og:updated_time" content="2019-05-22T03:49:40.899Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Github Pages 自定义域名并开启HTTPS">
 <meta name="twitter:description" content="如果你的项目文档或博客是放在 Github Pages 上进行展示，并且自己有域名，需要吧自己的域名解析到某个项目的 Demo 或 Blog 上，那么本文就分享如何实现这一需求。">
@@ -180,7 +180,7 @@
 <h2 id="添加域名解析记录"><a href="#添加域名解析记录" class="headerlink" title="添加域名解析记录"></a>添加域名解析记录</h2><p><img src="/images/article/github-pages.png" alt="两种解析方案"></p>
 <p>官方推荐使用 CNAME 这种方式因为这种方式的话，可以利用 CDN 做静态资源分发，如果直接 A 记录的话，在加载文章中的静态资源时可能会很慢。</p>
 <h3 id="添加-CNAME-解析记录"><a href="#添加-CNAME-解析记录" class="headerlink" title="添加 CNAME 解析记录"></a>添加 CNAME 解析记录</h3><p><img src="/images/article/aliyun-dns-record.png" alt="添加 CNAME 解析记录"></p>
-<h3 id="创建-CNAME-文件"><a href="#创建-CNAME-文件" class="headerlink" title="创建 CNAME 文件"></a>创建 CNAME 文件</h3><p>在 Github 项目仓库根目录中创建 <code>CNAME</code> 文件，内容就是你的域名（无需 HTTP 协议）</p>
+<h3 id="创建-CNAME-文件"><a href="#创建-CNAME-文件" class="headerlink" title="创建 CNAME 文件"></a>创建 CNAME 文件</h3><p>在 Github 项目仓库 <code>docs</code> 目录中创建 <code>CNAME</code> 文件，内容就是你的域名（无需 HTTP 协议）</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">george.betterde.tech</span><br></pre></td></tr></table></figure>
 <p>然后提交到项目仓库的 <code>master</code> 分支。</p>
 <h2 id="设置-HTTPS"><a href="#设置-HTTPS" class="headerlink" title="设置 HTTPS"></a>设置 HTTPS</h2><p><img src="/images/article/github-repository.png" alt="打开项目首页"></p>
