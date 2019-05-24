@@ -2,25 +2,25 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>为你的域名申请统配证书 - George</title>
+<title>快速搭建 Gitlab 服务器 - George</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="Let’s Encrypt 终于在社区宣布支持通配子域名的证书免费申请了。对于需要多个子域名证书的个人来说简直就是福音，因为 Let’s Encrypt 是一个 CA 机构，但这个 CA 机构是免费的！也就是说签发证书不需要任何费用。">
-<meta name="keywords" content="HTTPS,Let&#39;s Encrypt,ACME.sh">
+    <meta name="description" content="对于很多团队来说，公司内部项目希望放在公司内部环境中运行，基于这种需求，今天分享一下如何使用 Docker 快速搭建 Gitlab 服务器。">
+<meta name="keywords" content="Docker,HTTPS,Git,Gitlab">
 <meta property="og:type" content="article">
-<meta property="og:title" content="为你的域名申请统配证书">
-<meta property="og:url" content="https://george.betterde.com/technology/20190117/index.html">
+<meta property="og:title" content="快速搭建 Gitlab 服务器">
+<meta property="og:url" content="https://george.betterde.com/technology/20190518/index.html">
 <meta property="og:site_name" content="George">
-<meta property="og:description" content="Let’s Encrypt 终于在社区宣布支持通配子域名的证书免费申请了。对于需要多个子域名证书的个人来说简直就是福音，因为 Let’s Encrypt 是一个 CA 机构，但这个 CA 机构是免费的！也就是说签发证书不需要任何费用。">
+<meta property="og:description" content="对于很多团队来说，公司内部项目希望放在公司内部环境中运行，基于这种需求，今天分享一下如何使用 Docker 快速搭建 Gitlab 服务器。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://george.betterde.com/cover/let-s_encrypt-3.jpg">
-<meta property="og:updated_time" content="2019-05-15T09:33:17.762Z">
+<meta property="og:image" content="https://george.betterde.com/cover/gitlab.jpg">
+<meta property="og:updated_time" content="2019-05-24T09:40:53.893Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="为你的域名申请统配证书">
-<meta name="twitter:description" content="Let’s Encrypt 终于在社区宣布支持通配子域名的证书免费申请了。对于需要多个子域名证书的个人来说简直就是福音，因为 Let’s Encrypt 是一个 CA 机构，但这个 CA 机构是免费的！也就是说签发证书不需要任何费用。">
-<meta name="twitter:image" content="https://george.betterde.com/cover/let-s_encrypt-3.jpg">
+<meta name="twitter:title" content="快速搭建 Gitlab 服务器">
+<meta name="twitter:description" content="对于很多团队来说，公司内部项目希望放在公司内部环境中运行，基于这种需求，今天分享一下如何使用 Docker 快速搭建 Gitlab 服务器。">
+<meta name="twitter:image" content="https://george.betterde.com/cover/gitlab.jpg">
 
 
 
@@ -96,7 +96,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="为你的域名申请统配证书" height="28">
+                <img src="/images/logo.svg" alt="快速搭建 Gitlab 服务器" height="28">
             
             </a>
         </div>
@@ -147,7 +147,7 @@
     
     <div class="card-image">
         <span class="image is-7by1">
-            <img class="thumbnail" src="/cover/let-s_encrypt-3.jpg" alt="为你的域名申请统配证书">
+            <img class="thumbnail" src="/cover/gitlab.jpg" alt="快速搭建 Gitlab 服务器">
         </span>
     </div>
     
@@ -155,7 +155,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-01-17T06:15:06.000Z">2019-01-17</time>
+                <time class="level-item has-text-grey" datetime="2019-05-18T03:41:01.000Z">2019-05-18</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/technology/">技术</a>
@@ -165,7 +165,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1323 个字)
+                    4 分钟 读完 (大约 622 个字)
                 </span>
                 
                 
@@ -174,54 +174,22 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                为你的域名申请统配证书
+                快速搭建 Gitlab 服务器
             
         </h1>
         <div class="content">
-            <p>Let’s Encrypt 终于在社区宣布支持通配子域名的证书免费申请了。对于需要多个子域名证书的个人来说简直就是福音，因为 Let’s Encrypt 是一个 CA 机构，但这个 CA 机构是免费的！也就是说签发证书不需要任何费用。<br><a id="more"></a></p>
-<h2 id="什么是-Let’s-Encrypt"><a href="#什么是-Let’s-Encrypt" class="headerlink" title="什么是 Let’s Encrypt"></a>什么是 Let’s Encrypt</h2><p>Let’s Encrypt 由于是非盈利性的组织，需要控制开支，他们搞了一个非常有创意的事情，设计了一个 ACME 协议，目前该协议的版本是 v2。</p>
-<p>那为什么要创建 ACME 协议呢，传统的 CA 机构是人工受理证书申请、证书更新、证书撤销，完全是手动处理的。而 ACME 协议规范化了证书申请、更新、撤销等流程，只要一个客户端实现了该协议的功能，通过客户端就可以向 Let’s Encrypt 申请证书，也就是说 Let’s Encrypt CA 完全是自动化操作的。</p>
-<p>任何人都可以基于 ACME 协议实现一个客户端，官方推荐的客户端是 <a href="https://certbot.eff.org/" target="_blank" rel="noopener">Certbot</a>。本篇博客中我所使用的是 <a href="https://github.com/Neilpang/acme.sh" target="_blank" rel="noopener">acme.sh</a>(ACME Shell script)</p>
-<h2 id="什么是通配符证书"><a href="#什么是通配符证书" class="headerlink" title="什么是通配符证书"></a>什么是通配符证书</h2><p>在没有出现通配符证书之前，Let’s Encrypt 支持两种证书。</p>
-<ul>
-<li>单域名证书：证书仅仅包含一个主机。</li>
-<li>SAN 证书：一张证书可以包括多个主机，也就是证书可以包含下列的主机：<a href="http://www.betterde.com、george.betterde.com、*.betterde.com" target="_blank" rel="noopener">www.betterde.com、george.betterde.com、*.betterde.com</a> 等等。</li>
-</ul>
-<h2 id="校验域名的所有权的方式"><a href="#校验域名的所有权的方式" class="headerlink" title="校验域名的所有权的方式"></a>校验域名的所有权的方式</h2><p>目前 Let’s Encrypt 支持三种验证方式：</p>
-<ul>
-<li>dns-01：给域名添加一个 DNS TXT 记录；</li>
-<li>http-01：在域名对应的 Web 服务器下放置一个 HTTP well-known URL 资源文件；</li>
-<li>tls-sni-01：在域名对应的 Web 服务器下放置一个 HTTPS well-known URL 资源文件。</li>
-</ul>
-<h2 id="关于-ACME-Shell-script"><a href="#关于-ACME-Shell-script" class="headerlink" title="关于 ACME Shell script"></a>关于 ACME Shell script</h2><p>acme.sh 是一个用 Shell 实现了 <code>acme</code> 协议的开源项目，特点如下：</p>
-<ul>
-<li>支持 ACME v1</li>
-<li>支持 ACME v2</li>
-<li>支持通配符证书申请</li>
-<li>简单易使用</li>
-<li>支持 IPv6</li>
-<li>支持 Cron 自动续签证书</li>
-<li>支持多家CA机构</li>
-<li>支持多种域名所有权检验方式：Webroot、Standalone、Standalone tls-alpn、Apache、Nginx、DNS、DNS alias 和 Stateless</li>
-</ul>
-<h2 id="使用-ACME-Shell-script"><a href="#使用-ACME-Shell-script" class="headerlink" title="使用 ACME Shell script"></a>使用 ACME Shell script</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://get.acme.sh | sh</span><br></pre></td></tr></table></figure>
-<p>安装过程中脚本会执行如下操作：<br>1.在当前用户的 <code>$HOME</code> 目录创建 <code>.acme.sh</code> 的目录<br>2.创建命令的别名 acme.sh=~/.acme.sh/acme.sh<br>3.创建用于检查和续签证书的定时任务<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 0 * * * &quot;/home/user/.acme.sh&quot;/acme.sh --cron --home &quot;/home/user/.acme.sh&quot; &gt; /dev/null</span><br></pre></td></tr></table></figure></p>
-<h3 id="校验域名的所有权的方式-1"><a href="#校验域名的所有权的方式-1" class="headerlink" title="校验域名的所有权的方式"></a>校验域名的所有权的方式</h3><p>本文采用的是阿里云的DNS，为了全自动化，需要先获取阿里云控制台的 Key 和 Secret，<a href="https://ak-console.aliyun.com/#/accesskey" target="_blank" rel="noopener">点击获取</a>。其他方式请参考acme.sh 的 <a href="https://github.com/Neilpang/acme.sh/blob/master/README.md" target="_blank" rel="noopener">Github 项目文档</a></p>
-<p>获取到 Key 和 Secret 后在命令行执行：<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">export</span> Ali_Key=<span class="hljs-string">"复制你的Key到这里"</span></span><br><span class="line"><span class="hljs-built_in">export</span> Ali_Secret=<span class="hljs-string">"复制你的Secret到这里"</span></span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>当你执行 acme.sh 时，它会自动保存这些信息到 <code>～/.acme.sh/account.conf</code> 文件中，以便于下次自动续签时使用</p>
-</blockquote>
-<h3 id="申请统配证书"><a href="#申请统配证书" class="headerlink" title="申请统配证书"></a>申请统配证书</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --issue --dns dns_ali -d example.com -d *.example.com</span><br></pre></td></tr></table></figure>
-<ul>
-<li>dns_ali 为服务商名称，具体可以参考<a href="https://github.com/Neilpang/acme.sh/blob/master/dnsapi/README.md" target="_blank" rel="noopener">官方文档</a>；</li>
-<li>第一个域名，是你要申请的主域名，如：bettere.com；</li>
-<li>第二个是泛解析域名，如：*.betterde.com；</li>
-</ul>
-<p>这种方式将自动为你的域名添加一条 txt 解析，验证成功后，这条解析记录会被删除，所以对你来说是无感的，就是要等 120秒。证书生成成功后，默认保存在 <code>~/.acme.sh/</code> 你的顶级域名中。</p>
-<p>执行完成后将在 <code>~/.acme.sh/</code> 目录下生成对应域名的一个目录，结构如下：<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── backup              <span class="hljs-comment"># 生成新证书时，将久的证书备份到该目录下</span></span><br><span class="line">│   ├── fullchain.bak</span><br><span class="line">│   └── key.bak</span><br><span class="line">├── example.com.cer</span><br><span class="line">├── example.com.conf    <span class="hljs-comment"># 域名配置文件，保存了证书的有效日期、检验方式等信息</span></span><br><span class="line">├── example.com.csr</span><br><span class="line">├── example.com.csr.conf</span><br><span class="line">├── example.com.key</span><br><span class="line">├── ca.cer</span><br><span class="line">└── fullchain.cer</span><br></pre></td></tr></table></figure></p>
-<h3 id="部署证书"><a href="#部署证书" class="headerlink" title="部署证书"></a>部署证书</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --install-cert -d example.com \</span><br><span class="line">--cert-file /path/to/keyfile/<span class="hljs-keyword">in</span>/nginx/key.pem \</span><br><span class="line">--fullchain-file /path/to/fullchain/nginx/cert.pem \</span><br><span class="line">--reloadcmd <span class="hljs-string">"service nginx force-reload"</span></span><br></pre></td></tr></table></figure>
-<p>上述命令，用于将证书文件部署到指定的目录下，同时将配置信息写入 <code>~/.acme.sh/DOMAIN/DOMAIN.conf</code> 文件中，用于续签时，重新部署，<code>reloadcmd</code> 的命令用于告诉 HTTP 服务器，重新加载配置文件和证书，请根据自己的 HTTP 服务器自行定义。</p>
-<h3 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h3><p>到这里我们的证书申请就完成了，下一篇文章中我将介绍如何给 Nginx 配置 HTTPS。</p>
+            <p>对于很多团队来说，公司内部项目希望放在公司内部环境中运行，基于这种需求，今天分享一下如何使用 Docker 快速搭建 Gitlab 服务器。<br><a id="more"></a></p>
+<h2 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h2><p>关于如何安装 Docker ，以及常用命令这里就不再做过多赘述</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull gitlab/gitlab-ce:latest</span><br></pre></td></tr></table></figure>
+<h2 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h2><p>在开始之前需要确定 80、443、22 端口是否被占用，如果前两个被占用了，可以考虑在现有服务器上进行反向代理。如果是 <code>22号端口</code> 被占用，那么建议修改系统的 <code>SSHD</code> 服务监听端口。这样当你使用 SSH 方式管理 Git 仓库时也比较方便，毕竟需要 SSH 到服务器的概率要比你提交代码的概率低的。</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run --detach \</span><br><span class="line">  --hostname gitlab.example.com \</span><br><span class="line">  --env GITLAB_OMNIBUS_CONFIG=<span class="hljs-string">"external_url 'https://gitlab.example.com/'; gitlab_rails['lfs_enabled'] = true;"</span> \</span><br><span class="line">  --publish 443:443 --publish 80:80 --publish 22:22 \</span><br><span class="line">  --name gitlab \</span><br><span class="line">  --restart always \</span><br><span class="line">  --volume /srv/gitlab/config:/etc/gitlab \</span><br><span class="line">  --volume /srv/gitlab/logs:/var/<span class="hljs-built_in">log</span>/gitlab \</span><br><span class="line">  --volume /srv/gitlab/data:/var/opt/gitlab \</span><br><span class="line">  gitlab/gitlab-ce:latest</span><br></pre></td></tr></table></figure>
+<p>将上面的 <code>gitlab.example.com</code> 替换成你自己的域名，如果需要 <code>HTTPS</code> 的话 <code>external_url</code> 选项中的 URL 就写成 <code>https://gitlab.example.com/</code>，否则就用 <code>http://gitlab.example.com/</code>。</p>
+<p>上面的命令运行后如果你的域名解析没有问题的话，就可以打开浏览器正常访问了。</p>
+<h2 id="使用-HTTPS"><a href="#使用-HTTPS" class="headerlink" title="使用 HTTPS"></a>使用 HTTPS</h2><h3 id="自带-Let’s-Encrypt"><a href="#自带-Let’s-Encrypt" class="headerlink" title="自带 Let’s Encrypt"></a>自带 Let’s Encrypt</h3><p>Gitlab 10.7 版本内置了 <code>Let&#39;s Encrypt</code>，你只需要配置 <code>/etc/gitlab/config/gitlab.rb</code> 如下几个参数就可以，自动启用 HTTPS 了。</p>
+<figure class="highlight rb hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">letsencrypt[<span class="hljs-string">'enable'</span>] = <span class="hljs-literal">true</span></span><br><span class="line">external_url <span class="hljs-string">"https://gitlab.example.com"</span> <span class="hljs-comment">#如果你在运行容器时已经指定了，则无需再做配置</span></span><br><span class="line">letsencrypt[<span class="hljs-string">'contact_emails'</span>] = [<span class="hljs-string">'user@example.com'</span>]  <span class="hljs-comment"># 填写你的邮箱，此项非必填</span></span><br><span class="line"><span class="hljs-comment"># 自动续签的配置</span></span><br><span class="line">letsencrypt[<span class="hljs-string">'auto_renew'</span>] = <span class="hljs-literal">true</span></span><br><span class="line">letsencrypt[<span class="hljs-string">'auto_renew_hour'</span>] = <span class="hljs-string">"12"</span></span><br><span class="line">letsencrypt[<span class="hljs-string">'auto_renew_minute'</span>] = <span class="hljs-string">"30"</span></span><br><span class="line">letsencrypt[<span class="hljs-string">'auto_renew_day_of_month'</span>] = <span class="hljs-string">"*/7"</span></span><br></pre></td></tr></table></figure>
+<h3 id="使配置生效"><a href="#使配置生效" class="headerlink" title="使配置生效"></a>使配置生效</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="hljs-built_in">exec</span> -it gitlab /bin/bash <span class="hljs-comment"># gitlab 替换成你运行容器时的 --name 的配置</span></span><br><span class="line"></span><br><span class="line">gitlab-ctl renew-le-certs <span class="hljs-comment"># 先生成证书</span></span><br><span class="line"></span><br><span class="line">gitlab-ctl reconfigure <span class="hljs-comment"># 使配置生效</span></span><br></pre></td></tr></table></figure>
+<p>如果先执行 <code>gitlab-ctl reconfigure</code> 命令，很有可能会报如下错误：<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">There was an error running gitlab-ctl reconfigure:</span><br><span class="line">letsencrypt_certificate[gitlab.betterde.com] (letsencrypt::http_authorization line 3) had an error: RuntimeError: acme_certificate[staging] (/opt/gitlab/embedded/cookbooks/cache/cookbooks/letsencrypt/resources/certificate.rb line 20) had an error: RuntimeError: [gitlab.betterde.com] Validation failed <span class="hljs-keyword">for</span> domain gitlab.betterde.com</span><br></pre></td></tr></table></figure></p>
+<p>如果一切正常，那么此时访问 <code>https://gitlab.example.com</code> 就能正常打开 Gitlab 的首页了。</p>
 
         </div>
         
@@ -229,7 +197,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/ACME-sh/">ACME.sh</a>, <a class="has-link-grey -link" href="/tags/HTTPS/">HTTPS</a>, <a class="has-link-grey -link" href="/tags/Let-s-Encrypt/">Let's Encrypt</a>
+                    <a class="has-link-grey -link" href="/tags/Docker/">Docker</a>, <a class="has-link-grey -link" href="/tags/Git/">Git</a>, <a class="has-link-grey -link" href="/tags/Gitlab/">Gitlab</a>, <a class="has-link-grey -link" href="/tags/HTTPS/">HTTPS</a>
                 </div>
             </div>
         </div>
@@ -290,12 +258,19 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/technology/20190118/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/technology/20190519/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">使用 Ghost 搭建博客</span>
+                <span class="level-item">关闭 Gitlab Auto DevOps</span>
             </a>
         </div>
         
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/technology/20190517/">
+                <span class="level-item">Github Pages 自定义域名并开启HTTPS</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
         
     </div>
 </div>
@@ -313,7 +288,7 @@
     var gitalk = new Gitalk({
         clientID: '4d31f85f4e85c10cfdb5',
         clientSecret: 'd97f370a5e43b6f988502e7eb5ac7f2198f40f99',
-        id: 'bcdb79a45e7c811566c891b68e0d4c63',
+        id: 'b38840a95983121d637929e645fba90e',
         repo: 'blog',
         owner: 'jinrenjie',
         admin: "jinrenjie"
@@ -442,45 +417,25 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#什么是-Let’s-Encrypt">
+        <a class="is-flex" href="#获取镜像">
         <span class="has-mr-6">1</span>
-        <span>什么是 Let’s Encrypt</span>
+        <span>获取镜像</span>
         </a></li><li>
-        <a class="is-flex" href="#什么是通配符证书">
+        <a class="is-flex" href="#运行容器">
         <span class="has-mr-6">2</span>
-        <span>什么是通配符证书</span>
+        <span>运行容器</span>
         </a></li><li>
-        <a class="is-flex" href="#校验域名的所有权的方式">
+        <a class="is-flex" href="#使用-HTTPS">
         <span class="has-mr-6">3</span>
-        <span>校验域名的所有权的方式</span>
-        </a></li><li>
-        <a class="is-flex" href="#关于-ACME-Shell-script">
-        <span class="has-mr-6">4</span>
-        <span>关于 ACME Shell script</span>
-        </a></li><li>
-        <a class="is-flex" href="#使用-ACME-Shell-script">
-        <span class="has-mr-6">5</span>
-        <span>使用 ACME Shell script</span>
+        <span>使用 HTTPS</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#安装">
-        <span class="has-mr-6">5.1</span>
-        <span>安装</span>
+        <a class="is-flex" href="#自带-Let’s-Encrypt">
+        <span class="has-mr-6">3.1</span>
+        <span>自带 Let’s Encrypt</span>
         </a></li><li>
-        <a class="is-flex" href="#校验域名的所有权的方式-1">
-        <span class="has-mr-6">5.2</span>
-        <span>校验域名的所有权的方式</span>
-        </a></li><li>
-        <a class="is-flex" href="#申请统配证书">
-        <span class="has-mr-6">5.3</span>
-        <span>申请统配证书</span>
-        </a></li><li>
-        <a class="is-flex" href="#部署证书">
-        <span class="has-mr-6">5.4</span>
-        <span>部署证书</span>
-        </a></li><li>
-        <a class="is-flex" href="#完成">
-        <span class="has-mr-6">5.5</span>
-        <span>完成</span>
+        <a class="is-flex" href="#使配置生效">
+        <span class="has-mr-6">3.2</span>
+        <span>使配置生效</span>
         </a></li></ul></li></ul>
         </div>
     </div>
@@ -1267,7 +1222,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="为你的域名申请统配证书" height="28">
+                    <img src="/images/logo.svg" alt="快速搭建 Gitlab 服务器" height="28">
                 
                 </a>
                 <p class="is-size-7">
