@@ -2,25 +2,21 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>管理服务配置 - George</title>
+<title>标签: Git - George</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="当系统变的复杂，配置项越来越多，一方面配置管理变得繁琐，另一方面配置修改后需要重新上线同样十分痛苦。这时候，需要有一套集中化配置管理系统，一方面提供统一的配置管理，另一方面提供配置变更的自动下发，及时生效。">
-<meta name="keywords" content="Confd,Config,Config Manager">
-<meta property="og:type" content="article">
-<meta property="og:title" content="管理服务配置">
-<meta property="og:url" content="https://george.betterde.com/technology/20190215/index.html">
+    <meta name="keywords" content="Developer">
+<meta property="og:type" content="website">
+<meta property="og:title" content="George">
+<meta property="og:url" content="https://george.betterde.com/tags/Git/index.html">
 <meta property="og:site_name" content="George">
-<meta property="og:description" content="当系统变的复杂，配置项越来越多，一方面配置管理变得繁琐，另一方面配置修改后需要重新上线同样十分痛苦。这时候，需要有一套集中化配置管理系统，一方面提供统一的配置管理，另一方面提供配置变更的自动下发，及时生效。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://george.betterde.com/cover/config-manage.jpg">
-<meta property="og:updated_time" content="2019-05-15T09:36:18.207Z">
+<meta property="og:image" content="https://george.betterde.com/images/og_image.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="管理服务配置">
-<meta name="twitter:description" content="当系统变的复杂，配置项越来越多，一方面配置管理变得繁琐，另一方面配置修改后需要重新上线同样十分痛苦。这时候，需要有一套集中化配置管理系统，一方面提供统一的配置管理，另一方面提供配置变更的自动下发，及时生效。">
-<meta name="twitter:image" content="https://george.betterde.com/cover/config-manage.jpg">
+<meta name="twitter:title" content="George">
+<meta name="twitter:image" content="https://george.betterde.com/images/og_image.png">
 
 
 
@@ -96,7 +92,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="管理服务配置" height="28">
+                <img src="/images/logo.svg" alt="George" height="28">
             
             </a>
         </div>
@@ -126,10 +122,6 @@
                     
                 
                 
-                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
-                    <i class="fas fa-list-ul"></i>
-                </a>
-                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -144,18 +136,29 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Git</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    <div class="card">
     
     <div class="card-image">
-        <span class="image is-7by1">
-            <img class="thumbnail" src="/cover/config-manage.jpg" alt="管理服务配置">
-        </span>
+        <a href="/technology/20190524/" class="image is-7by1">
+            <img class="thumbnail" src="/cover/gitlab.jpg" alt="快速搭建 Gitlab 服务器">
+        </a>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-15T09:15:56.000Z">2019-02-15</time>
+                <time class="level-item has-text-grey" datetime="2019-05-24T03:41:01.000Z">2019-05-24</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/technology/">技术</a>
@@ -165,7 +168,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 648 个字)
+                    4 分钟 读完 (大约 622 个字)
                 </span>
                 
                 
@@ -174,152 +177,33 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                管理服务配置
+                <a class="has-link-black-ter" href="/technology/20190524/">快速搭建 Gitlab 服务器</a>
             
         </h1>
         <div class="content">
-            <p>当系统变的复杂，配置项越来越多，一方面配置管理变得繁琐，另一方面配置修改后需要重新上线同样十分痛苦。这时候，需要有一套集中化配置管理系统，一方面提供统一的配置管理，另一方面提供配置变更的自动下发，及时生效。<br><a id="more"></a></p>
-<h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>如果你的业务中希望通过WebUI或API的方式，来动态修改服务的配置文件，那么你可以使用confd来实现。其后端支持的数据类型有：</p>
-<ul>
-<li>etcd</li>
-<li>consul</li>
-<li>vault</li>
-<li>environment variables</li>
-<li>redis</li>
-<li>zookeeper</li>
-<li>dynamodb</li>
-<li>stackengine</li>
-<li>rancher</li>
-</ul>
-<p>这样我们就可以将配置存储在分布式的Key/Value中，修改配置不在需要SSH到远端。这里我们所采用的是consul 作为后端存储，因为有配套的UI所以对于实践来说比较方便。</p>
-<h2 id="Consul"><a href="#Consul" class="headerlink" title="Consul"></a>Consul</h2><figure class="highlight bash hljs"><figcaption><span>运行 consul 容器</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-p 8500:8500 \</span><br><span class="line">--name consul-master \</span><br><span class="line">consul agent -node=master -datacenter=betterde -<span class="hljs-built_in">bind</span>=0.0.0.0 \</span><br><span class="line">-ui -client=0.0.0.0 -server -bootstrap-expect=1</span><br></pre></td></tr></table></figure>
-<p>运行成功后可以访问<a href="http://localhost:8500，验证服务是否正常运行。" target="_blank" rel="noopener">http://localhost:8500，验证服务是否正常运行。</a></p>
-<figure class="highlight bash hljs"><figcaption><span>往 consul 中添加配置</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT -d <span class="hljs-string">'api.betterde.om'</span> http://localhost:8500/v1/kv/nginx/api/domain</span><br></pre></td></tr></table></figure>
-<hr>
-<p><img src="/images/article/consul.png" alt="效果图"></p>
-<h2 id="confd"><a href="#confd" class="headerlink" title="confd"></a>confd</h2><p><a href="https://github.com/kelseyhightower/confd/releases" target="_blank" rel="noopener">前往下载</a></p>
-<h3 id="创建配置文件目录"><a href="#创建配置文件目录" class="headerlink" title="创建配置文件目录"></a>创建配置文件目录</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /etc/confd/&#123;conf.d,templates&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="创建资源模板"><a href="#创建资源模板" class="headerlink" title="创建资源模板"></a>创建资源模板</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch /etc/confd/conf.d/nginx.toml</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain hljs"><figcaption><span>写入如下内容</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[template]</span><br><span class="line">src = &quot;nginx.conf.tmpl&quot;</span><br><span class="line">dest = &quot;/tmp/nginx.conf&quot;</span><br><span class="line">keys = [</span><br><span class="line">    &quot;/nginx/api/domain&quot;,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">check_cmd = &quot;/usr/local/opt/nginx/bin/nginx -t -c &#123;&#123;.src&#125;&#125;&quot;</span><br><span class="line">reload_cmd = &quot;/usr/local/opt/nginx/bin/nginx -s reload&quot;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>src：服务配置的模板文件</li>
-<li>dest：confd生成的配置文件目录</li>
-<li>keys：自定义的键</li>
-<li>check_cmd：配置检查的命令，需要服务支持（可选项）</li>
-<li>reload_cmd：重载配置的命令，需要服务支持（可选项）</li>
-</ul>
-<h3 id="创建配置模板"><a href="#创建配置模板" class="headerlink" title="创建配置模板"></a>创建配置模板</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch /etc/confd/templates/nginx.conf.tmpl</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash hljs"><figcaption><span>写入如下配置</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">user zuber-imac staff;</span><br><span class="line">worker_processes auto;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    sendfile on;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line">    client_max_body_size 128M;</span><br><span class="line"></span><br><span class="line">    gzip  on;</span><br><span class="line">    gzip_comp_level 5;</span><br><span class="line">    gzip_min_length 256;</span><br><span class="line">    gzip_proxied any;</span><br><span class="line">    gzip_vary on;</span><br><span class="line">    ssi on;</span><br><span class="line"></span><br><span class="line">    gzip_types</span><br><span class="line">    application/atom+xml</span><br><span class="line">    application/javascript</span><br><span class="line">    application/json</span><br><span class="line">    application/rss+xml</span><br><span class="line">    application/vnd.ms-fontobject</span><br><span class="line">    application/x-font-ttf</span><br><span class="line">    application/x-web-app-manifest+json</span><br><span class="line">    application/xhtml+xml</span><br><span class="line">    application/xml</span><br><span class="line">    font/opentype</span><br><span class="line">    image/svg+xml</span><br><span class="line">    image/x-icon</span><br><span class="line">    text/css</span><br><span class="line">    text/plain</span><br><span class="line">    text/x-component;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        server_name  &#123;&#123;getv <span class="hljs-string">"/nginx/api/domain"</span>&#125;&#125;;</span><br><span class="line">        root /var/www/html;</span><br><span class="line">        location / &#123;</span><br><span class="line">            index index.html;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="运行-confd"><a href="#运行-confd" class="headerlink" title="运行 confd"></a>运行 confd</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./confd -watch -backend consul -node localhost:8500</span><br></pre></td></tr></table></figure>
-<p>此时去修改 /nginx/api/domain 的值，将会自动重新生成nginx配置文件到 /tmp/nginx.conf，并更新nginx的配置。</p>
-
+            <p>对于很多团队来说，公司内部项目希望放在公司内部环境中运行，基于这种需求，今天分享一下如何使用 Docker 快速搭建 Gitlab 服务器。<br></p>
         </div>
         
-        <div class="level is-size-7 is-uppercase">
+        
+        <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Confd/">Confd</a>, <a class="has-link-grey -link" href="/tags/Config/">Config</a>, <a class="has-link-grey -link" href="/tags/Config-Manager/">Config Manager</a>
+                <a class="button is-size-7 is-light" href="/technology/20190524/#more">阅读更多</a>
                 </div>
             </div>
         </div>
         
         
-        
-        <div class="social-share"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
-<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
-        
     </div>
 </div>
 
 
 
-<div class="card">
-    <div class="card-content">
-        <h3 class="menu-label has-text-centered">捐款不会让你得到什么，不捐也不会让你失去什么</h3>
-        <div class="buttons is-centered">
-            
-                
-<a class="button is-info donate">
-    <span class="icon is-small">
-        <i class="fab fa-alipay"></i>
-    </span>
-    <span>支付宝</span>
-    <div class="qrcode"><img src="/images/qrcode/alipay.jpg" alt="支付宝"></div>
-</a>
-
-                
-                
-<a class="button is-success donate">
-    <span class="icon is-small">
-        <i class="fab fa-weixin"></i>
-    </span>
-    <span>微信</span>
-    <div class="qrcode"><img src="/images/qrcode/wechatpay.jpg" alt="微信"></div>
-</a>
-
-                
-                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
-
-<a class="button is-warning donate" href="https://www.paypal.me/jinrenjie" target="_blank">
-    <span class="icon is-small">
-        <i class="fab fa-paypal"></i>
-    </span>
-    <span>Paypal</span>
-</a>
-
-                
-        </div>
-    </div>
-</div>
 
 
 
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/technology/20190302/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Iris 搭载Vue history 路由模式 SPA</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/technology/20190118/">
-                <span class="level-item">使用 Ghost 搭建博客</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
 
 
-
-<div class="card">
-    <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">评论</h3>
-        
-<div id="comment-container"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
-<script>
-    var gitalk = new Gitalk({
-        clientID: '4d31f85f4e85c10cfdb5',
-        clientSecret: 'd97f370a5e43b6f988502e7eb5ac7f2198f40f99',
-        id: 'dfe1f0ed5e97b9a3fe49d035b11a7666',
-        repo: 'blog',
-        owner: 'jinrenjie',
-        admin: "jinrenjie"
-    })
-    gitalk.render('comment-container')
-</script>
-
-    </div>
-</div>
 </div>
                 
 
@@ -432,45 +316,6 @@
 </div>
     
         
-<div class="card widget" id="toc">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                目录
-            </h3>
-            <ul class="menu-list"><li>
-        <a class="is-flex" href="#概要">
-        <span class="has-mr-6">1</span>
-        <span>概要</span>
-        </a></li><li>
-        <a class="is-flex" href="#Consul">
-        <span class="has-mr-6">2</span>
-        <span>Consul</span>
-        </a></li><li>
-        <a class="is-flex" href="#confd">
-        <span class="has-mr-6">3</span>
-        <span>confd</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#创建配置文件目录">
-        <span class="has-mr-6">3.1</span>
-        <span>创建配置文件目录</span>
-        </a></li><li>
-        <a class="is-flex" href="#创建资源模板">
-        <span class="has-mr-6">3.2</span>
-        <span>创建资源模板</span>
-        </a></li><li>
-        <a class="is-flex" href="#创建配置模板">
-        <span class="has-mr-6">3.3</span>
-        <span>创建配置模板</span>
-        </a></li><li>
-        <a class="is-flex" href="#运行-confd">
-        <span class="has-mr-6">3.4</span>
-        <span>运行 confd</span>
-        </a></li></ul></li></ul>
-        </div>
-    </div>
-</div>
-
     
         
 <div class="card widget">
@@ -1210,7 +1055,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="管理服务配置" height="28">
+                    <img src="/images/logo.svg" alt="George" height="28">
                 
                 </a>
                 <p class="is-size-7">
