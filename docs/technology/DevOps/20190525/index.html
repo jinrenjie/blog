@@ -2,21 +2,25 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>标签: SPA - George</title>
+<title>DevOps 之注册 Gitlab Runner - George</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="keywords" content="Developer">
-<meta property="og:type" content="website">
-<meta property="og:title" content="George">
-<meta property="og:url" content="https://george.betterde.com/tags/SPA/index.html">
+    <meta name="description" content="你是不是还在使用传统的人工方式 SSH 到线上服务器，然后执行一系列的部署命令。试一下 Gitlab Runner 吧，它将解放你的双手，你只需要专心写代码就好了。">
+<meta name="keywords" content="CI,CD,Gitlab,Runner">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DevOps 之注册 Gitlab Runner">
+<meta property="og:url" content="https://george.betterde.com/technology/DevOps/20190525/index.html">
 <meta property="og:site_name" content="George">
+<meta property="og:description" content="你是不是还在使用传统的人工方式 SSH 到线上服务器，然后执行一系列的部署命令。试一下 Gitlab Runner 吧，它将解放你的双手，你只需要专心写代码就好了。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://george.betterde.com/images/og_image.png">
+<meta property="og:image" content="https://george.betterde.com/cover/gitlab-docker-ansible.png">
+<meta property="og:updated_time" content="2019-05-27T09:40:05.063Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="George">
-<meta name="twitter:image" content="https://george.betterde.com/images/og_image.png">
+<meta name="twitter:title" content="DevOps 之注册 Gitlab Runner">
+<meta name="twitter:description" content="你是不是还在使用传统的人工方式 SSH 到线上服务器，然后执行一系列的部署命令。试一下 Gitlab Runner 吧，它将解放你的双手，你只需要专心写代码就好了。">
+<meta name="twitter:image" content="https://george.betterde.com/cover/gitlab-docker-ansible.png">
 
 
 
@@ -92,7 +96,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="George" height="28">
+                <img src="/images/logo.svg" alt="DevOps 之注册 Gitlab Runner" height="28">
             
             </a>
         </div>
@@ -122,6 +126,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -136,39 +144,28 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">SPA</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-image">
-        <a href="/technology/20190302/" class="image is-7by1">
-            <img class="thumbnail" src="/cover/iris-vue-spa.jpg" alt="Iris 搭载Vue history 路由模式 SPA">
-        </a>
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/cover/gitlab-docker-ansible.png" alt="DevOps 之注册 Gitlab Runner">
+        </span>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-02T09:35:59.000Z">2019-03-02</time>
+                <time class="level-item has-text-grey" datetime="2019-05-25T06:51:57.000Z">2019-05-25</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/technology/">技术</a>
+                <a class="has-link-grey -link" href="/categories/technology/">技术</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/technology/DevOps/">DevOps</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 645 个字)
+                    3 分钟 读完 (大约 411 个字)
                 </span>
                 
                 
@@ -177,33 +174,116 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/technology/20190302/">Iris 搭载Vue history 路由模式 SPA</a>
+                DevOps 之注册 Gitlab Runner
             
         </h1>
         <div class="content">
-            <p>本文意在解决SPA History 路由模式导致的前端路由页面刷新后端报404的错误，以及前端项目资源如何打包进可执行的二进制文件中。<br></p>
+            <p>你是不是还在使用传统的人工方式 SSH 到线上服务器，然后执行一系列的部署命令。试一下 Gitlab Runner 吧，它将解放你的双手，你只需要专心写代码就好了。<br><a id="more"></a></p>
+<h2 id="关于-Runner"><a href="#关于-Runner" class="headerlink" title="关于 Runner"></a>关于 Runner</h2><p><a href="https://gitlab.com/gitlab-org/gitlab-runner" target="_blank" rel="noopener">Gitlab Runner</a> 是 Gitlab 官方基于 Golang 开发的一款开源的 CI/CD 的部署工具，支持 Linux、macOS、Windows。有了它能让我们的开发流程变得更加顺畅、可控。</p>
+<h2 id="在-CentOS-上安装"><a href="#在-CentOS-上安装" class="headerlink" title="在 CentOS 上安装"></a>在 CentOS 上安装</h2><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 添加官方仓库</span></span><br><span class="line">curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.rpm.sh | sudo bash</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 安装</span></span><br><span class="line">sudo yum install gitlab-runner</span><br></pre></td></tr></table></figure>
+<h2 id="注册-Runner"><a href="#注册-Runner" class="headerlink" title="注册 Runner"></a>注册 Runner</h2><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-runner register</span><br><span class="line"></span><br><span class="line">Runtime platform                                    arch=amd64 os=linux pid=1947 revision=5a147c92 version=11.11.1</span><br><span class="line">Running <span class="hljs-keyword">in</span> system-mode.                            </span><br><span class="line">                                                   </span><br><span class="line">Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com/):</span><br><span class="line">https://gitlab.example.com/ <span class="hljs-comment"># 这里替换成你的 Gitlab 服务器地址（在仓库的设置，或管理员后台中查看）</span></span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci token <span class="hljs-keyword">for</span> this runner:</span><br><span class="line">UYXe4zr928H51rUSze4t <span class="hljs-comment"># 这里替换成你的 Gitlab 服务器生成的 Token（在仓库的设置，或管理员后台中查看）</span></span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci description <span class="hljs-keyword">for</span> this runner:</span><br><span class="line">[server]: Special server <span class="hljs-comment"># Runner 的描述信息</span></span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci tags <span class="hljs-keyword">for</span> this runner (comma separated):</span><br><span class="line">develop,preview <span class="hljs-comment"># Runner 的标签，可以在 .gitlab-ci.yml 的配置中根据 tag 选择要在哪台 Runner 上执行 Pipelines</span></span><br><span class="line">Registering runner... succeeded                     runner=UYXe7zr9</span><br><span class="line"></span><br><span class="line">Please enter the executor: docker, ssh, virtualbox, docker+machine, kubernetes, docker-windows, docker-ssh, parallels, shell, docker-ssh+machine:</span><br><span class="line">shell <span class="hljs-comment"># 选择执行的方式</span></span><br><span class="line">Runner registered successfully. Feel free to start it, but <span class="hljs-keyword">if</span> it<span class="hljs-string">'s running already the config should be automatically reloaded!</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/article/gitlab-admin-runners.png" alt="Runners 列表"></p>
+<h3 id="关于执行方式"><a href="#关于执行方式" class="headerlink" title="关于执行方式"></a>关于执行方式</h3>
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/technology/20190302/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/CD/">CD</a>, <a class="has-link-grey -link" href="/tags/CI/">CI</a>, <a class="has-link-grey -link" href="/tags/Gitlab/">Gitlab</a>, <a class="has-link-grey -link" href="/tags/Runner/">Runner</a>
                 </div>
             </div>
         </div>
         
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">捐款不会让你得到什么，不捐也不会让你失去什么</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/qrcode/alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/qrcode/wechatpay.jpg" alt="微信"></div>
+</a>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<a class="button is-warning donate" href="https://www.paypal.me/jinrenjie" target="_blank">
+    <span class="icon is-small">
+        <i class="fab fa-paypal"></i>
+    </span>
+    <span>Paypal</span>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/technology/DevOps/20190519/">
+                <span class="level-item">DevOps 之关闭 Gitlab Auto DevOps</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '4d31f85f4e85c10cfdb5',
+        clientSecret: 'd97f370a5e43b6f988502e7eb5ac7f2198f40f99',
+        id: '15b60c7c5e0767b00e95251bdbf44045',
+        repo: 'blog',
+        owner: 'jinrenjie',
+        admin: "jinrenjie"
+    })
+    gitalk.render('comment-container')
+</script>
+
+    </div>
+</div>
 </div>
                 
 
@@ -316,6 +396,33 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#关于-Runner">
+        <span class="has-mr-6">1</span>
+        <span>关于 Runner</span>
+        </a></li><li>
+        <a class="is-flex" href="#在-CentOS-上安装">
+        <span class="has-mr-6">2</span>
+        <span>在 CentOS 上安装</span>
+        </a></li><li>
+        <a class="is-flex" href="#注册-Runner">
+        <span class="has-mr-6">3</span>
+        <span>注册 Runner</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#关于执行方式">
+        <span class="has-mr-6">3.1</span>
+        <span>关于执行方式</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 <div class="card widget">
@@ -1127,7 +1234,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="George" height="28">
+                    <img src="/images/logo.svg" alt="DevOps 之注册 Gitlab Runner" height="28">
                 
                 </a>
                 <p class="is-size-7">
