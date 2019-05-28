@@ -16,7 +16,7 @@
 <meta property="og:description" content="你是不是还在使用传统的人工方式 SSH 到线上服务器，然后执行一系列的部署命令。试一下 Gitlab Runner 吧，它将解放你的双手，你只需要专心写代码就好了。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://george.betterde.com/cover/gitlab-docker-ansible.png">
-<meta property="og:updated_time" content="2019-05-27T09:40:05.063Z">
+<meta property="og:updated_time" content="2019-05-28T10:46:26.020Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DevOps 之注册 Gitlab Runner">
 <meta name="twitter:description" content="你是不是还在使用传统的人工方式 SSH 到线上服务器，然后执行一系列的部署命令。试一下 Gitlab Runner 吧，它将解放你的双手，你只需要专心写代码就好了。">
@@ -165,7 +165,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 411 个字)
+                    4 分钟 读完 (大约 587 个字)
                 </span>
                 
                 
@@ -183,7 +183,11 @@
 <h2 id="在-CentOS-上安装"><a href="#在-CentOS-上安装" class="headerlink" title="在 CentOS 上安装"></a>在 CentOS 上安装</h2><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 添加官方仓库</span></span><br><span class="line">curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.rpm.sh | sudo bash</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 安装</span></span><br><span class="line">sudo yum install gitlab-runner</span><br></pre></td></tr></table></figure>
 <h2 id="注册-Runner"><a href="#注册-Runner" class="headerlink" title="注册 Runner"></a>注册 Runner</h2><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-runner register</span><br><span class="line"></span><br><span class="line">Runtime platform                                    arch=amd64 os=linux pid=1947 revision=5a147c92 version=11.11.1</span><br><span class="line">Running <span class="hljs-keyword">in</span> system-mode.                            </span><br><span class="line">                                                   </span><br><span class="line">Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com/):</span><br><span class="line">https://gitlab.example.com/ <span class="hljs-comment"># 这里替换成你的 Gitlab 服务器地址（在仓库的设置，或管理员后台中查看）</span></span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci token <span class="hljs-keyword">for</span> this runner:</span><br><span class="line">UYXe4zr928H51rUSze4t <span class="hljs-comment"># 这里替换成你的 Gitlab 服务器生成的 Token（在仓库的设置，或管理员后台中查看）</span></span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci description <span class="hljs-keyword">for</span> this runner:</span><br><span class="line">[server]: Special server <span class="hljs-comment"># Runner 的描述信息</span></span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci tags <span class="hljs-keyword">for</span> this runner (comma separated):</span><br><span class="line">develop,preview <span class="hljs-comment"># Runner 的标签，可以在 .gitlab-ci.yml 的配置中根据 tag 选择要在哪台 Runner 上执行 Pipelines</span></span><br><span class="line">Registering runner... succeeded                     runner=UYXe7zr9</span><br><span class="line"></span><br><span class="line">Please enter the executor: docker, ssh, virtualbox, docker+machine, kubernetes, docker-windows, docker-ssh, parallels, shell, docker-ssh+machine:</span><br><span class="line">shell <span class="hljs-comment"># 选择执行的方式</span></span><br><span class="line">Runner registered successfully. Feel free to start it, but <span class="hljs-keyword">if</span> it<span class="hljs-string">'s running already the config should be automatically reloaded!</span></span><br></pre></td></tr></table></figure>
 <p><img src="/images/article/gitlab-admin-runners.png" alt="Runners 列表"></p>
-<h3 id="关于执行方式"><a href="#关于执行方式" class="headerlink" title="关于执行方式"></a>关于执行方式</h3>
+<h2 id="关于执行方式"><a href="#关于执行方式" class="headerlink" title="关于执行方式"></a>关于执行方式</h2><h3 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h3><p>这种方式将会在安装 Gitlab Runner 的服务器上以 Shell 的方式执行 .gitlab-ci.yml 中配置的 script。如果你只是想用 Gitlab Runner 来自动拉取最新代码的话，可以采用这种方式。</p>
+<figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">stages:</span> </span><br><span class="line"><span class="hljs-bullet">  -</span> <span class="hljs-string">deploy</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-attr">deploy:</span></span><br><span class="line"><span class="hljs-attr">  stage:</span> <span class="hljs-string">deploy</span></span><br><span class="line"><span class="hljs-attr">  script:</span></span><br><span class="line"><span class="hljs-bullet">    -</span> <span class="hljs-string">要执行的命令</span></span><br><span class="line"><span class="hljs-attr">  tags:</span></span><br><span class="line"><span class="hljs-bullet">    -</span> <span class="hljs-string">production</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash hljs"><figcaption><span>安装服务</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-runner install --working-directory /var/<span class="hljs-built_in">local</span> --user root</span><br></pre></td></tr></table></figure>
+<p>上面安装服务的时候我手动指定了工作目录，这样他会创建 <code>&lt;working-directory&gt;/builds/&lt;short-token&gt;/&lt;concurrent-id&gt;/&lt;namespace&gt;/&lt;project-name&gt;</code> 目录结构，这样每次开发者 PUSH 代码到 master 分支时，Runner 将会拉取最新代码到该目录。剩下要做的就是配置 Nginx 的站点根目录到该文件夹。</p>
+
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -414,10 +418,14 @@
         <a class="is-flex" href="#注册-Runner">
         <span class="has-mr-6">3</span>
         <span>注册 Runner</span>
-        </a><ul class="menu-list"><li>
+        </a></li><li>
         <a class="is-flex" href="#关于执行方式">
-        <span class="has-mr-6">3.1</span>
+        <span class="has-mr-6">4</span>
         <span>关于执行方式</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Shell">
+        <span class="has-mr-6">4.1</span>
+        <span>Shell</span>
         </a></li></ul></li></ul>
         </div>
     </div>
