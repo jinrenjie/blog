@@ -12,10 +12,6 @@ const cdn_providers = {
     unpkg: 'https://unpkg.com/${ package }@${ version }/${ filename }'
 };
 
-const font_providers = {
-    google: 'https://fonts.googleapis.com/${ type }?family=${ fontname }'
-};
-
 const icon_providers = {
     fontawesome: 'https://use.fontawesome.com/releases/v5.4.1/css/all.css'
 };
@@ -59,15 +55,6 @@ module.exports = function (hexo) {
         return provider.replace(/\${\s*package\s*}/gi, _package)
             .replace(/\${\s*version\s*}/gi, version)
             .replace(/\${\s*filename\s*}/gi, filename);
-    });
-
-    hexo.extend.helper.register('fontcdn', function (fontName, type = 'css') {
-        let provider = hexo.extend.helper.get('get_config').bind(this)('providers.fontcdn');
-        if (provider !== null && font_providers.hasOwnProperty(provider)) {
-            provider = font_providers[provider];
-        }
-        return provider.replace(/\${\s*fontname\s*}/gi, fontName)
-            .replace(/\${\s*type\s*}/gi, type);
     });
 
     hexo.extend.helper.register('iconcdn', function (provider = null) {
