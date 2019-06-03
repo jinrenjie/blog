@@ -58,6 +58,7 @@ default_category: uncatalog
 category_map:
   技术: technology
   DevOps: devops
+  System: system
 tag_map:
   DevOps: devops
   Ghost: ghost
