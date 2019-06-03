@@ -2,25 +2,21 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>快速搭建 Gitlab 服务器 - George</title>
+<title>标签: Go - George</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="对于很多团队来说，公司内部项目希望放在公司内部环境中运行，基于这种需求，今天分享一下如何使用 Docker 快速搭建 Gitlab 服务器。">
-<meta name="keywords" content="HTTPS,Docker,Git,Gitlab">
-<meta property="og:type" content="article">
-<meta property="og:title" content="快速搭建 Gitlab 服务器">
-<meta property="og:url" content="https://george.betterde.com/technology/20190524/index.html">
+    <meta name="keywords" content="Developer">
+<meta property="og:type" content="website">
+<meta property="og:title" content="George">
+<meta property="og:url" content="https://george.betterde.com/tags/golang/index.html">
 <meta property="og:site_name" content="George">
-<meta property="og:description" content="对于很多团队来说，公司内部项目希望放在公司内部环境中运行，基于这种需求，今天分享一下如何使用 Docker 快速搭建 Gitlab 服务器。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://george.betterde.com/cover/gitlab.jpg">
-<meta property="og:updated_time" content="2019-05-24T04:44:08.065Z">
+<meta property="og:image" content="https://george.betterde.com/images/og_image.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="快速搭建 Gitlab 服务器">
-<meta name="twitter:description" content="对于很多团队来说，公司内部项目希望放在公司内部环境中运行，基于这种需求，今天分享一下如何使用 Docker 快速搭建 Gitlab 服务器。">
-<meta name="twitter:image" content="https://george.betterde.com/cover/gitlab.jpg">
+<meta name="twitter:title" content="George">
+<meta name="twitter:image" content="https://george.betterde.com/images/og_image.png">
 
 
 
@@ -33,7 +29,6 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
 
 
@@ -46,16 +41,7 @@
     
     
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
     
-
-    
-    
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
-
-
     
     
     
@@ -74,13 +60,8 @@
 
     
     
-<link rel="stylesheet" href="/css/progressbar.css">
-<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
-
     
     
-    
-
     
     
     
@@ -96,7 +77,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="快速搭建 Gitlab 服务器" height="28">
+                <img src="/images/logo.svg" alt="George" height="28">
             
             </a>
         </div>
@@ -126,10 +107,6 @@
                     
                 
                 
-                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
-                    <i class="fas fa-list-ul"></i>
-                </a>
-                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -144,18 +121,29 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Go</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    <div class="card">
     
     <div class="card-image">
-        <span class="image is-7by1">
-            <img class="thumbnail" src="/cover/gitlab.jpg" alt="快速搭建 Gitlab 服务器">
-        </span>
+        <a href="/technology/20190302/" class="image is-7by1">
+            <img class="thumbnail" src="/cover/iris-vue-spa.jpg" alt="Iris 搭载Vue history 路由模式 SPA">
+        </a>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-24T03:41:01.000Z">2019-05-24</time>
+                <time class="level-item has-text-grey" datetime="2019-03-02T09:35:59.000Z">2019-03-02</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/technology/">技术</a>
@@ -165,7 +153,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 622 个字)
+                    4 分钟 读完 (大约 645 个字)
                 </span>
                 
                 
@@ -174,123 +162,33 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                快速搭建 Gitlab 服务器
+                <a class="has-link-black-ter" href="/technology/20190302/">Iris 搭载Vue history 路由模式 SPA</a>
             
         </h1>
         <div class="content">
-            <p>对于很多团队来说，公司内部项目希望放在公司内部环境中运行，基于这种需求，今天分享一下如何使用 Docker 快速搭建 Gitlab 服务器。<br><a id="more"></a></p>
-<h2 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h2><p>关于如何安装 Docker ，以及常用命令这里就不再做过多赘述</p>
-<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull gitlab/gitlab-ce:latest</span><br></pre></td></tr></table></figure>
-<h2 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h2><p>在开始之前需要确定 80、443、22 端口是否被占用，如果前两个被占用了，可以考虑在现有服务器上进行反向代理。如果是 <code>22号端口</code> 被占用，那么建议修改系统的 <code>SSHD</code> 服务监听端口。这样当你使用 SSH 方式管理 Git 仓库时也比较方便，毕竟需要 SSH 到服务器的概率要比你提交代码的概率低的。</p>
-<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run --detach \</span><br><span class="line">  --hostname gitlab.example.com \</span><br><span class="line">  --env GITLAB_OMNIBUS_CONFIG=<span class="hljs-string">"external_url 'https://gitlab.example.com/'; gitlab_rails['lfs_enabled'] = true;"</span> \</span><br><span class="line">  --publish 443:443 --publish 80:80 --publish 22:22 \</span><br><span class="line">  --name gitlab \</span><br><span class="line">  --restart always \</span><br><span class="line">  --volume /srv/gitlab/config:/etc/gitlab \</span><br><span class="line">  --volume /srv/gitlab/logs:/var/<span class="hljs-built_in">log</span>/gitlab \</span><br><span class="line">  --volume /srv/gitlab/data:/var/opt/gitlab \</span><br><span class="line">  gitlab/gitlab-ce:latest</span><br></pre></td></tr></table></figure>
-<p>将上面的 <code>gitlab.example.com</code> 替换成你自己的域名，如果需要 <code>HTTPS</code> 的话 <code>external_url</code> 选项中的 URL 就写成 <code>https://gitlab.example.com/</code>，否则就用 <code>http://gitlab.example.com/</code>。</p>
-<p>上面的命令运行后如果你的域名解析没有问题的话，就可以打开浏览器正常访问了。</p>
-<h2 id="使用-HTTPS"><a href="#使用-HTTPS" class="headerlink" title="使用 HTTPS"></a>使用 HTTPS</h2><h3 id="自带-Let’s-Encrypt"><a href="#自带-Let’s-Encrypt" class="headerlink" title="自带 Let’s Encrypt"></a>自带 Let’s Encrypt</h3><p>Gitlab 10.7 版本内置了 <code>Let&#39;s Encrypt</code>，你只需要配置 <code>/etc/gitlab/config/gitlab.rb</code> 如下几个参数就可以，自动启用 HTTPS 了。</p>
-<figure class="highlight rb hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">letsencrypt[<span class="hljs-string">'enable'</span>] = <span class="hljs-literal">true</span></span><br><span class="line">external_url <span class="hljs-string">"https://gitlab.example.com"</span> <span class="hljs-comment">#如果你在运行容器时已经指定了，则无需再做配置</span></span><br><span class="line">letsencrypt[<span class="hljs-string">'contact_emails'</span>] = [<span class="hljs-string">'user@example.com'</span>]  <span class="hljs-comment"># 填写你的邮箱，此项非必填</span></span><br><span class="line"><span class="hljs-comment"># 自动续签的配置</span></span><br><span class="line">letsencrypt[<span class="hljs-string">'auto_renew'</span>] = <span class="hljs-literal">true</span></span><br><span class="line">letsencrypt[<span class="hljs-string">'auto_renew_hour'</span>] = <span class="hljs-string">"12"</span></span><br><span class="line">letsencrypt[<span class="hljs-string">'auto_renew_minute'</span>] = <span class="hljs-string">"30"</span></span><br><span class="line">letsencrypt[<span class="hljs-string">'auto_renew_day_of_month'</span>] = <span class="hljs-string">"*/7"</span></span><br></pre></td></tr></table></figure>
-<h3 id="使配置生效"><a href="#使配置生效" class="headerlink" title="使配置生效"></a>使配置生效</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="hljs-built_in">exec</span> -it gitlab /bin/bash <span class="hljs-comment"># gitlab 替换成你运行容器时的 --name 的配置</span></span><br><span class="line"></span><br><span class="line">gitlab-ctl renew-le-certs <span class="hljs-comment"># 先生成证书</span></span><br><span class="line"></span><br><span class="line">gitlab-ctl reconfigure <span class="hljs-comment"># 使配置生效</span></span><br></pre></td></tr></table></figure>
-<p>如果先执行 <code>gitlab-ctl reconfigure</code> 命令，很有可能会报如下错误：<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">There was an error running gitlab-ctl reconfigure:</span><br><span class="line">letsencrypt_certificate[gitlab.betterde.com] (letsencrypt::http_authorization line 3) had an error: RuntimeError: acme_certificate[staging] (/opt/gitlab/embedded/cookbooks/cache/cookbooks/letsencrypt/resources/certificate.rb line 20) had an error: RuntimeError: [gitlab.betterde.com] Validation failed <span class="hljs-keyword">for</span> domain gitlab.betterde.com</span><br></pre></td></tr></table></figure></p>
-<p>如果一切正常，那么此时访问 <code>https://gitlab.example.com</code> 就能正常打开 Gitlab 的首页了。</p>
-
+            <p>本文意在解决SPA History 路由模式导致的前端路由页面刷新后端报404的错误，以及前端项目资源如何打包进可执行的二进制文件中。<br></p>
         </div>
         
-        <div class="level is-size-7 is-uppercase">
+        
+        <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Docker/">Docker</a>, <a class="has-link-grey -link" href="/tags/Git/">Git</a>, <a class="has-link-grey -link" href="/tags/Gitlab/">Gitlab</a>, <a class="has-link-grey -link" href="/tags/HTTPS/">HTTPS</a>
+                <a class="button is-size-7 is-light" href="/technology/20190302/#more">阅读更多</a>
                 </div>
             </div>
         </div>
         
         
-        
-        <div class="social-share"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
-<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
-        
     </div>
 </div>
 
 
 
-<div class="card">
-    <div class="card-content">
-        <h3 class="menu-label has-text-centered">捐款不会让你得到什么，不捐也不会让你失去什么</h3>
-        <div class="buttons is-centered">
-            
-                
-<a class="button is-info donate">
-    <span class="icon is-small">
-        <i class="fab fa-alipay"></i>
-    </span>
-    <span>支付宝</span>
-    <div class="qrcode"><img src="/images/qrcode/alipay.jpg" alt="支付宝"></div>
-</a>
-
-                
-                
-<a class="button is-success donate">
-    <span class="icon is-small">
-        <i class="fab fa-weixin"></i>
-    </span>
-    <span>微信</span>
-    <div class="qrcode"><img src="/images/qrcode/wechatpay.jpg" alt="微信"></div>
-</a>
-
-                
-                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
-
-<a class="button is-warning donate" href="https://www.paypal.me/jinrenjie" target="_blank">
-    <span class="icon is-small">
-        <i class="fab fa-paypal"></i>
-    </span>
-    <span>Paypal</span>
-</a>
-
-                
-        </div>
-    </div>
-</div>
 
 
 
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/technology/20190517/">
-                <span class="level-item">Github Pages 自定义域名并开启HTTPS</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
 
 
-
-<div class="card">
-    <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">评论</h3>
-        
-<div id="comment-container"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
-<script>
-    var gitalk = new Gitalk({
-        clientID: '4d31f85f4e85c10cfdb5',
-        clientSecret: 'd97f370a5e43b6f988502e7eb5ac7f2198f40f99',
-        id: '3f7f67ab879a7fe07b4720c71eb55c8d',
-        repo: 'blog',
-        owner: 'jinrenjie',
-        admin: "jinrenjie"
-    })
-    gitalk.render('comment-container')
-</script>
-
-    </div>
-</div>
 </div>
                 
 
@@ -306,7 +204,9 @@
             <div class="level-item has-text-centered">
                 <div>
                     
-                        <img class="image is-128x128 has-mb-6" src="https://www.gravatar.com/avatar/0887f15ed48a6355a63067e57d2d63f7?s=128" alt="George">
+                        <figure class="image is-128x128 has-mb-6">
+                            <img class="is-rounded" src="https://www.gravatar.com/avatar/0887f15ed48a6355a63067e57d2d63f7?s=128" alt="George">
+                        </figure>
                     
                     
                     <p class="is-size-4 is-block">
@@ -334,7 +234,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        8
+                        12
                     </p>
                 </div>
             </div>
@@ -344,7 +244,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        1
+                        2
                     </p>
                 </div>
             </div>
@@ -354,7 +254,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        23
+                        30
                     </p>
                 </div>
             </div>
@@ -403,37 +303,6 @@
 </div>
     
         
-<div class="card widget" id="toc">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                目录
-            </h3>
-            <ul class="menu-list"><li>
-        <a class="is-flex" href="#获取镜像">
-        <span class="has-mr-6">1</span>
-        <span>获取镜像</span>
-        </a></li><li>
-        <a class="is-flex" href="#运行容器">
-        <span class="has-mr-6">2</span>
-        <span>运行容器</span>
-        </a></li><li>
-        <a class="is-flex" href="#使用-HTTPS">
-        <span class="has-mr-6">3</span>
-        <span>使用 HTTPS</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#自带-Let’s-Encrypt">
-        <span class="has-mr-6">3.1</span>
-        <span>自带 Let’s Encrypt</span>
-        </a></li><li>
-        <a class="is-flex" href="#使配置生效">
-        <span class="has-mr-6">3.2</span>
-        <span>使配置生效</span>
-        </a></li></ul></li></ul>
-        </div>
-    </div>
-</div>
-
     
         
 <div class="card widget">
@@ -444,18 +313,18 @@
         
         <article class="media">
             
-            <a href="/technology/20190524/" class="media-left">
+            <a href="/technology/devops/20190601/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/cover/gitlab.jpg" alt="快速搭建 Gitlab 服务器">
+                    <img class="thumbnail" src="/cover/consul-service-configuration.png" alt="DevOps 之使用 Consul 管理配置">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-24T03:41:01.000Z">2019-05-24</time></div>
-                    <a href="/technology/20190524/" class="has-link-black-ter is-size-6">快速搭建 Gitlab 服务器</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-01T07:26:40.000Z">2019-06-01</time></div>
+                    <a href="/technology/devops/20190601/" class="has-link-black-ter is-size-6">DevOps 之使用 Consul 管理配置</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/technology/">技术</a>
+                        <a class="has-link-grey -link" href="/categories/technology/">技术</a> / <a class="has-link-grey -link" href="/categories/technology/devops/">DevOps</a>
                     </p>
                 </div>
             </div>
@@ -463,18 +332,18 @@
         
         <article class="media">
             
-            <a href="/technology/20190517/" class="media-left">
+            <a href="/technology/devops/20190531/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/cover/github-pages.png" alt="Github Pages 自定义域名并开启HTTPS">
+                    <img class="thumbnail" src="/cover/gitlab-pages.jpg" alt="开启 Gitlab Pages 服务">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-17T07:59:52.000Z">2019-05-17</time></div>
-                    <a href="/technology/20190517/" class="has-link-black-ter is-size-6">Github Pages 自定义域名并开启HTTPS</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-31T06:28:01.000Z">2019-05-31</time></div>
+                    <a href="/technology/devops/20190531/" class="has-link-black-ter is-size-6">开启 Gitlab Pages 服务</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/technology/">技术</a>
+                        <a class="has-link-grey -link" href="/categories/technology/">技术</a> / <a class="has-link-grey -link" href="/categories/technology/devops/">DevOps</a>
                     </p>
                 </div>
             </div>
@@ -482,18 +351,18 @@
         
         <article class="media">
             
-            <a href="/technology/20190516/" class="media-left">
+            <a href="/technology/devops/20190525/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/cover/hexo.png" alt="使用 Hexo 和 Github Pages 搭建博客">
+                    <img class="thumbnail" src="/cover/gitlab-docker-ansible.png" alt="DevOps 之注册 Gitlab Runner">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-16T03:02:17.000Z">2019-05-16</time></div>
-                    <a href="/technology/20190516/" class="has-link-black-ter is-size-6">使用 Hexo 和 Github Pages 搭建博客</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-25T06:51:57.000Z">2019-05-25</time></div>
+                    <a href="/technology/devops/20190525/" class="has-link-black-ter is-size-6">DevOps 之注册 Gitlab Runner</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/technology/">技术</a>
+                        <a class="has-link-grey -link" href="/categories/technology/">技术</a> / <a class="has-link-grey -link" href="/categories/technology/devops/">DevOps</a>
                     </p>
                 </div>
             </div>
@@ -501,18 +370,18 @@
         
         <article class="media">
             
-            <a href="/technology/20190427/" class="media-left">
+            <a href="/technology/devops/20190519/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/cover/outline-manager.png" alt="使用 Outline 搭建云梯">
+                    <img class="thumbnail" src="/cover/gitlab-ci-cd.png" alt="DevOps 之关闭 Gitlab Auto DevOps">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-27T09:52:22.000Z">2019-04-27</time></div>
-                    <a href="/technology/20190427/" class="has-link-black-ter is-size-6">使用 Outline 搭建云梯</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-19T09:41:08.000Z">2019-05-19</time></div>
+                    <a href="/technology/devops/20190519/" class="has-link-black-ter is-size-6">DevOps 之关闭 Gitlab Auto DevOps</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/technology/">技术</a>
+                        <a class="has-link-grey -link" href="/categories/technology/">技术</a> / <a class="has-link-grey -link" href="/categories/technology/devops/">DevOps</a>
                     </p>
                 </div>
             </div>
@@ -520,18 +389,18 @@
         
         <article class="media">
             
-            <a href="/technology/20190302/" class="media-left">
+            <a href="/technology/devops/20190518/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/cover/iris-vue-spa.jpg" alt="Iris 搭载Vue history 路由模式 SPA">
+                    <img class="thumbnail" src="/cover/gitlab.jpg" alt="DevOps 之快速搭建 Gitlab 服务">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-02T09:35:59.000Z">2019-03-02</time></div>
-                    <a href="/technology/20190302/" class="has-link-black-ter is-size-6">Iris 搭载Vue history 路由模式 SPA</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-18T03:41:01.000Z">2019-05-18</time></div>
+                    <a href="/technology/devops/20190518/" class="has-link-black-ter is-size-6">DevOps 之快速搭建 Gitlab 服务</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/technology/">技术</a>
+                        <a class="has-link-grey -link" href="/categories/technology/">技术</a> / <a class="has-link-grey -link" href="/categories/technology/devops/">DevOps</a>
                     </p>
                 </div>
             </div>
@@ -558,9 +427,17 @@
                 <span class="level-item">技术</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">12</span>
             </span>
-        </a></li>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/technology/devops/">
+            <span class="level-start">
+                <span class="level-item">DevOps</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li></ul></li>
             </ul>
         </div>
     </div>
@@ -572,7 +449,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/ACME-sh/" style="font-size: 10px;">ACME.sh</a> <a href="/tags/Blog/" style="font-size: 15px;">Blog</a> <a href="/tags/CNAME/" style="font-size: 10px;">CNAME</a> <a href="/tags/Confd/" style="font-size: 10px;">Confd</a> <a href="/tags/Config/" style="font-size: 10px;">Config</a> <a href="/tags/Config-Manager/" style="font-size: 10px;">Config Manager</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/tags/Ghost/" style="font-size: 10px;">Ghost</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Gitlab/" style="font-size: 10px;">Gitlab</a> <a href="/tags/Go/" style="font-size: 10px;">Go</a> <a href="/tags/HTTPS/" style="font-size: 20px;">HTTPS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Iris/" style="font-size: 10px;">Iris</a> <a href="/tags/Let-s-Encrypt/" style="font-size: 10px;">Let's Encrypt</a> <a href="/tags/Node/" style="font-size: 10px;">Node</a> <a href="/tags/Outline/" style="font-size: 10px;">Outline</a> <a href="/tags/Pages/" style="font-size: 10px;">Pages</a> <a href="/tags/SPA/" style="font-size: 10px;">SPA</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a>
+        <a href="/tags/ACME-sh/" style="font-size: 10px;">ACME.sh</a> <a href="/tags/blog/" style="font-size: 13.33px;">Blog</a> <a href="/tags/CD/" style="font-size: 13.33px;">CD</a> <a href="/tags/CI/" style="font-size: 13.33px;">CI</a> <a href="/tags/CNAME/" style="font-size: 10px;">CNAME</a> <a href="/tags/confd/" style="font-size: 10px;">Confd</a> <a href="/tags/config/" style="font-size: 10px;">Config</a> <a href="/tags/Config-Manager/" style="font-size: 10px;">Config Manager</a> <a href="/tags/configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/consul/" style="font-size: 10px;">Consul</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/devops/" style="font-size: 10px;">DevOps</a> <a href="/tags/docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/ghost/" style="font-size: 10px;">Ghost</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/github/" style="font-size: 10px;">Github</a> <a href="/tags/gitlab/" style="font-size: 16.67px;">Gitlab</a> <a href="/tags/golang/" style="font-size: 10px;">Go</a> <a href="/tags/https/" style="font-size: 20px;">HTTPS</a> <a href="/tags/hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/iris/" style="font-size: 10px;">Iris</a> <a href="/tags/Let-s-Encrypt/" style="font-size: 10px;">Let's Encrypt</a> <a href="/tags/node/" style="font-size: 10px;">Node</a> <a href="/tags/outline/" style="font-size: 10px;">Outline</a> <a href="/tags/Pages/" style="font-size: 13.33px;">Pages</a> <a href="/tags/runner/" style="font-size: 10px;">Runner</a> <a href="/tags/spa/" style="font-size: 10px;">SPA</a> <a href="/tags/Service-Mesh/" style="font-size: 10px;">Service Mesh</a> <a href="/tags/vpn/" style="font-size: 10px;">VPN</a> <a href="/tags/vue/" style="font-size: 10px;">Vue</a>
     </div>
 </div>
 
@@ -586,12 +463,23 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2019/05/">
                 <span class="level-start">
                     <span class="level-item">五月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -661,8 +549,22 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Blog/">
+                    <a class="tags has-addons" href="/tags/blog/">
                         <span class="tag">Blog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CD/">
+                        <span class="tag">CD</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CI/">
+                        <span class="tag">CI</span>
                         <span class="tag is-grey">2</span>
                     </a>
                 </div>
@@ -675,14 +577,14 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Confd/">
+                    <a class="tags has-addons" href="/tags/confd/">
                         <span class="tag">Confd</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Config/">
+                    <a class="tags has-addons" href="/tags/config/">
                         <span class="tag">Config</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -696,6 +598,20 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/configuration/">
+                        <span class="tag">Configuration</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/consul/">
+                        <span class="tag">Consul</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/DNS/">
                         <span class="tag">DNS</span>
                         <span class="tag is-grey">1</span>
@@ -703,14 +619,21 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Docker/">
+                    <a class="tags has-addons" href="/tags/devops/">
+                        <span class="tag">DevOps</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/docker/">
                         <span class="tag">Docker</span>
                         <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Ghost/">
+                    <a class="tags has-addons" href="/tags/ghost/">
                         <span class="tag">Ghost</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -724,42 +647,42 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Github/">
+                    <a class="tags has-addons" href="/tags/github/">
                         <span class="tag">Github</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Gitlab/">
+                    <a class="tags has-addons" href="/tags/gitlab/">
                         <span class="tag">Gitlab</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Go/">
+                    <a class="tags has-addons" href="/tags/golang/">
                         <span class="tag">Go</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/HTTPS/">
+                    <a class="tags has-addons" href="/tags/https/">
                         <span class="tag">HTTPS</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Hexo/">
+                    <a class="tags has-addons" href="/tags/hexo/">
                         <span class="tag">Hexo</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Iris/">
+                    <a class="tags has-addons" href="/tags/iris/">
                         <span class="tag">Iris</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -773,14 +696,14 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Node/">
+                    <a class="tags has-addons" href="/tags/node/">
                         <span class="tag">Node</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Outline/">
+                    <a class="tags has-addons" href="/tags/outline/">
                         <span class="tag">Outline</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -789,26 +712,40 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Pages/">
                         <span class="tag">Pages</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/runner/">
+                        <span class="tag">Runner</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/SPA/">
+                    <a class="tags has-addons" href="/tags/spa/">
                         <span class="tag">SPA</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/VPN/">
+                    <a class="tags has-addons" href="/tags/Service-Mesh/">
+                        <span class="tag">Service Mesh</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/vpn/">
                         <span class="tag">VPN</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Vue/">
+                    <a class="tags has-addons" href="/tags/vue/">
                         <span class="tag">Vue</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -872,9 +809,17 @@
                 <span class="level-item">技术</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">12</span>
             </span>
-        </a></li>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/technology/devops/">
+            <span class="level-start">
+                <span class="level-item">DevOps</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li></ul></li>
             </ul>
         </div>
     </div>
@@ -886,7 +831,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/ACME-sh/" style="font-size: 10px;">ACME.sh</a> <a href="/tags/Blog/" style="font-size: 15px;">Blog</a> <a href="/tags/CNAME/" style="font-size: 10px;">CNAME</a> <a href="/tags/Confd/" style="font-size: 10px;">Confd</a> <a href="/tags/Config/" style="font-size: 10px;">Config</a> <a href="/tags/Config-Manager/" style="font-size: 10px;">Config Manager</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/tags/Ghost/" style="font-size: 10px;">Ghost</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Gitlab/" style="font-size: 10px;">Gitlab</a> <a href="/tags/Go/" style="font-size: 10px;">Go</a> <a href="/tags/HTTPS/" style="font-size: 20px;">HTTPS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Iris/" style="font-size: 10px;">Iris</a> <a href="/tags/Let-s-Encrypt/" style="font-size: 10px;">Let's Encrypt</a> <a href="/tags/Node/" style="font-size: 10px;">Node</a> <a href="/tags/Outline/" style="font-size: 10px;">Outline</a> <a href="/tags/Pages/" style="font-size: 10px;">Pages</a> <a href="/tags/SPA/" style="font-size: 10px;">SPA</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a>
+        <a href="/tags/ACME-sh/" style="font-size: 10px;">ACME.sh</a> <a href="/tags/blog/" style="font-size: 13.33px;">Blog</a> <a href="/tags/CD/" style="font-size: 13.33px;">CD</a> <a href="/tags/CI/" style="font-size: 13.33px;">CI</a> <a href="/tags/CNAME/" style="font-size: 10px;">CNAME</a> <a href="/tags/confd/" style="font-size: 10px;">Confd</a> <a href="/tags/config/" style="font-size: 10px;">Config</a> <a href="/tags/Config-Manager/" style="font-size: 10px;">Config Manager</a> <a href="/tags/configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/consul/" style="font-size: 10px;">Consul</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/devops/" style="font-size: 10px;">DevOps</a> <a href="/tags/docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/ghost/" style="font-size: 10px;">Ghost</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/github/" style="font-size: 10px;">Github</a> <a href="/tags/gitlab/" style="font-size: 16.67px;">Gitlab</a> <a href="/tags/golang/" style="font-size: 10px;">Go</a> <a href="/tags/https/" style="font-size: 20px;">HTTPS</a> <a href="/tags/hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/iris/" style="font-size: 10px;">Iris</a> <a href="/tags/Let-s-Encrypt/" style="font-size: 10px;">Let's Encrypt</a> <a href="/tags/node/" style="font-size: 10px;">Node</a> <a href="/tags/outline/" style="font-size: 10px;">Outline</a> <a href="/tags/Pages/" style="font-size: 13.33px;">Pages</a> <a href="/tags/runner/" style="font-size: 10px;">Runner</a> <a href="/tags/spa/" style="font-size: 10px;">SPA</a> <a href="/tags/Service-Mesh/" style="font-size: 10px;">Service Mesh</a> <a href="/tags/vpn/" style="font-size: 10px;">VPN</a> <a href="/tags/vue/" style="font-size: 10px;">Vue</a>
     </div>
 </div>
 
@@ -900,12 +845,23 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2019/05/">
                 <span class="level-start">
                     <span class="level-item">五月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -975,8 +931,22 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Blog/">
+                    <a class="tags has-addons" href="/tags/blog/">
                         <span class="tag">Blog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CD/">
+                        <span class="tag">CD</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CI/">
+                        <span class="tag">CI</span>
                         <span class="tag is-grey">2</span>
                     </a>
                 </div>
@@ -989,14 +959,14 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Confd/">
+                    <a class="tags has-addons" href="/tags/confd/">
                         <span class="tag">Confd</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Config/">
+                    <a class="tags has-addons" href="/tags/config/">
                         <span class="tag">Config</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -1010,6 +980,20 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/configuration/">
+                        <span class="tag">Configuration</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/consul/">
+                        <span class="tag">Consul</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/DNS/">
                         <span class="tag">DNS</span>
                         <span class="tag is-grey">1</span>
@@ -1017,14 +1001,21 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Docker/">
+                    <a class="tags has-addons" href="/tags/devops/">
+                        <span class="tag">DevOps</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/docker/">
                         <span class="tag">Docker</span>
                         <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Ghost/">
+                    <a class="tags has-addons" href="/tags/ghost/">
                         <span class="tag">Ghost</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -1038,42 +1029,42 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Github/">
+                    <a class="tags has-addons" href="/tags/github/">
                         <span class="tag">Github</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Gitlab/">
+                    <a class="tags has-addons" href="/tags/gitlab/">
                         <span class="tag">Gitlab</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Go/">
+                    <a class="tags has-addons" href="/tags/golang/">
                         <span class="tag">Go</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/HTTPS/">
+                    <a class="tags has-addons" href="/tags/https/">
                         <span class="tag">HTTPS</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Hexo/">
+                    <a class="tags has-addons" href="/tags/hexo/">
                         <span class="tag">Hexo</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Iris/">
+                    <a class="tags has-addons" href="/tags/iris/">
                         <span class="tag">Iris</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -1087,14 +1078,14 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Node/">
+                    <a class="tags has-addons" href="/tags/node/">
                         <span class="tag">Node</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Outline/">
+                    <a class="tags has-addons" href="/tags/outline/">
                         <span class="tag">Outline</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -1103,26 +1094,40 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Pages/">
                         <span class="tag">Pages</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/runner/">
+                        <span class="tag">Runner</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/SPA/">
+                    <a class="tags has-addons" href="/tags/spa/">
                         <span class="tag">SPA</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/VPN/">
+                    <a class="tags has-addons" href="/tags/Service-Mesh/">
+                        <span class="tag">Service Mesh</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/vpn/">
                         <span class="tag">VPN</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Vue/">
+                    <a class="tags has-addons" href="/tags/vue/">
                         <span class="tag">Vue</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -1173,7 +1178,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="快速搭建 Gitlab 服务器" height="28">
+                    <img src="/images/logo.svg" alt="George" height="28">
                 
                 </a>
                 <p class="is-size-7">
@@ -1231,57 +1236,9 @@
     
     
     
-    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
-    <script src="/js/gallery.js" defer></script>
-    
-
     
     
-
-<div id="outdated">
-    <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
-            my browser now </a></p>
-    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        outdatedBrowser({
-            bgColor: '#f25648',
-            color: '#ffffff',
-            lowerThan: 'flex'
-        });
-    });
-</script>
-
-
     
-    
-<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    MathJax.Hub.Config({
-        'HTML-CSS': {
-            matchFontHeight: false
-        },
-        SVG: {
-            matchFontHeight: false
-        },
-        CommonHTML: {
-            matchFontHeight: false
-        },
-        tex2jax: {
-            inlineMath: [
-                ['$','$'],
-                ['\\(','\\)']
-            ]
-        }
-    });
-});
-</script>
-
     
     
 
@@ -1303,11 +1260,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
     
-    
-    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
-    <script src="/js/clipboard.js" defer></script>
-    
-
     
     
     

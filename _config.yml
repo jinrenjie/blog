@@ -63,7 +63,21 @@ tag_map:
   Ghost: ghost
   Docker: docker
   HTTPS: https
+  Confd: confd
+  Config: config
+  Node: node
+  Go: golang
+  SPA: spa
+  Runner: runner
+  Service-Mesh: service_mesh
+  VPN: vpn
+  Hexo: hexo
+  Vue: vue
+  Consul: consul
+  Blog: blog
+  Iris: iris
   Github: github
+  Gitlab: gitlab
   Outline: outline
   Configuration: configuration
 
