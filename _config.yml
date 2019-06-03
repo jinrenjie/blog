@@ -57,7 +57,15 @@ index_generator:
 default_category: uncatalog
 category_map:
   技术: technology
+  DevOps: devops
 tag_map:
+  DevOps: devops
+  Ghost: ghost
+  Docker: docker
+  HTTPS: https
+  Github: github
+  Outline: outline
+  Configuration: configuration
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
