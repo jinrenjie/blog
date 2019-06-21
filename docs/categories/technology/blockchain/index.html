@@ -2,25 +2,21 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Github Pages 自定义域名并开启HTTPS - George</title>
+<title>分类: 区块链 - George</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="如果你的项目文档或博客是放在 Github Pages 上进行展示，并且自己有域名，需要吧自己的域名解析到某个项目的 Demo 或 Blog 上，那么本文就分享如何实现这一需求。">
-<meta name="keywords" content="HTTPS,Github,Pages,DNS,CNAME">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Github Pages 自定义域名并开启HTTPS">
-<meta property="og:url" content="https://george.betterde.com/technology/20190517/index.html">
+    <meta name="keywords" content="Developer">
+<meta property="og:type" content="website">
+<meta property="og:title" content="George">
+<meta property="og:url" content="https://george.betterde.com/categories/technology/blockchain/index.html">
 <meta property="og:site_name" content="George">
-<meta property="og:description" content="如果你的项目文档或博客是放在 Github Pages 上进行展示，并且自己有域名，需要吧自己的域名解析到某个项目的 Demo 或 Blog 上，那么本文就分享如何实现这一需求。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://george.betterde.com/cover/github-pages.png">
-<meta property="og:updated_time" content="2019-05-22T18:55:39.096Z">
+<meta property="og:image" content="https://george.betterde.com/images/og_image.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Github Pages 自定义域名并开启HTTPS">
-<meta name="twitter:description" content="如果你的项目文档或博客是放在 Github Pages 上进行展示，并且自己有域名，需要吧自己的域名解析到某个项目的 Demo 或 Blog 上，那么本文就分享如何实现这一需求。">
-<meta name="twitter:image" content="https://george.betterde.com/cover/github-pages.png">
+<meta name="twitter:title" content="George">
+<meta name="twitter:image" content="https://george.betterde.com/images/og_image.png">
 
 
 
@@ -81,7 +77,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Github Pages 自定义域名并开启HTTPS" height="28">
+                <img src="/images/logo.svg" alt="George" height="28">
             
             </a>
         </div>
@@ -111,10 +107,6 @@
                     
                 
                 
-                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
-                    <i class="fas fa-list-ul"></i>
-                </a>
-                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -129,28 +121,42 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/categories">分类</a></li>
+            
+            <li><a href="/categories/technology/">技术</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">区块链</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    <div class="card">
     
     <div class="card-image">
-        <span class="image is-7by1">
-            <img class="thumbnail" src="/cover/github-pages.png" alt="Github Pages 自定义域名并开启HTTPS">
-        </span>
+        <a href="/technology/blockchain/20190621/" class="image is-7by1">
+            <img class="thumbnail" src="/cover/20190621-libra.jpeg" alt="Facebook 发布的 Libra">
+        </a>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-17T07:59:52.000Z">2019-05-17</time>
+                <time class="level-item has-text-grey" datetime="2019-06-21T09:55:03.000Z">2019-06-21</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/technology/">技术</a>
+                <a class="has-link-grey -link" href="/categories/technology/">技术</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/technology/blockchain/">区块链</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 369 个字)
+                    10 分钟 读完 (大约 1527 个字)
                 </span>
                 
                 
@@ -159,131 +165,33 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Github Pages 自定义域名并开启HTTPS
+                <a class="has-link-black-ter" href="/technology/blockchain/20190621/">Facebook 发布的 Libra</a>
             
         </h1>
         <div class="content">
-            <p>如果你的项目文档或博客是放在 <code>Github Pages</code> 上进行展示，并且自己有域名，需要吧自己的域名解析到某个项目的 Demo 或 Blog 上，那么本文就分享如何实现这一需求。<br><a id="more"></a></p>
-<h2 id="添加域名解析记录"><a href="#添加域名解析记录" class="headerlink" title="添加域名解析记录"></a>添加域名解析记录</h2><p><img src="/images/article/github-pages.png" alt="两种解析方案"></p>
-<p>官方推荐使用 CNAME 这种方式因为这种方式的话，可以利用 CDN 做静态资源分发，如果直接 A 记录的话，在加载文章中的静态资源时可能会很慢。</p>
-<h3 id="添加-CNAME-解析记录"><a href="#添加-CNAME-解析记录" class="headerlink" title="添加 CNAME 解析记录"></a>添加 CNAME 解析记录</h3><p><img src="/images/article/aliyun-dns-record.png" alt="添加 CNAME 解析记录"></p>
-<h3 id="创建-CNAME-文件"><a href="#创建-CNAME-文件" class="headerlink" title="创建 CNAME 文件"></a>创建 CNAME 文件</h3><p>在 Github 项目仓库 <code>docs</code> 目录中创建 <code>CNAME</code> 文件，内容就是你的域名（无需 HTTP 协议）</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">george.betterde.tech</span><br></pre></td></tr></table></figure>
-<p>然后提交到项目仓库的 <code>master</code> 分支。</p>
-<h2 id="设置-HTTPS"><a href="#设置-HTTPS" class="headerlink" title="设置 HTTPS"></a>设置 HTTPS</h2><p><img src="/images/article/github-repository.png" alt="打开项目首页"></p>
-<p>进入首页后点击 <code>Settings</code> 进入设置面，找到 <code>Gitlab Pages</code> 一栏</p>
-<p><img src="/images/article/github-repository-setting-pages.png" alt="设置自定义域名"></p>
-<p>在 <code>Custom domain</code> 项的文本框中输入你的域名，然后点击 <code>Save</code> 保存， 最后勾选 <code>Enforce HTTPS</code> 选项，Github 将在后台为你的域名申请证书，次过程可能需要很久，请耐心等待。</p>
-<p><img src="/images/article/github-repository-dns-setting-success.png" alt="设置 HTTPS 成功"></p>
-<p>当你看到 <code>Your site is published at https://*****.****.com</code> 时则说明已经配置成功了！</p>
-
+            <p>经过几个月的预热，经过几个月的预期，Facebook 加密货币项目 Libra 白皮书正式公布。其加密货币项目 Libra 正式推出。<br></p>
         </div>
         
-        <div class="level is-size-7 is-uppercase">
+        
+        <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/CNAME/">CNAME</a>, <a class="has-link-grey -link" href="/tags/DNS/">DNS</a>, <a class="has-link-grey -link" href="/tags/github/">Github</a>, <a class="has-link-grey -link" href="/tags/https/">HTTPS</a>, <a class="has-link-grey -link" href="/tags/Pages/">Pages</a>
+                <a class="button is-size-7 is-light" href="/technology/blockchain/20190621/#more">阅读更多</a>
                 </div>
             </div>
         </div>
         
         
-        
-        <div class="social-share"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
-<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
-        
     </div>
 </div>
 
 
 
-<div class="card">
-    <div class="card-content">
-        <h3 class="menu-label has-text-centered">捐款不会让你得到什么，不捐也不会让你失去什么</h3>
-        <div class="buttons is-centered">
-            
-                
-<a class="button is-info donate">
-    <span class="icon is-small">
-        <i class="fab fa-alipay"></i>
-    </span>
-    <span>支付宝</span>
-    <div class="qrcode"><img src="/images/qrcode/alipay.jpg" alt="支付宝"></div>
-</a>
-
-                
-                
-<a class="button is-success donate">
-    <span class="icon is-small">
-        <i class="fab fa-weixin"></i>
-    </span>
-    <span>微信</span>
-    <div class="qrcode"><img src="/images/qrcode/wechatpay.jpg" alt="微信"></div>
-</a>
-
-                
-                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
-
-<a class="button is-warning donate" href="https://www.paypal.me/jinrenjie" target="_blank">
-    <span class="icon is-small">
-        <i class="fab fa-paypal"></i>
-    </span>
-    <span>Paypal</span>
-</a>
-
-                
-        </div>
-    </div>
-</div>
 
 
 
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/technology/devops/20190518/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">DevOps 之快速搭建 Gitlab 服务</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/technology/20190516/">
-                <span class="level-item">使用 Hexo 和 Github Pages 搭建博客</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
 
 
-
-<div class="card">
-    <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">评论</h3>
-        
-<div id="comment-container"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
-<script>
-    var gitalk = new Gitalk({
-        clientID: '4d31f85f4e85c10cfdb5',
-        clientSecret: 'd97f370a5e43b6f988502e7eb5ac7f2198f40f99',
-        id: '3bebadb2cfd6d4a570c5e1794d5dceb9',
-        repo: 'blog',
-        owner: 'jinrenjie',
-        admin: "jinrenjie"
-    })
-    gitalk.render('comment-container')
-</script>
-
-    </div>
-</div>
 </div>
                 
 
@@ -398,33 +306,6 @@
 </div>
     
         
-<div class="card widget" id="toc">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                目录
-            </h3>
-            <ul class="menu-list"><li>
-        <a class="is-flex" href="#添加域名解析记录">
-        <span class="has-mr-6">1</span>
-        <span>添加域名解析记录</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#添加-CNAME-解析记录">
-        <span class="has-mr-6">1.1</span>
-        <span>添加 CNAME 解析记录</span>
-        </a></li><li>
-        <a class="is-flex" href="#创建-CNAME-文件">
-        <span class="has-mr-6">1.2</span>
-        <span>创建 CNAME 文件</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#设置-HTTPS">
-        <span class="has-mr-6">2</span>
-        <span>设置 HTTPS</span>
-        </a></li></ul>
-        </div>
-    </div>
-</div>
-
     
         
 <div class="card widget">
@@ -1444,7 +1325,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Github Pages 自定义域名并开启HTTPS" height="28">
+                    <img src="/images/logo.svg" alt="George" height="28">
                 
                 </a>
                 <p class="is-size-7">

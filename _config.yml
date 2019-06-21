@@ -57,6 +57,7 @@ index_generator:
 default_category: uncatalog
 category_map:
   技术: technology
+  区块链: blockchain
   DevOps: devops
   System: system
 tag_map:
@@ -81,6 +82,7 @@ tag_map:
   Gitlab: gitlab
   Outline: outline
   Configuration: configuration
+  区块链: blockchain
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
