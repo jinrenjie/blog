@@ -2,21 +2,25 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>标签: Ghost - George</title>
+<title>Vue SPA 前端鉴权 - George</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="keywords" content="Developer">
-<meta property="og:type" content="website">
-<meta property="og:title" content="George">
-<meta property="og:url" content="https://george.betterde.com/tags/ghost/index.html">
+    <meta name="description" content="随着国内越来越多的企业开始采用 Vue 来开发 SPA，原前后端耦合的模式，用户权限等逻辑都由后端来控制，但是采用 SPA 后，需要前后端一起实现鉴权策略。">
+<meta name="keywords" content="Vue,SPA,用户鉴权">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue SPA 前端鉴权">
+<meta property="og:url" content="https://george.betterde.com/technology/前端/20190618/index.html">
 <meta property="og:site_name" content="George">
+<meta property="og:description" content="随着国内越来越多的企业开始采用 Vue 来开发 SPA，原前后端耦合的模式，用户权限等逻辑都由后端来控制，但是采用 SPA 后，需要前后端一起实现鉴权策略。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://george.betterde.com/images/og_image.png">
+<meta property="og:image" content="https://george.betterde.com/cover/20190618-vue-spa.png">
+<meta property="og:updated_time" content="2019-08-15T09:58:56.591Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="George">
-<meta name="twitter:image" content="https://george.betterde.com/images/og_image.png">
+<meta name="twitter:title" content="Vue SPA 前端鉴权">
+<meta name="twitter:description" content="随着国内越来越多的企业开始采用 Vue 来开发 SPA，原前后端耦合的模式，用户权限等逻辑都由后端来控制，但是采用 SPA 后，需要前后端一起实现鉴权策略。">
+<meta name="twitter:image" content="https://george.betterde.com/cover/20190618-vue-spa.png">
 
 
 
@@ -77,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="George" height="28">
+                <img src="/images/logo.svg" alt="Vue SPA 前端鉴权" height="28">
             
             </a>
         </div>
@@ -107,6 +111,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -121,39 +129,28 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">Ghost</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-image">
-        <a href="/technology/20190118/" class="image is-7by1">
-            <img class="thumbnail" src="/cover/ghost-blog.png" alt="使用 Ghost 搭建博客">
-        </a>
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/cover/20190618-vue-spa.png" alt="Vue SPA 前端鉴权">
+        </span>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-01-18T08:47:57.000Z">2019-01-18</time>
+                <time class="level-item has-text-grey" datetime="2019-06-18T11:30:54.000Z">2019-06-18</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/technology/">技术</a>
+                <a class="has-link-grey -link" href="/categories/technology/">技术</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/technology/前端/">前端</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    7 分钟 读完 (大约 1076 个字)
+                    11 分钟 读完 (大约 1581 个字)
                 </span>
                 
                 
@@ -162,33 +159,140 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/technology/20190118/">使用 Ghost 搭建博客</a>
+                Vue SPA 前端鉴权
             
         </h1>
         <div class="content">
-            <p>博客似乎在一步步的衰落，现在都流行着微博之类的短讯平台。其中差别很明显的就是，你2012的博客或许2014也有人在评论，而即便是微博上热门话题，也会被淹没在信息的洪水中。<br></p>
+            <p>随着国内越来越多的企业开始采用 Vue 来开发 SPA，原前后端耦合的模式，用户权限等逻辑都由后端来控制，但是采用 SPA 后，需要前后端一起实现鉴权策略。<br><a id="more"></a></p>
+<h1 id="所需工具"><a href="#所需工具" class="headerlink" title="所需工具"></a>所需工具</h1><ul>
+<li>Vue Cli 3.*</li>
+<li>Node</li>
+</ul>
+<h1 id="安装所需工具"><a href="#安装所需工具" class="headerlink" title="安装所需工具"></a>安装所需工具</h1><h2 id="安装-Node-环境"><a href="#安装-Node-环境" class="headerlink" title="安装 Node 环境"></a>安装 Node 环境</h2><p>前往 <a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node 官网</a>下载</p>
+<h2 id="安装-Vue-Cli"><a href="#安装-Vue-Cli" class="headerlink" title="安装 Vue Cli"></a>安装 Vue Cli</h2><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli</span><br><span class="line"><span class="hljs-comment"># OR</span></span><br><span class="line">yarn global add @vue/cli</span><br></pre></td></tr></table></figure>
+<p>安装完成后，需要到</p>
+<h1 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h1><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vue create YOUR_PROJECT_NAME</span><br><span class="line"><span class="hljs-comment"># OR</span></span><br><span class="line">vue ui</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">George-2:Node George$ vue create spa</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Vue CLI v3.8.2</span><br><span class="line">┌───────────────────────────┐</span><br><span class="line">│  Update available: 3.8.4  │</span><br><span class="line">└───────────────────────────┘</span><br><span class="line">? Please pick a preset: default (babel, eslint)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Vue CLI v3.8.2</span><br><span class="line">✨  Creating project <span class="hljs-keyword">in</span> /Users/George/Develop/Node/spa.</span><br><span class="line">🗃  Initializing git repository...</span><br><span class="line">⚙  Installing CLI plugins. This might take a <span class="hljs-keyword">while</span>...</span><br><span class="line"></span><br><span class="line">yarn install v1.13.0</span><br><span class="line">info No lockfile found.</span><br><span class="line">[1/4] 🔍  Resolving packages...</span><br><span class="line">[2/4] 🚚  Fetching packages...</span><br><span class="line">[3/4] 🔗  Linking dependencies...</span><br><span class="line">[4/4] 🔨  Building fresh packages...</span><br><span class="line">success Saved lockfile.</span><br><span class="line">✨  Done <span class="hljs-keyword">in</span> 207.89s.</span><br><span class="line">🚀  Invoking generators...</span><br><span class="line">📦  Installing additional dependencies...</span><br><span class="line"></span><br><span class="line">yarn install v1.13.0</span><br><span class="line">[1/4] 🔍  Resolving packages...</span><br><span class="line">[2/4] 🚚  Fetching packages...</span><br><span class="line">[3/4] 🔗  Linking dependencies...</span><br><span class="line">[4/4] 🔨  Building fresh packages...</span><br><span class="line"></span><br><span class="line">success Saved lockfile.</span><br><span class="line">✨  Done <span class="hljs-keyword">in</span> 53.93s.</span><br><span class="line">⚓  Running completion hooks...</span><br><span class="line"></span><br><span class="line">📄  Generating README.md...</span><br><span class="line"></span><br><span class="line">🎉  Successfully created project spa.</span><br><span class="line">👉  Get started with the following commands:</span><br><span class="line"></span><br><span class="line"> $ <span class="hljs-built_in">cd</span> spa</span><br><span class="line"> $ yarn serve</span><br><span class="line"></span><br><span class="line">George-2:Node George$</span><br></pre></td></tr></table></figure>
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vue add router</span><br><span class="line">vue add vuex</span><br><span class="line">vue add axios</span><br></pre></td></tr></table></figure>
+<p>上面分别为项目添加了 vue-router、vuex、axios 依赖。</p>
+<p><img src="/images/article/vue-spa-directory-structure.png" alt="项目目录结构"></p>
+<h1 id="项目实现"><a href="#项目实现" class="headerlink" title="项目实现"></a>项目实现</h1><h2 id="用户状态管理"><a href="#用户状态管理" class="headerlink" title="用户状态管理"></a>用户状态管理</h2><p>因为用户可能有两种状态，一种是已登陆一种是未登陆，那么前端如何来保存用户登陆状态呢？这里可以使用 Vuex 来进行存储。但是只有 Vuex 是不够的，因为当用户手动刷新浏览器后，Vue 整个生命周期就重新加载了，所以还要配合浏览器提供的 <code>Local Storage</code> 或 <code>Session Storage</code> 来保证用户刷新而不丢失用户状态。</p>
+<figure class="highlight javascript hljs"><figcaption><span>store.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span></span><br><span class="line"><span class="hljs-keyword">import</span> Vuex <span class="hljs-keyword">from</span> <span class="hljs-string">'vuex'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    access_token: localStorage.getItem(<span class="hljs-string">'access_token'</span>),</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    SET_ACCESS_TOKEN: <span class="hljs-function">(<span class="hljs-params">state, data</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="hljs-keyword">if</span>(data === <span class="hljs-literal">false</span>) &#123;</span><br><span class="line">        Vue.set(state, <span class="hljs-string">'access_token'</span>, <span class="hljs-string">''</span>);</span><br><span class="line">        localStorage.removeItem(<span class="hljs-string">'access_token'</span>);</span><br><span class="line">      &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        Vue.set(state, <span class="hljs-string">'access_token'</span>, data.access_token);</span><br><span class="line">        localStorage.setItem(<span class="hljs-string">'access_token'</span>, data.access_token);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  actions: &#123;</span><br><span class="line">    signIn(&#123;commit&#125;, params) &#123;</span><br><span class="line">      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve,reject</span>) =&gt;</span> &#123;</span><br><span class="line">        Vue.axios.post(<span class="hljs-string">'/signin'</span>, params).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;</span><br><span class="line">          commit(<span class="hljs-string">'SET_ACCESS_TOKEN'</span>, res.data);</span><br><span class="line">          resolve(res);</span><br><span class="line">        &#125;).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> &#123;</span><br><span class="line">          reject(err);</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="系统状态管理"><a href="#系统状态管理" class="headerlink" title="系统状态管理"></a>系统状态管理</h2><p>在全局保存 <code>Layout</code> 的信息<br><figure class="highlight javascript hljs"><figcaption><span>store/modules/system.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span></span><br><span class="line"><span class="hljs-keyword">import</span> api <span class="hljs-keyword">from</span> <span class="hljs-string">'../../apis'</span></span><br><span class="line"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> types <span class="hljs-keyword">from</span> <span class="hljs-string">'../types'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    layout: &#123;</span><br><span class="line">      current: <span class="hljs-string">"guest"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    menu: &#123;</span><br><span class="line">      active: <span class="hljs-string">"/"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    installed: <span class="hljs-literal">false</span>,</span><br><span class="line">    version: <span class="hljs-string">""</span></span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    SET_SYSTEM: <span class="hljs-function">(<span class="hljs-params">state, data</span>) =&gt;</span> &#123;</span><br><span class="line">      Vue.set(state, <span class="hljs-string">'installed'</span>, data.installed);</span><br><span class="line">      Vue.set(state, <span class="hljs-string">'version'</span>, data.version);</span><br><span class="line">    &#125;,</span><br><span class="line">    SET_MENU_ACTIVE: <span class="hljs-function">(<span class="hljs-params">state, data</span>) =&gt;</span> &#123;</span><br><span class="line">      Vue.set(state.menu, <span class="hljs-string">'active'</span>, data)</span><br><span class="line">    &#125;,</span><br><span class="line">    SET_LAYOUT_CURRENT: <span class="hljs-function">(<span class="hljs-params">state, data</span>) =&gt;</span> &#123;</span><br><span class="line">      Vue.set(state.layout, <span class="hljs-string">'current'</span>, data)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  actions: &#123;</span><br><span class="line">    fetchSystem(&#123; commit &#125;) &#123;</span><br><span class="line">      api.system.fetch().then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> &#123;</span><br><span class="line">        commit(types.SET_SYSTEM, response.data)</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="请求401拦截"><a href="#请求401拦截" class="headerlink" title="请求401拦截"></a>请求401拦截</h2><figure class="highlight javascript hljs"><figcaption><span>plugins/axios.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">"use strict"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span></span><br><span class="line"><span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">'../store'</span></span><br><span class="line"><span class="hljs-keyword">import</span> router <span class="hljs-keyword">from</span> <span class="hljs-string">'../router'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// Full config:  https://github.com/axios/axios#request-config</span></span><br><span class="line"><span class="hljs-comment">// axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';</span></span><br><span class="line"><span class="hljs-comment">// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;</span></span><br><span class="line"><span class="hljs-comment">// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> config = &#123;</span><br><span class="line">  baseURL: process.env.baseURL || process.env.apiUrl || <span class="hljs-string">""</span>,</span><br><span class="line">  timeout: <span class="hljs-number">60</span> * <span class="hljs-number">1000</span>, <span class="hljs-comment">// Timeout</span></span><br><span class="line">  withCredentials: <span class="hljs-literal">true</span>, <span class="hljs-comment">// Check cross-site Access-Control</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> request = axios.create(config);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 定义请求拦截器</span></span><br><span class="line">request.interceptors.request.use(<span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="hljs-comment">// 遍历请求参数</span></span><br><span class="line">  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> config.params) &#123;</span><br><span class="line">    <span class="hljs-comment">// 如果参数的值为空，则删除这个 Key</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (config.params.hasOwnProperty(key) &amp;&amp; (config.params[key] === <span class="hljs-string">""</span> || config.params[key] === <span class="hljs-literal">null</span>)) &#123;</span><br><span class="line">      <span class="hljs-keyword">delete</span> config.params[key];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-comment">// 如果有用户的 access token 则在请求头中加上</span></span><br><span class="line">  <span class="hljs-keyword">if</span> (store.state.account.access_token) &#123;</span><br><span class="line">    config.headers.Authorization = <span class="hljs-string">`Bearer <span class="hljs-subst">$&#123;store.state.account.access_token&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">return</span> config;</span><br><span class="line">&#125;, error =&gt; &#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 定义响应拦截器</span></span><br><span class="line">request.interceptors.response.use(</span><br><span class="line">  response =&gt; &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> response.data;</span><br><span class="line">  &#125;,</span><br><span class="line">  error =&gt; &#123;</span><br><span class="line">    <span class="hljs-comment">// 如果状态码为 401 则清空 Vuex 中的状态，并跳转到登陆页面</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (error.response.status === <span class="hljs-number">401</span>) &#123;</span><br><span class="line">      store.commit(<span class="hljs-string">'SET_PROFILE'</span>, <span class="hljs-literal">false</span>);</span><br><span class="line">      store.commit(<span class="hljs-string">'SET_ACCESS_TOKEN'</span>, <span class="hljs-literal">false</span>);</span><br><span class="line">      router.push(<span class="hljs-string">"/signin"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(error.response);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">Plugin.install = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">Vue</span>) </span>&#123;</span><br><span class="line">  Vue.axios = request;</span><br><span class="line">  <span class="hljs-built_in">window</span>.axios = request;</span><br><span class="line">  <span class="hljs-built_in">Object</span>.defineProperties(Vue.prototype, &#123;</span><br><span class="line">    axios: &#123;</span><br><span class="line">      <span class="hljs-keyword">get</span>() &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> request;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    $axios: &#123;</span><br><span class="line">      <span class="hljs-keyword">get</span>() &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> request;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Vue.use(Plugin);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Plugin;</span><br></pre></td></tr></table></figure>
+<h2 id="前端路由拦截"><a href="#前端路由拦截" class="headerlink" title="前端路由拦截"></a>前端路由拦截</h2><p>仅仅实现了API 401状态码拦截还是不够的，还需要对前端路由做响应的鉴权。</p>
+<figure class="highlight javascript hljs"><figcaption><span>router/index.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span></span><br><span class="line"><span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">'../store'</span></span><br><span class="line"><span class="hljs-keyword">import</span> Router <span class="hljs-keyword">from</span> <span class="hljs-string">'vue-router'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router(&#123;</span><br><span class="line">  mode: <span class="hljs-string">'history'</span>,</span><br><span class="line">  base: process.env.BASE_URL,</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="hljs-string">'/'</span>,</span><br><span class="line">      name: <span class="hljs-string">'dashboard'</span>,</span><br><span class="line">      meta: &#123;</span><br><span class="line">        requiresAuth: <span class="hljs-literal">true</span></span><br><span class="line">      &#125;,</span><br><span class="line">      component: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">'../views/Dashboard.vue'</span>),</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="hljs-string">'/signin'</span>,</span><br><span class="line">      name: <span class="hljs-string">'signin'</span>,</span><br><span class="line">      meta: &#123;</span><br><span class="line">        requiresAuth: <span class="hljs-literal">false</span></span><br><span class="line">      &#125;,</span><br><span class="line">      component: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">'../views/SignIn.vue'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="hljs-comment">// 会匹配所有路径</span></span><br><span class="line">      path: <span class="hljs-string">'*'</span>,</span><br><span class="line">      name: <span class="hljs-string">"notfound"</span>,</span><br><span class="line">      meta: &#123;</span><br><span class="line">        requiresAuth: <span class="hljs-literal">false</span></span><br><span class="line">      &#125;,</span><br><span class="line">      component: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">'../views/NotFound.vue'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * Routing to intercept</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line">router.beforeEach(<span class="hljs-function">(<span class="hljs-params">to, <span class="hljs-keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="hljs-comment">// 如果跳转到NotFound页面则提前设置视图的Layout 为 guest</span></span><br><span class="line">  <span class="hljs-keyword">if</span> (to.name === <span class="hljs-string">'notfound'</span>) &#123;</span><br><span class="line">    store.commit(<span class="hljs-string">'SET_LAYOUT_CURRENT'</span>, <span class="hljs-string">'guest'</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">// 如果从NotFound 页面返回，并且需要认证的话，则设置视图的Layout 为 backend</span></span><br><span class="line">  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">from</span>.name === <span class="hljs-string">'notfound'</span> &amp;&amp; to.meta.requiresAuth === <span class="hljs-literal">true</span>) &#123;</span><br><span class="line">    store.commit(<span class="hljs-string">'SET_LAYOUT_CURRENT'</span>, <span class="hljs-string">'backend'</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">// 当用户的 access token 存在且有效，前往的路由是 登陆页面时，直接跳转到首页</span></span><br><span class="line">  <span class="hljs-keyword">if</span> (store.state.account.access_token &amp;&amp; to.path === <span class="hljs-string">'/signin'</span>) &#123;</span><br><span class="line">    next(&#123;</span><br><span class="line">      path: <span class="hljs-string">"/"</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">   * 路由鉴权主要逻辑</span></span><br><span class="line"><span class="hljs-comment">   */</span></span><br><span class="line">  <span class="hljs-keyword">if</span> (to.matched.some(<span class="hljs-function"><span class="hljs-params">record</span> =&gt;</span> record.meta.requiresAuth)) &#123;</span><br><span class="line">    <span class="hljs-keyword">const</span> access_token = store.state.account.access_token;</span><br><span class="line">    <span class="hljs-comment">//通过access_token判断用户是否已经登录</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (!access_token) &#123;</span><br><span class="line">      next(&#123;</span><br><span class="line">        path: <span class="hljs-string">'/signin'</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">      next()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">    next()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> router;</span><br></pre></td></tr></table></figure>
+<h2 id="页面布局"><a href="#页面布局" class="headerlink" title="页面布局"></a>页面布局</h2><p>由于<code>登陆页面</code>和<code>后台页面</code>的布局不同所以没法服用，为了在登陆后跳转路由不重新渲染公共模块，如菜单、顶部导航条等组件，所以需要在 <code>App.vue</code> 中实现根据用户登陆状态动态切换页面布局的逻辑。</p>
+<figure class="highlight javascript hljs"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="hljs-string">"app"</span>&gt;</span><br><span class="line">    &lt;component :is=<span class="hljs-string">"layout.current"</span>&gt;&lt;/component&gt;</span><br><span class="line">  &lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  <span class="hljs-keyword">import</span> &#123;mapState&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'vuex'</span></span><br><span class="line">  <span class="hljs-keyword">import</span> Guest <span class="hljs-keyword">from</span> <span class="hljs-string">'./layouts/Guest'</span></span><br><span class="line">  <span class="hljs-keyword">import</span> Backend <span class="hljs-keyword">from</span> <span class="hljs-string">'./layouts/Backend'</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span><br><span class="line">    name: <span class="hljs-string">'app'</span>,</span><br><span class="line">    data() &#123;</span><br><span class="line">      <span class="hljs-keyword">return</span> &#123;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;&#125;,</span><br><span class="line">    components: &#123;</span><br><span class="line">      guest: Guest,</span><br><span class="line">      backend: Backend</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">      ...mapState(&#123;</span><br><span class="line">        layout: <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.system.layout,</span><br><span class="line">        profile: <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.account.profile,</span><br><span class="line">        access_token: <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.account.access_token</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    watch: &#123;</span><br><span class="line">      <span class="hljs-comment">// Watch 用户信息变更，切换页面布局</span></span><br><span class="line">      profile(value) &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (value.id === <span class="hljs-string">''</span>) &#123;</span><br><span class="line">          <span class="hljs-keyword">this</span>.$store.commit(<span class="hljs-string">'SET_LAYOUT_CURRENT'</span>, <span class="hljs-string">'guest'</span>);</span><br><span class="line">        &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">          <span class="hljs-keyword">this</span>.$store.commit(<span class="hljs-string">'SET_LAYOUT_CURRENT'</span>, <span class="hljs-string">'backend'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">       * 当access_token的state发生变化时</span></span><br><span class="line"><span class="hljs-comment">       * 说明用户登录信息验证成功，并且拿到了access_token</span></span><br><span class="line"><span class="hljs-comment">       * 此时调用fetchProfile 这个action 获取用户信息</span></span><br><span class="line"><span class="hljs-comment">       */</span></span><br><span class="line">      access_token(value) &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (value == <span class="hljs-literal">null</span>) &#123;</span><br><span class="line">          <span class="hljs-built_in">window</span>.console.log(value);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="hljs-string">'$route'</span> (to, <span class="hljs-keyword">from</span>) &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">from</span>.path === <span class="hljs-string">'/'</span> &amp;&amp; to.name === <span class="hljs-string">'notfound'</span>) &#123;</span><br><span class="line">          <span class="hljs-keyword">this</span>.$store.commit(<span class="hljs-string">'SET_LAYOUT_CURRENT'</span>, <span class="hljs-string">'guest'</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">from</span>.path === <span class="hljs-string">'/'</span>) &#123;</span><br><span class="line">          <span class="hljs-keyword">if</span> (to.name !== <span class="hljs-string">'notfound'</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">this</span>.$store.commit(<span class="hljs-string">'SET_LAYOUT_CURRENT'</span>, <span class="hljs-string">'backend'</span>);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> (to.name === <span class="hljs-string">'signin'</span>) &#123;</span><br><span class="line">          <span class="hljs-keyword">this</span>.$store.commit(<span class="hljs-string">'SET_LAYOUT_CURRENT'</span>, <span class="hljs-string">'guest'</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">from</span>.name === <span class="hljs-string">'notfound'</span>) &#123;</span><br><span class="line">          <span class="hljs-keyword">this</span>.$store.commit(<span class="hljs-string">'SET_MENU_ACTIVE'</span>, to.path);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">this</span>.$store.commit(<span class="hljs-string">'SET_MENU_ACTIVE'</span>, to.path);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="hljs-regexp">/script&gt;</span></span><br><span class="line"><span class="hljs-regexp"></span></span><br><span class="line"><span class="hljs-regexp">&lt;style lang="scss"&gt;</span></span><br><span class="line"><span class="hljs-regexp"></span></span><br><span class="line"><span class="hljs-regexp">&lt;/</span>style&gt;</span><br></pre></td></tr></table></figure>
+<p>到此基本上前端有关用户鉴权的逻辑都已经实现，剩下的只要专心的去写业务逻辑即可！</p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/technology/20190118/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/spa/">SPA</a>, <a class="has-link-grey -link" href="/tags/vue/">Vue</a>, <a class="has-link-grey -link" href="/tags/用户鉴权/">用户鉴权</a>
                 </div>
             </div>
         </div>
         
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">捐款不会让你得到什么，不捐也不会让你失去什么</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/qrcode/alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/qrcode/wechatpay.jpg" alt="微信"></div>
+</a>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<a class="button is-warning donate" href="https://www.paypal.me/jinrenjie" target="_blank">
+    <span class="icon is-small">
+        <i class="fab fa-paypal"></i>
+    </span>
+    <span>Paypal</span>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/technology/blockchain/20190621/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Facebook 发布 Libra</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/technology/system/20190603/">
+                <span class="level-item">深入了解 Systemd 之 Service 单元</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '4d31f85f4e85c10cfdb5',
+        clientSecret: 'd97f370a5e43b6f988502e7eb5ac7f2198f40f99',
+        id: 'e43e685089fe24b1c438180e5b5b5262',
+        repo: 'blog',
+        owner: 'jinrenjie',
+        admin: "jinrenjie"
+    })
+    gitalk.render('comment-container')
+</script>
+
+    </div>
+</div>
 </div>
                 
 
@@ -303,6 +407,65 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#所需工具">
+        <span class="has-mr-6">1</span>
+        <span>所需工具</span>
+        </a></li><li>
+        <a class="is-flex" href="#安装所需工具">
+        <span class="has-mr-6">2</span>
+        <span>安装所需工具</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#安装-Node-环境">
+        <span class="has-mr-6">2.1</span>
+        <span>安装 Node 环境</span>
+        </a></li><li>
+        <a class="is-flex" href="#安装-Vue-Cli">
+        <span class="has-mr-6">2.2</span>
+        <span>安装 Vue Cli</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#创建项目">
+        <span class="has-mr-6">3</span>
+        <span>创建项目</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#安装依赖">
+        <span class="has-mr-6">3.1</span>
+        <span>安装依赖</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#项目实现">
+        <span class="has-mr-6">4</span>
+        <span>项目实现</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#用户状态管理">
+        <span class="has-mr-6">4.1</span>
+        <span>用户状态管理</span>
+        </a></li><li>
+        <a class="is-flex" href="#系统状态管理">
+        <span class="has-mr-6">4.2</span>
+        <span>系统状态管理</span>
+        </a></li><li>
+        <a class="is-flex" href="#请求401拦截">
+        <span class="has-mr-6">4.3</span>
+        <span>请求401拦截</span>
+        </a></li><li>
+        <a class="is-flex" href="#前端路由拦截">
+        <span class="has-mr-6">4.4</span>
+        <span>前端路由拦截</span>
+        </a></li><li>
+        <a class="is-flex" href="#页面布局">
+        <span class="has-mr-6">4.5</span>
+        <span>页面布局</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 <div class="card widget">
@@ -1480,7 +1643,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="George" height="28">
+                    <img src="/images/logo.svg" alt="Vue SPA 前端鉴权" height="28">
                 
                 </a>
                 <p class="is-size-7">

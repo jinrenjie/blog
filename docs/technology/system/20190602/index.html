@@ -2,25 +2,25 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>Mac 使用 VMware Fusion 安装 CoreOS - George</title>
+<title>深入了解 Systemd 之概要介绍 - George</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
     <meta name="description" content="Systemd 是 Linux 系统的一中 Init 用户程序和基础组件的集合，由 Lennart Poettering 带头开发并在 LGPL 2.1 及后续版本许可证下开源发布，目前 Systemd 已纳入众多 Linux 发行版的软件源中。">
-<meta name="keywords" content="Linux,Docker,Core OS,ETCD,OS,Container">
+<meta name="keywords" content="Systemd,Linux,Service,Unit,Daemon,Init">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac 使用 VMware Fusion 安装 CoreOS">
+<meta property="og:title" content="深入了解 Systemd 之概要介绍">
 <meta property="og:url" content="https://george.betterde.com/technology/system/20190602/index.html">
 <meta property="og:site_name" content="George">
 <meta property="og:description" content="Systemd 是 Linux 系统的一中 Init 用户程序和基础组件的集合，由 Lennart Poettering 带头开发并在 LGPL 2.1 及后续版本许可证下开源发布，目前 Systemd 已纳入众多 Linux 发行版的软件源中。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://george.betterde.com/cover/20190602-coreos.jpg">
-<meta property="og:updated_time" content="2019-07-17T03:29:07.351Z">
+<meta property="og:image" content="https://george.betterde.com/cover/20190603-systemd.png">
+<meta property="og:updated_time" content="2019-08-15T09:58:56.590Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac 使用 VMware Fusion 安装 CoreOS">
+<meta name="twitter:title" content="深入了解 Systemd 之概要介绍">
 <meta name="twitter:description" content="Systemd 是 Linux 系统的一中 Init 用户程序和基础组件的集合，由 Lennart Poettering 带头开发并在 LGPL 2.1 及后续版本许可证下开源发布，目前 Systemd 已纳入众多 Linux 发行版的软件源中。">
-<meta name="twitter:image" content="https://george.betterde.com/cover/20190602-coreos.jpg">
+<meta name="twitter:image" content="https://george.betterde.com/cover/20190603-systemd.png">
 
 
 
@@ -81,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Mac 使用 VMware Fusion 安装 CoreOS" height="28">
+                <img src="/images/logo.svg" alt="深入了解 Systemd 之概要介绍" height="28">
             
             </a>
         </div>
@@ -132,7 +132,7 @@
     
     <div class="card-image">
         <span class="image is-7by1">
-            <img class="thumbnail" src="/cover/20190602-coreos.jpg" alt="Mac 使用 VMware Fusion 安装 CoreOS">
+            <img class="thumbnail" src="/cover/20190603-systemd.png" alt="深入了解 Systemd 之概要介绍">
         </span>
     </div>
     
@@ -150,7 +150,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    21 分钟 读完 (大约 3220 个字)
+                    25 分钟 读完 (大约 3690 个字)
                 </span>
                 
                 
@@ -159,7 +159,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Mac 使用 VMware Fusion 安装 CoreOS
+                深入了解 Systemd 之概要介绍
             
         </h1>
         <div class="content">
@@ -184,12 +184,12 @@
 </ul>
 <h2 id="从-System-V-Init-到-Systemd"><a href="#从-System-V-Init-到-Systemd" class="headerlink" title="从 System V Init 到 Systemd"></a>从 System V Init 到 Systemd</h2><p>System V Init 守护进程是一个基于运行级别的系统，它使用运行级别（单用户、多用户以及其他更多级别）和链接（位于 <code>/etc/rc?.d</code> 目录中，分别链接到 <code>/etc/init.d</code> 中的 Init 脚本）来启动和关闭系统服务。Upstart Init 守护进程则是基于事件的系统，它使用事件来启动和关闭系统服务。</p>
 <p>近年来，Linux 系统的 Init 进程经历了两次重大的演进，传统的 System V Init 已经淡出历史舞台，新的 Init 系统 UpStart 和 Systemd 各有特点，而越来越多的 Linux 发行版采纳了 Systemd。</p>
-<h2 id="设计理念"><a href="#设计理念" class="headerlink" title="设计理念"></a>设计理念</h2><p>与多数发行版使用的 System V 风格 Init 相比，Systemd 采用了以下新技术：</p>
-<ul>
-<li>采用Socket激活式与总线激活式服务，以提高相互依赖的各服务的并行运行性能；</li>
-<li>用 Cgroups 代替 PID 来追踪进程，以此即使是两次 fork 之后生成的守护进程也不会脱离 Systemd 的控制。</li>
-</ul>
-<p>从设计构思上说，由于 Systemd 使用了 Cgroups 与 Fanotify (fscking all notifiction and file access system) 等组件以实现其特性，所以只适用于 Linux。</p>
+<h2 id="设计理念"><a href="#设计理念" class="headerlink" title="设计理念"></a>设计理念</h2><h3 id="尽可能启动更少的进程"><a href="#尽可能启动更少的进程" class="headerlink" title="尽可能启动更少的进程"></a>尽可能启动更少的进程</h3><p>当 SysV-init 程序初始化系统时，必须将所有可能用到的后台服务进程全部运行起来。而用户需要等待系统将所有的服务都启动完成之后，才能够登陆。这种做法会带来两个问题：系统的启动时间过长和系统的资源浪费。</p>
+<p>Systemd 提供了服务按需启动的能力，使得特定的服务只有在被真正请求时才会启动。特别是与具体硬件相关的服务，比如蓝牙服务仅在蓝牙适配器被插入时才需要运行，打印服务仅在打印机链接或程序要打印时才需要运行，甚至 sshd 服务也只需要用户在使用 SSH 连接到服务器时才需要启动。这种能力建立在 Systemd 对 DBus 总线或特定 Socket 端口监听的特性上的，这种设计相比于传统启动程序具有颠覆性进步。</p>
+<h3 id="尽可能将进程并行启动"><a href="#尽可能将进程并行启动" class="headerlink" title="尽可能将进程并行启动"></a>尽可能将进程并行启动</h3><p>在 SysV-init 时代，将每个服务项目编号依次执行启动脚本。后来 Ubuntu 的 UPstart 解决了没有直接依赖启动项之间的并行启动。而 Systemd 通过 Socket 缓存、DBus 缓存和建立临时挂载点等方法进一步解决了启动进程直接的依赖，做到了所有系统服务并发启动。这一设计同样是 Systemd 独具特色的创意。对于用户定义的服务，Systemd 允许配置其启动依赖的项目，从而保证服务必须按照必要的顺序运行。</p>
+<h3 id="跟踪和管理进程的生命周期"><a href="#跟踪和管理进程的生命周期" class="headerlink" title="跟踪和管理进程的生命周期"></a>跟踪和管理进程的生命周期</h3><p>在 Systemd 之前的主流应用管理服务都是使用 “进程树” 来跟踪应用的继承关系，而进程的父子关系很容易通过 <code>两次 fork</code> 的方法来脱离。</p>
+<p>而 Systemd 则提出通过 CGroup 跟踪进程关系，弥补了这个缺漏。通过 CGroup 不仅能够实现服务之间的访问隔离，限制特定应用程序对系统资源的防伪配额，还能更精确的管理服务的生命周期。</p>
+<h3 id="统一管理服务日志"><a href="#统一管理服务日志" class="headerlink" title="统一管理服务日志"></a>统一管理服务日志</h3><p>Systemd 是一系列工具的集合，包括了一个专用的系统日志管理服务：Journald。这个服务的设计初衷是克服现有 Syslog 服务的日志内容易伪造和日志格式不统一等缺点，现在已经纳入了 Systemd 的标准姊妹服务中。Journald 用二进制格式保存所有日志信息，因而日志内容很难被手工伪造。Journald 还提供了一个 journalctl 命令来查看日志信息，这样使得不同服务输出的日志具有相同的排版格式，便于数据的二次处理。</p>
 <h2 id="使用-Systemd-的发行版本"><a href="#使用-Systemd-的发行版本" class="headerlink" title="使用 Systemd 的发行版本"></a>使用 Systemd 的发行版本</h2><p>Systemd 已纳入众多 Linux 发行版的软件源中，以下简表</p>
 <p>默认init程序为systemd的发行版：</p>
 <ul>
@@ -206,12 +206,25 @@
 <li>Gentoo，同 Openrc 一起被 Gentoo 官方支持</li>
 </ul>
 <p>除此以外，Systemd 已由 Lennart Poettering 提请纳入 GNOME 3.2 的外部依赖关系列表，而这意味着所有使用 GNOME 的发行版都应该使用 Systemd ，最低限度来说也必须将其作为配置选项之一。</p>
-<h2 id="依赖关系"><a href="#依赖关系" class="headerlink" title="依赖关系"></a>依赖关系</h2><p>Systemd 并不能完全解除各个单元之间的依赖关系，如物理设备单元准备就绪之前，不可能执行挂载单元。为此需要定义各个单元之间的依赖关系。有依赖的地方就会有出现 死循环的可能，比如 A 依赖于 B，B 依赖于 C，C 依赖于 A，那么导致死锁。Systemd 为此提供了两种不同程度的依赖关系，一个是 require，一个是 want，出现死循环时，Systemd 会尝试忽略 want 类型的依赖，如仍不能解锁，那么 Systemd 报错。</p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>启动计算机的时候，需要启动大量的 Unit。如果每一次启动，都要一一写明本次启动需要哪些 Unit，显然非常不方便。Systemd 的解决方案就是 Target。</p>
-<p>简单说，Target 就是一个 Unit 组，包含许多相关的 Unit 。启动某个 Target 的时候，Systemd 就会启动里面所有的 Unit。从这个意义上说，Target 这个概念类似于”状态点”，启动某个 Target 就好比启动到某种状态。</p>
-<p>传统的 init 启动模式里面，有 RunLevel 的概念，跟 Target 的作用很类似。不同的是，RunLevel 是互斥的，不可能多个 RunLevel 同时启动，但是多个 Target 可以同时启动。</p>
+<h2 id="Systemd-的服务管理"><a href="#Systemd-的服务管理" class="headerlink" title="Systemd 的服务管理"></a>Systemd 的服务管理</h2><h3 id="Unit-和-Target"><a href="#Unit-和-Target" class="headerlink" title="Unit 和 Target"></a>Unit 和 Target</h3><h4 id="单元类型"><a href="#单元类型" class="headerlink" title="单元类型"></a>单元类型</h4><p>Unit 是 Systemd 管理服务的基本单元，可以认为每个服务就是一个 Unit，并使用一个 Unit 文件定义。在 Unit 文件中需要包含相应服务的描述、属性以及需要运行服务的命令。</p>
+<p>更多单元的详细介绍，请点击下方链接：</p>
+<ul>
+<li><a href="/technology/system/20190603/">系统服务</a>（.service）；</li>
+<li><a href="/technology/system/20190604/">挂载点</a>（.mount）；</li>
+<li><a href="/technology/system/20190605/">自动挂载点</a>（.automount）；</li>
+<li><a href="/technology/system/20190606/">套接字</a>（.socket）；</li>
+<li><a href="/technology/system/20190607/">系统设备</a>（.device）；</li>
+<li><a href="/technology/system/20190608/">交换分区</a>（.swap）；</li>
+<li><a href="/technology/system/20190609/">文件路径</a>（.path）；</li>
+<li><a href="/technology/system/20190610/">启动目标</a>（.target）；</li>
+<li><a href="/technology/system/20190611/">计时器</a>（.timer）；</li>
+<li><a href="/technology/system/20190612/">不是由 Systemd 启动的外部进程</a>（.scope）;</li>
+<li><a href="/technology/system/20190613/">进程组</a>（.slice）;</li>
+<li><a href="/technology/system/20190614/">Systemd 快照</a>（.snapshot）;</li>
+</ul>
+<h4 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h4><p>Target 是 Systemd 中用于指定服务组的启动方式，相当于 SysV-init 中的 <code>运行级别</code>。每次系统启动时都会运行与当前系统具有同级别 Target 关联的所有服务，如果服务不需要跟随系统自动启动，则完全可以忽略这个 Target 的内容。通常来说，大多数 Linux 用户平时使用的都是 <code>多用户模式</code> 这个级别，对应的 Target 值为 <code>multi-user.target</code>，它又一个等效的可用值是 <code>default.target</code>。</p>
 <figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 查看当前系统的所有 Target</span></span><br><span class="line">$ systemctl list-unit-files --<span class="hljs-built_in">type</span>=target</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 查看一个 Target 包含的所有 Unit</span></span><br><span class="line">$ systemctl list-dependencies multi-user.target</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 查看启动时的默认 Target</span></span><br><span class="line">$ systemctl get-default</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 设置启动时的默认 Target</span></span><br><span class="line">$ sudo systemctl <span class="hljs-built_in">set</span>-default multi-user.target</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 切换 Target 时，默认不关闭前一个 Target 启动的进程，</span></span><br><span class="line"><span class="hljs-comment"># systemctl isolate 命令改变这种行为，</span></span><br><span class="line"><span class="hljs-comment"># 关闭前一个 Target 里面所有不属于后一个 Target 的进程</span></span><br><span class="line">$ sudo systemctl isolate multi-user.target</span><br></pre></td></tr></table></figure>
-<p>前面说过，Systemd 使用 target 取代了 System V Init 的运行级的概念。</p>
+<p>前面说过，Systemd 使用 Target 取代了 System V Init 的运行级的概念。</p>
 <table>
 <thead>
 <tr>
@@ -258,24 +271,9 @@
 </tr>
 </tbody>
 </table>
-<h2 id="单元类型"><a href="#单元类型" class="headerlink" title="单元类型"></a>单元类型</h2><p>更多单元的详细介绍，请点击下方链接：</p>
-<ul>
-<li><a href="/technology/system/20190603/">系统服务</a>（.service）；</li>
-<li><a href="/technology/system/20190604/">挂载点</a>（.mount）；</li>
-<li><a href="/technology/system/20190605/">自动挂载点</a>（.automount）；</li>
-<li><a href="/technology/system/20190606/">套接字</a>（.socket）；</li>
-<li><a href="/technology/system/20190607/">系统设备</a>（.device）；</li>
-<li><a href="/technology/system/20190608/">交换分区</a>（.swap）；</li>
-<li><a href="/technology/system/20190609/">文件路径</a>（.path）；</li>
-<li><a href="/technology/system/20190610/">启动目标</a>（.target）；</li>
-<li><a href="/technology/system/20190611/">计时器</a>（.timer）；</li>
-<li><a href="/technology/system/20190612/">不是由 Systemd 启动的外部进程</a>（.scope）;</li>
-<li><a href="/technology/system/20190613/">进程组</a>（.slice）;</li>
-<li><a href="/technology/system/20190614/">Systemd 快照</a>（.snapshot）;</li>
-</ul>
-<h1 id="日志管理"><a href="#日志管理" class="headerlink" title="日志管理"></a>日志管理</h1><p>Systemd 统一管理所有 Unit 的启动日志。带来的好处就是，可以只用 <code>journalctl</code> 一个命令，查看所有日志（内核日志和应用日志）。日志的配置文件是 <code>/etc/systemd/journald.conf</code>。</p>
+<h2 id="日志管理"><a href="#日志管理" class="headerlink" title="日志管理"></a>日志管理</h2><p>Systemd 统一管理所有 Unit 的启动日志。带来的好处就是，可以只用 <code>journalctl</code> 一个命令，查看所有日志（内核日志和应用日志）。日志的配置文件是 <code>/etc/systemd/journald.conf</code>。</p>
 <figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-comment"># 查看所有日志（默认情况下 ，只保存本次启动的日志）</span></span><br><span class="line">$ sudo journalctl</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 查看内核日志（不显示应用日志）</span></span><br><span class="line">$ sudo journalctl -k</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 查看系统本次启动的日志</span></span><br><span class="line">$ sudo journalctl -b</span><br><span class="line">$ sudo journalctl -b -0</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 查看上一次启动的日志（需更改设置）</span></span><br><span class="line">$ sudo journalctl -b -1</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 查看指定时间的日志</span></span><br><span class="line">$ sudo journalctl --since=<span class="hljs-string">"2012-10-30 18:17:16"</span></span><br><span class="line">$ sudo journalctl --since <span class="hljs-string">"20 min ago"</span></span><br><span class="line">$ sudo journalctl --since yesterday</span><br><span class="line">$ sudo journalctl --since <span class="hljs-string">"2015-01-10"</span> --until <span class="hljs-string">"2015-01-11 03:00"</span></span><br><span class="line">$ sudo journalctl --since 09:00 --until <span class="hljs-string">"1 hour ago"</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 显示尾部的最新10行日志</span></span><br><span class="line">$ sudo journalctl -n</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 显示尾部指定行数的日志</span></span><br><span class="line">$ sudo journalctl -n 20</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 实时滚动显示最新日志</span></span><br><span class="line">$ sudo journalctl -f</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 查看指定服务的日志</span></span><br><span class="line">$ sudo journalctl /usr/lib/systemd/systemd</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 查看指定进程的日志</span></span><br><span class="line">$ sudo journalctl _PID=1</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 查看某个路径的脚本的日志</span></span><br><span class="line">$ sudo journalctl /usr/bin/bash</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 查看指定用户的日志</span></span><br><span class="line">$ sudo journalctl _UID=33 --since today</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 查看某个 Unit 的日志</span></span><br><span class="line">$ sudo journalctl -u nginx.service</span><br><span class="line">$ sudo journalctl -u nginx.service --since today</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 实时滚动显示某个 Unit 的最新日志</span></span><br><span class="line">$ sudo journalctl -u nginx.service -f</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 合并显示多个 Unit 的日志</span></span><br><span class="line">$ journalctl -u nginx.service -u php-fpm.service --since today</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 查看指定优先级（及其以上级别）的日志，共有8级</span></span><br><span class="line"><span class="hljs-comment"># 0: emerg</span></span><br><span class="line"><span class="hljs-comment"># 1: alert</span></span><br><span class="line"><span class="hljs-comment"># 2: crit</span></span><br><span class="line"><span class="hljs-comment"># 3: err</span></span><br><span class="line"><span class="hljs-comment"># 4: warning</span></span><br><span class="line"><span class="hljs-comment"># 5: notice</span></span><br><span class="line"><span class="hljs-comment"># 6: info</span></span><br><span class="line"><span class="hljs-comment"># 7: debug</span></span><br><span class="line">$ sudo journalctl -p err -b</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 日志默认分页输出，--no-pager 改为正常的标准输出</span></span><br><span class="line">$ sudo journalctl --no-pager</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 以 JSON 格式（单行）输出</span></span><br><span class="line">$ sudo journalctl -b -u nginx.service -o json</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 以 JSON 格式（多行）输出，可读性更好</span></span><br><span class="line">$ sudo journalctl -b -u nginx.serviceqq</span><br><span class="line"> -o json-pretty</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 显示日志占据的硬盘空间</span></span><br><span class="line">$ sudo journalctl --disk-usage</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 指定日志文件占据的最大空间</span></span><br><span class="line">$ sudo journalctl --vacuum-size=1G</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 指定日志文件保存多久</span></span><br><span class="line">$ sudo journalctl --vacuum-time=1years</span><br></pre></td></tr></table></figure>
-<h1 id="配置和使用"><a href="#配置和使用" class="headerlink" title="配置和使用"></a>配置和使用</h1><p>如开头简介中所说，你打算开发一个新的系统服务，就必须了解如何让这个服务能够被 Systemd 管理。这需要您注意以下这些要点：</p>
+<h2 id="配置和使用"><a href="#配置和使用" class="headerlink" title="配置和使用"></a>配置和使用</h2><p>如开头简介中所说，你打算开发一个新的系统服务，就必须了解如何让这个服务能够被 Systemd 管理。这需要您注意以下这些要点：</p>
 <ul>
 <li>后台服务进程代码不需要执行两次派生来实现后台守护进程，只需要实现服务本身的主循环即可；</li>
 <li>不要调用 setsid()，交给 Systemd 处理；</li>
@@ -292,7 +290,7 @@
 <li>/etc/systemd/system/：系统管理员安装的单元</li>
 </ul>
 <h2 id="命令汇总"><a href="#命令汇总" class="headerlink" title="命令汇总"></a>命令汇总</h2><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#重载单元</span></span><br><span class="line">$ sudo systemctl daemon-reload</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#立即激活单元</span></span><br><span class="line">$ sudo systemctl start UNIT</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#立即停止单元</span></span><br><span class="line">$ sudo systemctl stop UNIT</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#立即重启单元</span></span><br><span class="line">$ sudo systemctl restart UNIT</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#重新加载配置</span></span><br><span class="line">$ sudo systemctl reload UNIT</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#输出单元运行状态</span></span><br><span class="line">$ sudo systemctl status UNIT</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#检查单元是否配置为自动启动</span></span><br><span class="line">$ sudo systemctl is-enabled UNIT</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#开机自动激活单元，根据[Install]设置的 WantedBy 会在 /etc/systemd/system/TARGET.wants/ 目录中创建软链</span></span><br><span class="line">$ sudo systemctl <span class="hljs-built_in">enable</span> UNIT</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#设置单元为自动启动并立即启动这个单元</span></span><br><span class="line">$ sudo systemctl <span class="hljs-built_in">enable</span> --now UNIT</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#取消开机自动激活单元</span></span><br><span class="line">$ sudo systemctl <span class="hljs-built_in">disable</span> UNIT</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#禁用一个单元（禁用后，间接启动也是不可能的）</span></span><br><span class="line">$ sudo systemctl mask UNIT</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#取消禁用一个单元</span></span><br><span class="line">$ sudo systemctl unmask UNIT</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#显示单元的手册页（必须由单元文件提供）</span></span><br><span class="line">$ sudo systemctl <span class="hljs-built_in">help</span> UNIT</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#列出一个 Unit 的所有依赖，默认不会展开显示。如果要展开 Target，就需要使用--all参数。</span></span><br><span class="line">$ sudo systemctl list-dependencies [--all] UNIT</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#列出所有配置文件</span></span><br><span class="line">$ sudo systemctl list-unit-files</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#列出指定类型的配置文件</span></span><br><span class="line">$ sudo systemctl list-unit-files --<span class="hljs-built_in">type</span>=service</span><br></pre></td></tr></table></figure>
-<h2 id="电源管理命令"><a href="#电源管理命令" class="headerlink" title="电源管理命令"></a>电源管理命令</h2><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#重启</span></span><br><span class="line">$ sudo systemctl reboot</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#退出系统并关闭电源</span></span><br><span class="line">$ sudo systemctl poweroff</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#待机</span></span><br><span class="line">$ sudo systemctl <span class="hljs-built_in">suspend</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#休眠</span></span><br><span class="line">$ sudo systemctl hibernate</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#混合休眠模式（同时休眠到硬盘并待机）</span></span><br><span class="line">$ sudo systemctl hybrid-sleep</span><br></pre></td></tr></table></figure>
+<h1 id="电源管理命令"><a href="#电源管理命令" class="headerlink" title="电源管理命令"></a>电源管理命令</h1><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#重启</span></span><br><span class="line">$ sudo systemctl reboot</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#退出系统并关闭电源</span></span><br><span class="line">$ sudo systemctl poweroff</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#待机</span></span><br><span class="line">$ sudo systemctl <span class="hljs-built_in">suspend</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#休眠</span></span><br><span class="line">$ sudo systemctl hibernate</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">#混合休眠模式（同时休眠到硬盘并待机）</span></span><br><span class="line">$ sudo systemctl hybrid-sleep</span><br></pre></td></tr></table></figure>
 <p>Systemd 的强大之处，还需在实践中自行体会。后面的文章也会陆续记录一些实践中的心得……</p>
 
         </div>
@@ -301,7 +299,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Container/">Container</a>, <a class="has-link-grey -link" href="/tags/Core-OS/">Core OS</a>, <a class="has-link-grey -link" href="/tags/docker/">Docker</a>, <a class="has-link-grey -link" href="/tags/ETCD/">ETCD</a>, <a class="has-link-grey -link" href="/tags/Linux/">Linux</a>, <a class="has-link-grey -link" href="/tags/OS/">OS</a>
+                    <a class="has-link-grey -link" href="/tags/Daemon/">Daemon</a>, <a class="has-link-grey -link" href="/tags/Init/">Init</a>, <a class="has-link-grey -link" href="/tags/Linux/">Linux</a>, <a class="has-link-grey -link" href="/tags/Service/">Service</a>, <a class="has-link-grey -link" href="/tags/Systemd/">Systemd</a>, <a class="has-link-grey -link" href="/tags/Unit/">Unit</a>
                 </div>
             </div>
         </div>
@@ -447,7 +445,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        17
+                        18
                     </p>
                 </div>
             </div>
@@ -457,7 +455,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        5
+                        6
                     </p>
                 </div>
             </div>
@@ -538,43 +536,55 @@
         <a class="is-flex" href="#设计理念">
         <span class="has-mr-6">2.2</span>
         <span>设计理念</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#尽可能启动更少的进程">
+        <span class="has-mr-6">2.2.1</span>
+        <span>尽可能启动更少的进程</span>
         </a></li><li>
+        <a class="is-flex" href="#尽可能将进程并行启动">
+        <span class="has-mr-6">2.2.2</span>
+        <span>尽可能将进程并行启动</span>
+        </a></li><li>
+        <a class="is-flex" href="#跟踪和管理进程的生命周期">
+        <span class="has-mr-6">2.2.3</span>
+        <span>跟踪和管理进程的生命周期</span>
+        </a></li><li>
+        <a class="is-flex" href="#统一管理服务日志">
+        <span class="has-mr-6">2.2.4</span>
+        <span>统一管理服务日志</span>
+        </a></li></ul></li><li>
         <a class="is-flex" href="#使用-Systemd-的发行版本">
         <span class="has-mr-6">2.3</span>
         <span>使用 Systemd 的发行版本</span>
         </a></li><li>
-        <a class="is-flex" href="#依赖关系">
+        <a class="is-flex" href="#Systemd-的服务管理">
         <span class="has-mr-6">2.4</span>
-        <span>依赖关系</span>
-        </a></li><li>
-        <a class="is-flex" href="#Target">
-        <span class="has-mr-6">2.5</span>
-        <span>Target</span>
-        </a></li><li>
-        <a class="is-flex" href="#单元类型">
-        <span class="has-mr-6">2.6</span>
-        <span>单元类型</span>
+        <span>Systemd 的服务管理</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Unit-和-Target">
+        <span class="has-mr-6">2.4.1</span>
+        <span>Unit 和 Target</span>
         </a></li></ul></li><li>
         <a class="is-flex" href="#日志管理">
-        <span class="has-mr-6">3</span>
+        <span class="has-mr-6">2.5</span>
         <span>日志管理</span>
         </a></li><li>
         <a class="is-flex" href="#配置和使用">
-        <span class="has-mr-6">4</span>
+        <span class="has-mr-6">2.6</span>
         <span>配置和使用</span>
-        </a><ul class="menu-list"><li>
+        </a></li><li>
         <a class="is-flex" href="#单元文件存放路径">
-        <span class="has-mr-6">4.1</span>
+        <span class="has-mr-6">2.7</span>
         <span>单元文件存放路径</span>
         </a></li><li>
         <a class="is-flex" href="#命令汇总">
-        <span class="has-mr-6">4.2</span>
+        <span class="has-mr-6">2.8</span>
         <span>命令汇总</span>
-        </a></li><li>
+        </a></li></ul></li><li>
         <a class="is-flex" href="#电源管理命令">
-        <span class="has-mr-6">4.3</span>
+        <span class="has-mr-6">3</span>
         <span>电源管理命令</span>
-        </a></li></ul></li></ul>
+        </a></li></ul>
         </div>
     </div>
 </div>
@@ -627,6 +637,25 @@
         
         <article class="media">
             
+            <a href="/technology/前端/20190618/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/cover/20190618-vue-spa.png" alt="Vue SPA 前端鉴权">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-18T11:30:54.000Z">2019-06-18</time></div>
+                    <a href="/technology/前端/20190618/" class="has-link-black-ter is-size-6">Vue SPA 前端鉴权</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/technology/">技术</a> / <a class="has-link-grey -link" href="/categories/technology/前端/">前端</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/technology/system/20190603/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/cover/20190603-systemd-service.jpg" alt="深入了解 Systemd 之 Service 单元">
@@ -648,35 +677,16 @@
             
             <a href="/technology/system/20190602/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/cover/20190602-coreos.jpg" alt="Mac 使用 VMware Fusion 安装 CoreOS">
+                    <img class="thumbnail" src="/cover/20190603-systemd.png" alt="深入了解 Systemd 之概要介绍">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-02T09:34:33.000Z">2019-06-02</time></div>
-                    <a href="/technology/system/20190602/" class="has-link-black-ter is-size-6">Mac 使用 VMware Fusion 安装 CoreOS</a>
+                    <a href="/technology/system/20190602/" class="has-link-black-ter is-size-6">深入了解 Systemd 之概要介绍</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/technology/">技术</a> / <a class="has-link-grey -link" href="/categories/technology/system/">System</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/technology/devops/20190601/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/cover/consul-service-configuration.png" alt="DevOps 之使用 Consul 管理配置">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-01T07:26:40.000Z">2019-06-01</time></div>
-                    <a href="/technology/devops/20190601/" class="has-link-black-ter is-size-6">DevOps 之使用 Consul 管理配置</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/technology/">技术</a> / <a class="has-link-grey -link" href="/categories/technology/devops/">DevOps</a>
                     </p>
                 </div>
             </div>
@@ -703,7 +713,7 @@
                 <span class="level-item">技术</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">17</span>
+                <span class="level-item tag">18</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/technology/devops/">
@@ -730,6 +740,14 @@
                 <span class="level-item tag">2</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/前端/">
+            <span class="level-start">
+                <span class="level-item">前端</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/technology/blockchain/">
             <span class="level-start">
                 <span class="level-item">区块链</span>
@@ -749,7 +767,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/ACME-sh/" style="font-size: 10px;">ACME.sh</a> <a href="/tags/blog/" style="font-size: 13.33px;">Blog</a> <a href="/tags/CD/" style="font-size: 13.33px;">CD</a> <a href="/tags/CI/" style="font-size: 13.33px;">CI</a> <a href="/tags/CNAME/" style="font-size: 10px;">CNAME</a> <a href="/tags/confd/" style="font-size: 10px;">Confd</a> <a href="/tags/config/" style="font-size: 10px;">Config</a> <a href="/tags/Config-Manager/" style="font-size: 10px;">Config Manager</a> <a href="/tags/configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/consul/" style="font-size: 10px;">Consul</a> <a href="/tags/Container/" style="font-size: 10px;">Container</a> <a href="/tags/Core-OS/" style="font-size: 10px;">Core OS</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/devops/" style="font-size: 10px;">DevOps</a> <a href="/tags/docker/" style="font-size: 16.67px;">Docker</a> <a href="/tags/ETCD/" style="font-size: 10px;">ETCD</a> <a href="/tags/ghost/" style="font-size: 10px;">Ghost</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/github/" style="font-size: 10px;">Github</a> <a href="/tags/gitlab/" style="font-size: 16.67px;">Gitlab</a> <a href="/tags/golang/" style="font-size: 13.33px;">Go</a> <a href="/tags/Golang/" style="font-size: 10px;">Golang</a> <a href="/tags/https/" style="font-size: 20px;">HTTPS</a> <a href="/tags/hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/iris/" style="font-size: 10px;">Iris</a> <a href="/tags/Let-s-Encrypt/" style="font-size: 10px;">Let's Encrypt</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/node/" style="font-size: 10px;">Node</a> <a href="/tags/OS/" style="font-size: 10px;">OS</a> <a href="/tags/outline/" style="font-size: 10px;">Outline</a> <a href="/tags/Pages/" style="font-size: 13.33px;">Pages</a> <a href="/tags/Process/" style="font-size: 10px;">Process</a> <a href="/tags/runner/" style="font-size: 10px;">Runner</a> <a href="/tags/spa/" style="font-size: 10px;">SPA</a> <a href="/tags/Seeder/" style="font-size: 10px;">Seeder</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Service-Mesh/" style="font-size: 10px;">Service Mesh</a> <a href="/tags/System/" style="font-size: 10px;">System</a> <a href="/tags/Systemd/" style="font-size: 10px;">Systemd</a> <a href="/tags/vpn/" style="font-size: 10px;">VPN</a> <a href="/tags/vue/" style="font-size: 10px;">Vue</a> <a href="/tags/command/" style="font-size: 10px;">command</a> <a href="/tags/exec/" style="font-size: 10px;">exec</a> <a href="/tags/libra/" style="font-size: 10px;">libra</a> <a href="/tags/syscall/" style="font-size: 10px;">syscall</a> <a href="/tags/blockchain/" style="font-size: 10px;">区块链</a>
+        <a href="/tags/ACME-sh/" style="font-size: 10px;">ACME.sh</a> <a href="/tags/blog/" style="font-size: 13.33px;">Blog</a> <a href="/tags/CD/" style="font-size: 13.33px;">CD</a> <a href="/tags/CI/" style="font-size: 13.33px;">CI</a> <a href="/tags/CNAME/" style="font-size: 10px;">CNAME</a> <a href="/tags/confd/" style="font-size: 10px;">Confd</a> <a href="/tags/config/" style="font-size: 10px;">Config</a> <a href="/tags/Config-Manager/" style="font-size: 10px;">Config Manager</a> <a href="/tags/configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/consul/" style="font-size: 10px;">Consul</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Daemon/" style="font-size: 10px;">Daemon</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/devops/" style="font-size: 10px;">DevOps</a> <a href="/tags/docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/ghost/" style="font-size: 10px;">Ghost</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/github/" style="font-size: 10px;">Github</a> <a href="/tags/gitlab/" style="font-size: 16.67px;">Gitlab</a> <a href="/tags/golang/" style="font-size: 13.33px;">Go</a> <a href="/tags/Golang/" style="font-size: 10px;">Golang</a> <a href="/tags/https/" style="font-size: 20px;">HTTPS</a> <a href="/tags/hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Init/" style="font-size: 10px;">Init</a> <a href="/tags/iris/" style="font-size: 10px;">Iris</a> <a href="/tags/Let-s-Encrypt/" style="font-size: 10px;">Let's Encrypt</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/node/" style="font-size: 10px;">Node</a> <a href="/tags/outline/" style="font-size: 10px;">Outline</a> <a href="/tags/Pages/" style="font-size: 13.33px;">Pages</a> <a href="/tags/Process/" style="font-size: 10px;">Process</a> <a href="/tags/runner/" style="font-size: 10px;">Runner</a> <a href="/tags/spa/" style="font-size: 13.33px;">SPA</a> <a href="/tags/Seeder/" style="font-size: 10px;">Seeder</a> <a href="/tags/Service/" style="font-size: 13.33px;">Service</a> <a href="/tags/Service-Mesh/" style="font-size: 10px;">Service Mesh</a> <a href="/tags/System/" style="font-size: 10px;">System</a> <a href="/tags/Systemd/" style="font-size: 13.33px;">Systemd</a> <a href="/tags/Unit/" style="font-size: 10px;">Unit</a> <a href="/tags/vpn/" style="font-size: 10px;">VPN</a> <a href="/tags/vue/" style="font-size: 13.33px;">Vue</a> <a href="/tags/command/" style="font-size: 10px;">command</a> <a href="/tags/exec/" style="font-size: 10px;">exec</a> <a href="/tags/libra/" style="font-size: 10px;">libra</a> <a href="/tags/syscall/" style="font-size: 10px;">syscall</a> <a href="/tags/blockchain/" style="font-size: 10px;">区块链</a> <a href="/tags/用户鉴权/" style="font-size: 10px;">用户鉴权</a>
     </div>
 </div>
 
@@ -768,7 +786,7 @@
                     <span class="level-item">六月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -912,22 +930,15 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Container/">
-                        <span class="tag">Container</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Core-OS/">
-                        <span class="tag">Core OS</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/DNS/">
                         <span class="tag">DNS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Daemon/">
+                        <span class="tag">Daemon</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -949,14 +960,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/docker/">
                         <span class="tag">Docker</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/ETCD/">
-                        <span class="tag">ETCD</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1017,6 +1021,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Init/">
+                        <span class="tag">Init</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/iris/">
                         <span class="tag">Iris</span>
                         <span class="tag is-grey">1</span>
@@ -1040,13 +1051,6 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/node/">
                         <span class="tag">Node</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/OS/">
-                        <span class="tag">OS</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1082,7 +1086,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/spa/">
                         <span class="tag">SPA</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1096,7 +1100,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Service/">
                         <span class="tag">Service</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1117,6 +1121,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Systemd/">
                         <span class="tag">Systemd</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Unit/">
+                        <span class="tag">Unit</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1131,7 +1142,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/vue/">
                         <span class="tag">Vue</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1166,6 +1177,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/blockchain/">
                         <span class="tag">区块链</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/用户鉴权/">
+                        <span class="tag">用户鉴权</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1228,7 +1246,7 @@
                 <span class="level-item">技术</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">17</span>
+                <span class="level-item tag">18</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/technology/devops/">
@@ -1255,6 +1273,14 @@
                 <span class="level-item tag">2</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/前端/">
+            <span class="level-start">
+                <span class="level-item">前端</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/technology/blockchain/">
             <span class="level-start">
                 <span class="level-item">区块链</span>
@@ -1274,7 +1300,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/ACME-sh/" style="font-size: 10px;">ACME.sh</a> <a href="/tags/blog/" style="font-size: 13.33px;">Blog</a> <a href="/tags/CD/" style="font-size: 13.33px;">CD</a> <a href="/tags/CI/" style="font-size: 13.33px;">CI</a> <a href="/tags/CNAME/" style="font-size: 10px;">CNAME</a> <a href="/tags/confd/" style="font-size: 10px;">Confd</a> <a href="/tags/config/" style="font-size: 10px;">Config</a> <a href="/tags/Config-Manager/" style="font-size: 10px;">Config Manager</a> <a href="/tags/configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/consul/" style="font-size: 10px;">Consul</a> <a href="/tags/Container/" style="font-size: 10px;">Container</a> <a href="/tags/Core-OS/" style="font-size: 10px;">Core OS</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/devops/" style="font-size: 10px;">DevOps</a> <a href="/tags/docker/" style="font-size: 16.67px;">Docker</a> <a href="/tags/ETCD/" style="font-size: 10px;">ETCD</a> <a href="/tags/ghost/" style="font-size: 10px;">Ghost</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/github/" style="font-size: 10px;">Github</a> <a href="/tags/gitlab/" style="font-size: 16.67px;">Gitlab</a> <a href="/tags/golang/" style="font-size: 13.33px;">Go</a> <a href="/tags/Golang/" style="font-size: 10px;">Golang</a> <a href="/tags/https/" style="font-size: 20px;">HTTPS</a> <a href="/tags/hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/iris/" style="font-size: 10px;">Iris</a> <a href="/tags/Let-s-Encrypt/" style="font-size: 10px;">Let's Encrypt</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/node/" style="font-size: 10px;">Node</a> <a href="/tags/OS/" style="font-size: 10px;">OS</a> <a href="/tags/outline/" style="font-size: 10px;">Outline</a> <a href="/tags/Pages/" style="font-size: 13.33px;">Pages</a> <a href="/tags/Process/" style="font-size: 10px;">Process</a> <a href="/tags/runner/" style="font-size: 10px;">Runner</a> <a href="/tags/spa/" style="font-size: 10px;">SPA</a> <a href="/tags/Seeder/" style="font-size: 10px;">Seeder</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Service-Mesh/" style="font-size: 10px;">Service Mesh</a> <a href="/tags/System/" style="font-size: 10px;">System</a> <a href="/tags/Systemd/" style="font-size: 10px;">Systemd</a> <a href="/tags/vpn/" style="font-size: 10px;">VPN</a> <a href="/tags/vue/" style="font-size: 10px;">Vue</a> <a href="/tags/command/" style="font-size: 10px;">command</a> <a href="/tags/exec/" style="font-size: 10px;">exec</a> <a href="/tags/libra/" style="font-size: 10px;">libra</a> <a href="/tags/syscall/" style="font-size: 10px;">syscall</a> <a href="/tags/blockchain/" style="font-size: 10px;">区块链</a>
+        <a href="/tags/ACME-sh/" style="font-size: 10px;">ACME.sh</a> <a href="/tags/blog/" style="font-size: 13.33px;">Blog</a> <a href="/tags/CD/" style="font-size: 13.33px;">CD</a> <a href="/tags/CI/" style="font-size: 13.33px;">CI</a> <a href="/tags/CNAME/" style="font-size: 10px;">CNAME</a> <a href="/tags/confd/" style="font-size: 10px;">Confd</a> <a href="/tags/config/" style="font-size: 10px;">Config</a> <a href="/tags/Config-Manager/" style="font-size: 10px;">Config Manager</a> <a href="/tags/configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/consul/" style="font-size: 10px;">Consul</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Daemon/" style="font-size: 10px;">Daemon</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/devops/" style="font-size: 10px;">DevOps</a> <a href="/tags/docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/ghost/" style="font-size: 10px;">Ghost</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/github/" style="font-size: 10px;">Github</a> <a href="/tags/gitlab/" style="font-size: 16.67px;">Gitlab</a> <a href="/tags/golang/" style="font-size: 13.33px;">Go</a> <a href="/tags/Golang/" style="font-size: 10px;">Golang</a> <a href="/tags/https/" style="font-size: 20px;">HTTPS</a> <a href="/tags/hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Init/" style="font-size: 10px;">Init</a> <a href="/tags/iris/" style="font-size: 10px;">Iris</a> <a href="/tags/Let-s-Encrypt/" style="font-size: 10px;">Let's Encrypt</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/node/" style="font-size: 10px;">Node</a> <a href="/tags/outline/" style="font-size: 10px;">Outline</a> <a href="/tags/Pages/" style="font-size: 13.33px;">Pages</a> <a href="/tags/Process/" style="font-size: 10px;">Process</a> <a href="/tags/runner/" style="font-size: 10px;">Runner</a> <a href="/tags/spa/" style="font-size: 13.33px;">SPA</a> <a href="/tags/Seeder/" style="font-size: 10px;">Seeder</a> <a href="/tags/Service/" style="font-size: 13.33px;">Service</a> <a href="/tags/Service-Mesh/" style="font-size: 10px;">Service Mesh</a> <a href="/tags/System/" style="font-size: 10px;">System</a> <a href="/tags/Systemd/" style="font-size: 13.33px;">Systemd</a> <a href="/tags/Unit/" style="font-size: 10px;">Unit</a> <a href="/tags/vpn/" style="font-size: 10px;">VPN</a> <a href="/tags/vue/" style="font-size: 13.33px;">Vue</a> <a href="/tags/command/" style="font-size: 10px;">command</a> <a href="/tags/exec/" style="font-size: 10px;">exec</a> <a href="/tags/libra/" style="font-size: 10px;">libra</a> <a href="/tags/syscall/" style="font-size: 10px;">syscall</a> <a href="/tags/blockchain/" style="font-size: 10px;">区块链</a> <a href="/tags/用户鉴权/" style="font-size: 10px;">用户鉴权</a>
     </div>
 </div>
 
@@ -1293,7 +1319,7 @@
                     <span class="level-item">六月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -1437,22 +1463,15 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Container/">
-                        <span class="tag">Container</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Core-OS/">
-                        <span class="tag">Core OS</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/DNS/">
                         <span class="tag">DNS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Daemon/">
+                        <span class="tag">Daemon</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1474,14 +1493,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/docker/">
                         <span class="tag">Docker</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/ETCD/">
-                        <span class="tag">ETCD</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1542,6 +1554,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Init/">
+                        <span class="tag">Init</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/iris/">
                         <span class="tag">Iris</span>
                         <span class="tag is-grey">1</span>
@@ -1565,13 +1584,6 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/node/">
                         <span class="tag">Node</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/OS/">
-                        <span class="tag">OS</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1607,7 +1619,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/spa/">
                         <span class="tag">SPA</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1621,7 +1633,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Service/">
                         <span class="tag">Service</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1642,6 +1654,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Systemd/">
                         <span class="tag">Systemd</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Unit/">
+                        <span class="tag">Unit</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1656,7 +1675,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/vue/">
                         <span class="tag">Vue</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1691,6 +1710,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/blockchain/">
                         <span class="tag">区块链</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/用户鉴权/">
+                        <span class="tag">用户鉴权</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1740,7 +1766,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Mac 使用 VMware Fusion 安装 CoreOS" height="28">
+                    <img src="/images/logo.svg" alt="深入了解 Systemd 之概要介绍" height="28">
                 
                 </a>
                 <p class="is-size-7">
