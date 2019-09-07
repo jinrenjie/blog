@@ -84,6 +84,7 @@ tag_map:
   Gitlab: gitlab
   Outline: outline
   Configuration: configuration
+  前端: frontend
   区块链: blockchain
   用户鉴权: authorization
 
