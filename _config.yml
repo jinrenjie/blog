@@ -58,8 +58,10 @@ default_category: uncatalog
 category_map:
   技术: technology
   区块链: blockchain
+  前端: frontend
   DevOps: devops
   System: system
+  Golang: golang
 tag_map:
   DevOps: devops
   Ghost: ghost
