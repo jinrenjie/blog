@@ -85,6 +85,7 @@ tag_map:
   Outline: outline
   Configuration: configuration
   区块链: blockchain
+  用户鉴权: authorization
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
