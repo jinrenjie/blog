@@ -122,9 +122,9 @@ widgets:
         # Author's current location to be shown in the profile widget
         location: Shanghai
         # Path or URL to the avatar to be shown in the profile widget
-        avatar: 
+        avatar: /images/avatar/avatar.jpg
         # Email address for the Gravatar to be shown in the profile widget
-        gravatar: george@betterde.com
+        gravatar: 
         # Whether to show avatar image rounded or square
         avatar_rounded: true
         # Path or URL for the follow button
