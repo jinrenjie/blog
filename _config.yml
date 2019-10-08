@@ -15,8 +15,8 @@ timezone: PRC
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://george.betterde.com
 root: /
-permalink: :category/:title/
-permalink_defaults: :category/:title/
+permalink: :category/:title.html
+permalink_defaults: :category/:title.html
 
 # Directory
 source_dir: source
