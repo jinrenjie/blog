@@ -62,6 +62,7 @@ category_map:
   DevOps: devops
   System: system
   Golang: golang
+  Docker: docker
   Service Mesh: service-mesh
   Micro Service: micro-service
 tag_map:
@@ -77,6 +78,26 @@ tag_map:
   Nomad: nomad
   Consul: consul
   Runner: runner
+  System: system
+  Process: process
+  Config-Manager: config-manager
+  ACME.sh: acme-sh
+  Pages: pages
+  CNAME: cname
+  DNS: dns
+  Git: git
+  CD: cd
+  CI: ci
+  Golang: golang
+  Database: database
+  Seeder: seeder
+  Systemd: systemd
+  Daemon: daemon
+  Init: init
+  Unit: unit
+  Release: release
+  Container: container
+  Service: service
   Cluster: cluster
   Service Mesh: service-mesh
   Micro Service: micro-service
