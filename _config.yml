@@ -57,14 +57,19 @@ index_generator:
 default_category: uncatalog
 category_map:
   技术: technology
+  语言: language
+  框架: framework
+  感悟: apperception
   区块链: blockchain
   前端: frontend
   DevOps: devops
   System: system
-  Golang: golang
+  Go: go
   Docker: docker
   Service Mesh: service-mesh
   Micro Service: micro-service
+  PHP: php
+  Yii: yii
 tag_map:
   DevOps: devops
   Ghost: ghost
@@ -73,13 +78,16 @@ tag_map:
   Confd: confd
   Config: config
   Node: node
-  Go: golang
+  Go: go
   SPA: spa
+  PHP: php
   Nomad: nomad
   Consul: consul
   Runner: runner
   System: system
   Process: process
+  Volumes: volumes
+  Let's Encrypt: lets-encrypt
   Config-Manager: config-manager
   ACME.sh: acme-sh
   Pages: pages
@@ -88,7 +96,6 @@ tag_map:
   Git: git
   CD: cd
   CI: ci
-  Golang: golang
   Database: database
   Seeder: seeder
   Systemd: systemd
