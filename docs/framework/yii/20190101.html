@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>自定义 Yii Module 路由 - George</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="现在大多数公司在用框架的时候，都会对框架原有的特性或规则进行一定程度的定制，使其更符合公司的实际开发场景。">
+<meta name="keywords" content="Yii,PHP,module,router">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义 Yii Module 路由">
+<meta property="og:url" content="https://george.betterde.com/framework/yii/20190101.html">
+<meta property="og:site_name" content="George">
+<meta property="og:description" content="现在大多数公司在用框架的时候，都会对框架原有的特性或规则进行一定程度的定制，使其更符合公司的实际开发场景。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://george.betterde.com/cover/20190101-yii.jpg">
+<meta property="og:updated_time" content="2019-11-02T01:15:44.235Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自定义 Yii Module 路由">
+<meta name="twitter:description" content="现在大多数公司在用框架的时候，都会对框架原有的特性或规则进行一定程度的定制，使其更符合公司的实际开发场景。">
+<meta name="twitter:image" content="https://george.betterde.com/cover/20190101-yii.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="自定义 Yii Module 路由" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">首页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/jinrenjie">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/cover/20190101-yii.jpg" alt="自定义 Yii Module 路由">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-12-31T16:16:01.000Z">2019-01-01</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/framework/">框架</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/framework/yii/">Yii</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/language/">语言</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/language/php/">PHP</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 分钟 读完 (大约 1122 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                自定义 Yii Module 路由
+            
+        </h1>
+        <div class="content">
+            <p>现在大多数公司在用框架的时候，都会对框架原有的特性或规则进行一定程度的定制，使其更符合公司的实际开发场景。<br><a id="more"></a></p>
+<h1 id="安装项目"><a href="#安装项目" class="headerlink" title="安装项目"></a>安装项目</h1><p>我这里选用的是 yii advanced 版本，如果你没有运行环境的话可以参考<a href="https://www.yiiframework.com/extension/yiisoft/yii2-app-advanced/doc/guide/2.0/en/start-installation" target="_blank" rel="noopener">官方的文档</a>，使用 Vagrant 安装运行环境。</p>
+<p>因为我本地已经有了 PHP 运行环境，所以直接使用 Composer 创建项目：</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer create-project --prefer-dist yiisoft/yii2-app-advanced service</span><br></pre></td></tr></table></figure>
+<p>进入项目目录，初始化项目：</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="hljs-built_in">cd</span> service</span><br><span class="line">$ php init</span><br><span class="line">Yii Application Initialization Tool v1.0</span><br><span class="line"></span><br><span class="line">Which environment <span class="hljs-keyword">do</span> you want the application to be initialized <span class="hljs-keyword">in</span>?</span><br><span class="line"></span><br><span class="line">  [0] Development</span><br><span class="line">  [1] Production</span><br><span class="line"></span><br><span class="line">  Your choice [0-1, or <span class="hljs-string">"q"</span> to quit] 0</span><br><span class="line"></span><br><span class="line">  Initialize the application under <span class="hljs-string">'Development'</span> environment? [yes|no] yes</span><br><span class="line"></span><br><span class="line">  Start initialization ...</span><br><span class="line"></span><br><span class="line">   generate frontend/config/<span class="hljs-built_in">test</span>-local.php</span><br><span class="line">   generate frontend/config/params-local.php</span><br><span class="line">   generate frontend/config/main-local.php</span><br><span class="line">   generate frontend/config/codeception-local.php</span><br><span class="line">   generate frontend/web/index.php</span><br><span class="line">   generate frontend/web/robots.txt</span><br><span class="line">   generate frontend/web/index-test.php</span><br><span class="line">   generate yii</span><br><span class="line">   generate backend/config/<span class="hljs-built_in">test</span>-local.php</span><br><span class="line">   generate backend/config/params-local.php</span><br><span class="line">   generate backend/config/main-local.php</span><br><span class="line">   generate backend/config/codeception-local.php</span><br><span class="line">   generate backend/web/index.php</span><br><span class="line">   generate backend/web/robots.txt</span><br><span class="line">   generate backend/web/index-test.php</span><br><span class="line">   generate common/config/<span class="hljs-built_in">test</span>-local.php</span><br><span class="line">   generate common/config/params-local.php</span><br><span class="line">   generate common/config/main-local.php</span><br><span class="line">   generate common/config/codeception-local.php</span><br><span class="line">   generate yii_test.bat</span><br><span class="line">   generate yii_test</span><br><span class="line">   generate console/config/<span class="hljs-built_in">test</span>-local.php</span><br><span class="line">   generate console/config/params-local.php</span><br><span class="line">   generate console/config/main-local.php</span><br><span class="line">   generate cookie validation key <span class="hljs-keyword">in</span> backend/config/main-local.php</span><br><span class="line">   generate cookie validation key <span class="hljs-keyword">in</span> common/config/codeception-local.php</span><br><span class="line">   generate cookie validation key <span class="hljs-keyword">in</span> frontend/config/main-local.php</span><br><span class="line">      chmod 0777 backend/runtime</span><br><span class="line">      chmod 0777 backend/web/assets</span><br><span class="line">      chmod 0777 console/runtime</span><br><span class="line">      chmod 0777 frontend/runtime</span><br><span class="line">      chmod 0777 frontend/web/assets</span><br><span class="line">      chmod 0755 yii</span><br><span class="line">      chmod 0755 yii_test</span><br><span class="line"></span><br><span class="line">  ... initialization completed.</span><br></pre></td></tr></table></figure>
+<p>安装完成后目录结构如下：<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ tree -L 1</span><br><span class="line">.</span><br><span class="line">├── LICENSE.md</span><br><span class="line">├── README.md</span><br><span class="line">├── Vagrantfile</span><br><span class="line">├── backend</span><br><span class="line">├── codeception.yml</span><br><span class="line">├── common</span><br><span class="line">├── composer.json</span><br><span class="line">├── composer.lock</span><br><span class="line">├── console</span><br><span class="line">├── docker-compose.yml</span><br><span class="line">├── environments</span><br><span class="line">├── frontend</span><br><span class="line">├── init</span><br><span class="line">├── init.bat</span><br><span class="line">├── requirements.php</span><br><span class="line">├── vagrant</span><br><span class="line">├── vendor</span><br><span class="line">├── yii</span><br><span class="line">├── yii.bat</span><br><span class="line">├── yii_test</span><br><span class="line">└── yii_test.bat</span><br><span class="line"></span><br><span class="line">7 directories, 14 files</span><br></pre></td></tr></table></figure></p>
+<p>接下来我们将对 backend app 下的路由功能进行改造。</p>
+<h1 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h1><h2 id="生成"><a href="#生成" class="headerlink" title="生成"></a>生成</h2><p>使用 gii 来为项目生成 Module，可以看到下面我生成了一个 auth 的 Module：</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ php yii gii/module --moduleClass=<span class="hljs-string">'backend\modules\auth\Module'</span> --moduleID=auth</span><br><span class="line">Running <span class="hljs-string">'Module Generator'</span>...</span><br><span class="line"></span><br><span class="line">The following files will be generated:</span><br><span class="line">        [new] /Users/George/Develop/PHP/service/backend/modules/auth/Module.php</span><br><span class="line">        [new] /Users/George/Develop/PHP/service/backend/modules/auth/controllers/DefaultController.php</span><br><span class="line">        [new] /Users/George/Develop/PHP/service/backend/modules/auth/views/default/index.php</span><br><span class="line"></span><br><span class="line">Ready to generate the selected files? (yes|no) [yes]:yes</span><br><span class="line"></span><br><span class="line">Files were generated successfully!</span><br><span class="line">Generating code using template <span class="hljs-string">"/Users/George/Develop/PHP/service/vendor/yiisoft/yii2-gii/src/generators/module/default"</span>...</span><br><span class="line"> generated /Users/George/Develop/PHP/service/backend/modules/auth/Module.php</span><br><span class="line"> generated /Users/George/Develop/PHP/service/backend/modules/auth/controllers/DefaultController.php</span><br><span class="line"> generated /Users/George/Develop/PHP/service/backend/modules/auth/views/default/index.php</span><br><span class="line"><span class="hljs-keyword">done</span>!</span><br></pre></td></tr></table></figure>
+<h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>编辑 <code>backend\config\main.php</code> 文件，在 <code>modules</code> 中添加 <code>auth</code> Module：<br><figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">'modules'</span> =&gt; [</span><br><span class="line">    <span class="hljs-string">'auth'</span> =&gt; [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'backend\modules\auth\Module'</span>],</span><br><span class="line">],</span><br></pre></td></tr></table></figure></p>
+<p>并修改 <code>urlManager</code> 属性如下：</p>
+<figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">'urlManager'</span> =&gt; [</span><br><span class="line">    <span class="hljs-string">'enablePrettyUrl'</span> =&gt; <span class="hljs-keyword">true</span>,</span><br><span class="line">    <span class="hljs-string">'showScriptName'</span> =&gt; <span class="hljs-keyword">false</span>,</span><br><span class="line">    <span class="hljs-string">'enableStrictParsing'</span> =&gt; <span class="hljs-keyword">false</span>,</span><br><span class="line">    <span class="hljs-string">'rules'</span> =&gt; [</span><br><span class="line">        <span class="hljs-string">'&lt;modules&gt;/&lt;controller&gt;'</span> =&gt; <span class="hljs-string">'&lt;modules&gt;/&lt;controller&gt;/enter'</span></span><br><span class="line">    ],</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+<p>主要是 <code>rules</code> 部分，将所有的请求路由到对应 Module 的相应 Controller 中的 enter 方法，这么做的目的是可以对所有请求统一进行处理。</p>
+<h1 id="处理统一逻辑的控制器"><a href="#处理统一逻辑的控制器" class="headerlink" title="处理统一逻辑的控制器"></a>处理统一逻辑的控制器</h1><h2 id="创建控制器"><a href="#创建控制器" class="headerlink" title="创建控制器"></a>创建控制器</h2><p>创建 <code>common\controllers\RestController.php</code> 控制器，内容如下：</p>
+<figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">namespace</span> <span class="hljs-title">common</span>\<span class="hljs-title">controllers</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">use</span> <span class="hljs-title">Yii</span>;</span><br><span class="line"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">Action</span>;</span><br><span class="line"><span class="hljs-keyword">use</span> <span class="hljs-title">ReflectionException</span>;</span><br><span class="line"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">rest</span>\<span class="hljs-title">Controller</span>;</span><br><span class="line"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">InlineAction</span>;</span><br><span class="line"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">InvalidRouteException</span>;</span><br><span class="line"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">InvalidConfigException</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * Date: 2019/1/1</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> George</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@package</span> common\controllers</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BaseController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span></span></span><br><span class="line"><span class="hljs-class"></span>&#123;</span><br><span class="line">    <span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">     * 统一处理请求</span></span><br><span class="line"><span class="hljs-comment">     * </span></span><br><span class="line"><span class="hljs-comment">     * Date: 2019/1/1</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> mixed</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> InvalidRouteException</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@author</span> George</span></span><br><span class="line"><span class="hljs-comment">     */</span></span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function">    </span>&#123;</span><br><span class="line">        $request = Yii::$app-&gt;request;</span><br><span class="line">        $method = strtolower($request-&gt;getMethod());</span><br><span class="line">        $params = array_merge($request-&gt;get(), $request-&gt;post());</span><br><span class="line">        <span class="hljs-comment">// 你需要统一处理的业务逻辑</span></span><br><span class="line">        $result = <span class="hljs-keyword">$this</span>-&gt;runAction($method, [<span class="hljs-string">'params'</span> =&gt; $params]);</span><br><span class="line">        <span class="hljs-keyword">return</span> $result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">     * Date: 2019/1/1</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> array $params</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> array</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@author</span> George</span></span><br><span class="line"><span class="hljs-comment">     */</span></span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">post</span><span class="hljs-params">(array $params = [])</span>: <span class="hljs-title">array</span></span></span><br><span class="line"><span class="hljs-function">    </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">     * Date: 2019/1/1</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> array $params</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> array</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@author</span> George</span></span><br><span class="line"><span class="hljs-comment">     */</span></span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">put</span><span class="hljs-params">(array $params = [])</span>: <span class="hljs-title">array</span></span></span><br><span class="line"><span class="hljs-function">    </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">     * Date: 2019/1/1</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> array $params</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> array</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@author</span> George</span></span><br><span class="line"><span class="hljs-comment">     */</span></span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span><span class="hljs-params">(array $params = [])</span>: <span class="hljs-title">array</span></span></span><br><span class="line"><span class="hljs-function">    </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">     * 使用 index 方法名替代 actionIndex 这种方式</span></span><br><span class="line"><span class="hljs-comment">     *</span></span><br><span class="line"><span class="hljs-comment">     * Date: 2019/1/1</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> string $id</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> object|Action|InlineAction|null</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> ReflectionException</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> InvalidConfigException</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@author</span> George</span></span><br><span class="line"><span class="hljs-comment">     */</span></span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createAction</span><span class="hljs-params">($id)</span></span></span><br><span class="line"><span class="hljs-function">    </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> ($id === <span class="hljs-string">''</span>) &#123;</span><br><span class="line">            $id = <span class="hljs-keyword">$this</span>-&gt;defaultAction;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        $actionMap = <span class="hljs-keyword">$this</span>-&gt;actions();</span><br><span class="line">        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>($actionMap[$id])) &#123;</span><br><span class="line">            <span class="hljs-keyword">return</span> Yii::createObject($actionMap[$id], [$id, <span class="hljs-keyword">$this</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> (preg_match(<span class="hljs-string">'/^(?:[a-z0-9_]+-)*[a-z0-9_]+$/'</span>, $id)) &#123;</span><br><span class="line">            $methodName = $id;</span><br><span class="line">            <span class="hljs-keyword">if</span> (method_exists(<span class="hljs-keyword">$this</span>, $methodName)) &#123;</span><br><span class="line">                $method = <span class="hljs-keyword">new</span> \ReflectionMethod(<span class="hljs-keyword">$this</span>, $methodName);</span><br><span class="line">                <span class="hljs-keyword">if</span> ($method-&gt;isPublic() &amp;&amp; $method-&gt;getName() === $methodName) &#123;</span><br><span class="line">                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> InlineAction($id, <span class="hljs-keyword">$this</span>, $methodName);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="继承控制器"><a href="#继承控制器" class="headerlink" title="继承控制器"></a>继承控制器</h2><p>让项目中的 Module Controller 都继承自上面创建的 <code>common\controllers\RestController</code>。</p>
+<figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">namespace</span> <span class="hljs-title">backend</span>\<span class="hljs-title">modules</span>\<span class="hljs-title">auth</span>\<span class="hljs-title">controllers</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">use</span> <span class="hljs-title">common</span>\<span class="hljs-title">controllers</span>\<span class="hljs-title">RestController</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * User SingIn Controller logic</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * Date: 2019/1/1</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> George</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@package</span> backend\modules\auth\controllers</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SigninController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">RestController</span></span></span><br><span class="line"><span class="hljs-class"></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">post</span><span class="hljs-params">(array $params = [])</span>: <span class="hljs-title">array</span></span></span><br><span class="line"><span class="hljs-function">    </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> $params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>到这里基本上就完成了，此时请求 <code>POST /auth/signin</code>，将会自动路由到 <code>backend\modules\auth\controllers\SigninController</code> 的 <code>post</code> 方法。</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/php/">PHP</a>, <a class="has-link-grey -link" href="/tags/Yii/">Yii</a>, <a class="has-link-grey -link" href="/tags/module/">module</a>, <a class="has-link-grey -link" href="/tags/router/">router</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">捐款不会让你得到什么，不捐也不会让你失去什么</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/qrcode/alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/qrcode/wechatpay.jpg" alt="微信"></div>
+</a>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<a class="button is-warning donate" href="https://www.paypal.me/jinrenjie" target="_blank">
+    <span class="icon is-small">
+        <i class="fab fa-paypal"></i>
+    </span>
+    <span>Paypal</span>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/technology/HTTPS/20190117.html">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">为你的域名申请统配证书</span>
+            </a>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '4d31f85f4e85c10cfdb5',
+        clientSecret: 'd97f370a5e43b6f988502e7eb5ac7f2198f40f99',
+        id: 'eeb9e97a8c6db73bcc210ac9a1d7020f',
+        repo: 'blog',
+        owner: 'jinrenjie',
+        admin: "jinrenjie"
+    })
+    gitalk.render('comment-container')
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <figure class="image is-128x128 has-mb-6">
+                            <img class="is-rounded" src="/images/avatar/avatar.jpg" alt="George">
+                        </figure>
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        George
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Software Enginner
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Shanghai</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        23
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        20
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        63
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/jinrenjie" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/jinrenjie">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#安装项目">
+        <span class="has-mr-6">1</span>
+        <span>安装项目</span>
+        </a></li><li>
+        <a class="is-flex" href="#Module">
+        <span class="has-mr-6">2</span>
+        <span>Module</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#生成">
+        <span class="has-mr-6">2.1</span>
+        <span>生成</span>
+        </a></li><li>
+        <a class="is-flex" href="#注册">
+        <span class="has-mr-6">2.2</span>
+        <span>注册</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#处理统一逻辑的控制器">
+        <span class="has-mr-6">3</span>
+        <span>处理统一逻辑的控制器</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#创建控制器">
+        <span class="has-mr-6">3.1</span>
+        <span>创建控制器</span>
+        </a></li><li>
+        <a class="is-flex" href="#继承控制器">
+        <span class="has-mr-6">3.2</span>
+        <span>继承控制器</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/language/go/20190915.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/cover/20190915-ects.png" alt="ECTS 分布式定时任务管理系统">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-15T05:15:46.000Z">2019-09-15</time></div>
+                    <a href="/language/go/20190915.html" class="has-link-black-ter is-size-6">ECTS 分布式定时任务管理系统</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/language/">语言</a> / <a class="has-link-grey -link" href="/categories/language/go/">Go</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/language/go/20190907.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/cover/2019-09-07-goreleaser.jpg" alt="使用 GoReleaser 发布你的应用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-07T08:04:51.000Z">2019-09-07</time></div>
+                    <a href="/language/go/20190907.html" class="has-link-black-ter is-size-6">使用 GoReleaser 发布你的应用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/language/">语言</a> / <a class="has-link-grey -link" href="/categories/language/go/">Go</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/technology/docker/20190701.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/cover/20190701-docker.jpg" alt="容器的发展之路">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-01T04:35:05.000Z">2019-07-01</time></div>
+                    <a href="/technology/docker/20190701.html" class="has-link-black-ter is-size-6">容器的发展之路</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/technology/">技术</a> / <a class="has-link-grey -link" href="/categories/technology/docker/">Docker</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/language/go/20190622.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/cover/20190622-exec.jpeg" alt="Golang 调用系统命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-22T06:36:53.000Z">2019-06-22</time></div>
+                    <a href="/language/go/20190622.html" class="has-link-black-ter is-size-6">Golang 调用系统命令</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/language/">语言</a> / <a class="has-link-grey -link" href="/categories/language/go/">Go</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/technology/blockchain/20190621.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/cover/20190621-libra.jpeg" alt="Facebook 发布 Libra">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-21T09:55:03.000Z">2019-06-21</time></div>
+                    <a href="/technology/blockchain/20190621.html" class="has-link-black-ter is-size-6">Facebook 发布 Libra</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/technology/">技术</a> / <a class="has-link-grey -link" href="/categories/technology/blockchain/">区块链</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/technology/">
+            <span class="level-start">
+                <span class="level-item">技术</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">17</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/technology/devops/">
+            <span class="level-start">
+                <span class="level-item">DevOps</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/docker/">
+            <span class="level-start">
+                <span class="level-item">Docker</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/Ghost/">
+            <span class="level-start">
+                <span class="level-item">Ghost</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/HTTPS/">
+            <span class="level-start">
+                <span class="level-item">HTTPS</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/Hexo/">
+            <span class="level-start">
+                <span class="level-item">Hexo</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/micro-service/">
+            <span class="level-start">
+                <span class="level-item">Micro Service</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/Pages/">
+            <span class="level-start">
+                <span class="level-item">Pages</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/service-mesh/">
+            <span class="level-start">
+                <span class="level-item">Service Mesh</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/system/">
+            <span class="level-start">
+                <span class="level-item">System</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/VPN/">
+            <span class="level-start">
+                <span class="level-item">VPN</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/confd/">
+            <span class="level-start">
+                <span class="level-item">confd</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/frontend/">
+            <span class="level-start">
+                <span class="level-item">前端</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/blockchain/">
+            <span class="level-start">
+                <span class="level-item">区块链</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/framework/">
+            <span class="level-start">
+                <span class="level-item">框架</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/framework/Iris/">
+            <span class="level-start">
+                <span class="level-item">Iris</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/framework/yii/">
+            <span class="level-start">
+                <span class="level-item">Yii</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/language/">
+            <span class="level-start">
+                <span class="level-item">语言</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/language/go/">
+            <span class="level-start">
+                <span class="level-item">Go</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/language/php/">
+            <span class="level-start">
+                <span class="level-item">PHP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/acme-sh/" style="font-size: 10px;">ACME.sh</a> <a href="/tags/blog/" style="font-size: 12.5px;">Blog</a> <a href="/tags/cd/" style="font-size: 12.5px;">CD</a> <a href="/tags/ci/" style="font-size: 12.5px;">CI</a> <a href="/tags/cname/" style="font-size: 10px;">CNAME</a> <a href="/tags/cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/confd/" style="font-size: 10px;">Confd</a> <a href="/tags/config/" style="font-size: 10px;">Config</a> <a href="/tags/Config-Manager/" style="font-size: 10px;">Config Manager</a> <a href="/tags/configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/consul/" style="font-size: 12.5px;">Consul</a> <a href="/tags/container/" style="font-size: 10px;">Container</a> <a href="/tags/dns/" style="font-size: 10px;">DNS</a> <a href="/tags/daemon/" style="font-size: 10px;">Daemon</a> <a href="/tags/database/" style="font-size: 10px;">Database</a> <a href="/tags/devops/" style="font-size: 10px;">DevOps</a> <a href="/tags/docker/" style="font-size: 15px;">Docker</a> <a href="/tags/ghost/" style="font-size: 10px;">Ghost</a> <a href="/tags/git/" style="font-size: 10px;">Git</a> <a href="/tags/github/" style="font-size: 12.5px;">Github</a> <a href="/tags/gitlab/" style="font-size: 15px;">Gitlab</a> <a href="/tags/go/" style="font-size: 20px;">Go</a> <a href="/tags/https/" style="font-size: 17.5px;">HTTPS</a> <a href="/tags/hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/init/" style="font-size: 10px;">Init</a> <a href="/tags/iris/" style="font-size: 10px;">Iris</a> <a href="/tags/lets-encrypt/" style="font-size: 10px;">Let's Encrypt</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/micro-service/" style="font-size: 10px;">Micro Service</a> <a href="/tags/node/" style="font-size: 10px;">Node</a> <a href="/tags/outline/" style="font-size: 10px;">Outline</a> <a href="/tags/php/" style="font-size: 10px;">PHP</a> <a href="/tags/pages/" style="font-size: 12.5px;">Pages</a> <a href="/tags/process/" style="font-size: 10px;">Process</a> <a href="/tags/release/" style="font-size: 10px;">Release</a> <a href="/tags/runner/" style="font-size: 10px;">Runner</a> <a href="/tags/spa/" style="font-size: 12.5px;">SPA</a> <a href="/tags/seeder/" style="font-size: 10px;">Seeder</a> <a href="/tags/service/" style="font-size: 12.5px;">Service</a> <a href="/tags/service-mesh/" style="font-size: 12.5px;">Service Mesh</a> <a href="/tags/system/" style="font-size: 10px;">System</a> <a href="/tags/systemd/" style="font-size: 12.5px;">Systemd</a> <a href="/tags/unit/" style="font-size: 10px;">Unit</a> <a href="/tags/vpn/" style="font-size: 10px;">VPN</a> <a href="/tags/vue/" style="font-size: 12.5px;">Vue</a> <a href="/tags/Yii/" style="font-size: 10px;">Yii</a> <a href="/tags/command/" style="font-size: 10px;">command</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/ects/" style="font-size: 10px;">ects</a> <a href="/tags/elastic/" style="font-size: 10px;">elastic</a> <a href="/tags/etcd/" style="font-size: 10px;">etcd</a> <a href="/tags/exec/" style="font-size: 10px;">exec</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/libra/" style="font-size: 10px;">libra</a> <a href="/tags/module/" style="font-size: 10px;">module</a> <a href="/tags/pipeline/" style="font-size: 10px;">pipeline</a> <a href="/tags/router/" style="font-size: 10px;">router</a> <a href="/tags/syscall/" style="font-size: 10px;">syscall</a> <a href="/tags/system/" style="font-size: 10px;">system</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/blockchain/" style="font-size: 10px;">区块链</a> <a href="/tags/authorization/" style="font-size: 10px;">用户鉴权</a>
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/acme-sh/">
+                        <span class="tag">ACME.sh</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/blog/">
+                        <span class="tag">Blog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/cd/">
+                        <span class="tag">CD</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ci/">
+                        <span class="tag">CI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/cname/">
+                        <span class="tag">CNAME</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/cluster/">
+                        <span class="tag">Cluster</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/confd/">
+                        <span class="tag">Confd</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/config/">
+                        <span class="tag">Config</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Config-Manager/">
+                        <span class="tag">Config Manager</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/configuration/">
+                        <span class="tag">Configuration</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/consul/">
+                        <span class="tag">Consul</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/container/">
+                        <span class="tag">Container</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/dns/">
+                        <span class="tag">DNS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/daemon/">
+                        <span class="tag">Daemon</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/database/">
+                        <span class="tag">Database</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/devops/">
+                        <span class="tag">DevOps</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/docker/">
+                        <span class="tag">Docker</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ghost/">
+                        <span class="tag">Ghost</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/github/">
+                        <span class="tag">Github</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/gitlab/">
+                        <span class="tag">Gitlab</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/go/">
+                        <span class="tag">Go</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/https/">
+                        <span class="tag">HTTPS</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/init/">
+                        <span class="tag">Init</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/iris/">
+                        <span class="tag">Iris</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/lets-encrypt/">
+                        <span class="tag">Let&#39;s Encrypt</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/micro-service/">
+                        <span class="tag">Micro Service</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/node/">
+                        <span class="tag">Node</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/outline/">
+                        <span class="tag">Outline</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/php/">
+                        <span class="tag">PHP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/pages/">
+                        <span class="tag">Pages</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/process/">
+                        <span class="tag">Process</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/release/">
+                        <span class="tag">Release</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/runner/">
+                        <span class="tag">Runner</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/spa/">
+                        <span class="tag">SPA</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/seeder/">
+                        <span class="tag">Seeder</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/service/">
+                        <span class="tag">Service</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/service-mesh/">
+                        <span class="tag">Service Mesh</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/system/">
+                        <span class="tag">System</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/systemd/">
+                        <span class="tag">Systemd</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/unit/">
+                        <span class="tag">Unit</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/vpn/">
+                        <span class="tag">VPN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/vue/">
+                        <span class="tag">Vue</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Yii/">
+                        <span class="tag">Yii</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/command/">
+                        <span class="tag">command</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/crontab/">
+                        <span class="tag">crontab</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ects/">
+                        <span class="tag">ects</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/elastic/">
+                        <span class="tag">elastic</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/etcd/">
+                        <span class="tag">etcd</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/exec/">
+                        <span class="tag">exec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/job/">
+                        <span class="tag">job</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/libra/">
+                        <span class="tag">libra</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/module/">
+                        <span class="tag">module</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/pipeline/">
+                        <span class="tag">pipeline</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/router/">
+                        <span class="tag">router</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/syscall/">
+                        <span class="tag">syscall</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/system/">
+                        <span class="tag">system</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/task/">
+                        <span class="tag">task</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/vue/">
+                        <span class="tag">vue</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/blockchain/">
+                        <span class="tag">区块链</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/authorization/">
+                        <span class="tag">用户鉴权</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+            
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://www.betterde.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Betterde</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.betterde.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/technology/">
+            <span class="level-start">
+                <span class="level-item">技术</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">17</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/technology/devops/">
+            <span class="level-start">
+                <span class="level-item">DevOps</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/docker/">
+            <span class="level-start">
+                <span class="level-item">Docker</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/Ghost/">
+            <span class="level-start">
+                <span class="level-item">Ghost</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/HTTPS/">
+            <span class="level-start">
+                <span class="level-item">HTTPS</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/Hexo/">
+            <span class="level-start">
+                <span class="level-item">Hexo</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/micro-service/">
+            <span class="level-start">
+                <span class="level-item">Micro Service</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/Pages/">
+            <span class="level-start">
+                <span class="level-item">Pages</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/service-mesh/">
+            <span class="level-start">
+                <span class="level-item">Service Mesh</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/system/">
+            <span class="level-start">
+                <span class="level-item">System</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/VPN/">
+            <span class="level-start">
+                <span class="level-item">VPN</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/confd/">
+            <span class="level-start">
+                <span class="level-item">confd</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/frontend/">
+            <span class="level-start">
+                <span class="level-item">前端</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/blockchain/">
+            <span class="level-start">
+                <span class="level-item">区块链</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/framework/">
+            <span class="level-start">
+                <span class="level-item">框架</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/framework/Iris/">
+            <span class="level-start">
+                <span class="level-item">Iris</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/framework/yii/">
+            <span class="level-start">
+                <span class="level-item">Yii</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/language/">
+            <span class="level-start">
+                <span class="level-item">语言</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/language/go/">
+            <span class="level-start">
+                <span class="level-item">Go</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/language/php/">
+            <span class="level-start">
+                <span class="level-item">PHP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/acme-sh/" style="font-size: 10px;">ACME.sh</a> <a href="/tags/blog/" style="font-size: 12.5px;">Blog</a> <a href="/tags/cd/" style="font-size: 12.5px;">CD</a> <a href="/tags/ci/" style="font-size: 12.5px;">CI</a> <a href="/tags/cname/" style="font-size: 10px;">CNAME</a> <a href="/tags/cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/confd/" style="font-size: 10px;">Confd</a> <a href="/tags/config/" style="font-size: 10px;">Config</a> <a href="/tags/Config-Manager/" style="font-size: 10px;">Config Manager</a> <a href="/tags/configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/consul/" style="font-size: 12.5px;">Consul</a> <a href="/tags/container/" style="font-size: 10px;">Container</a> <a href="/tags/dns/" style="font-size: 10px;">DNS</a> <a href="/tags/daemon/" style="font-size: 10px;">Daemon</a> <a href="/tags/database/" style="font-size: 10px;">Database</a> <a href="/tags/devops/" style="font-size: 10px;">DevOps</a> <a href="/tags/docker/" style="font-size: 15px;">Docker</a> <a href="/tags/ghost/" style="font-size: 10px;">Ghost</a> <a href="/tags/git/" style="font-size: 10px;">Git</a> <a href="/tags/github/" style="font-size: 12.5px;">Github</a> <a href="/tags/gitlab/" style="font-size: 15px;">Gitlab</a> <a href="/tags/go/" style="font-size: 20px;">Go</a> <a href="/tags/https/" style="font-size: 17.5px;">HTTPS</a> <a href="/tags/hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/init/" style="font-size: 10px;">Init</a> <a href="/tags/iris/" style="font-size: 10px;">Iris</a> <a href="/tags/lets-encrypt/" style="font-size: 10px;">Let's Encrypt</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/micro-service/" style="font-size: 10px;">Micro Service</a> <a href="/tags/node/" style="font-size: 10px;">Node</a> <a href="/tags/outline/" style="font-size: 10px;">Outline</a> <a href="/tags/php/" style="font-size: 10px;">PHP</a> <a href="/tags/pages/" style="font-size: 12.5px;">Pages</a> <a href="/tags/process/" style="font-size: 10px;">Process</a> <a href="/tags/release/" style="font-size: 10px;">Release</a> <a href="/tags/runner/" style="font-size: 10px;">Runner</a> <a href="/tags/spa/" style="font-size: 12.5px;">SPA</a> <a href="/tags/seeder/" style="font-size: 10px;">Seeder</a> <a href="/tags/service/" style="font-size: 12.5px;">Service</a> <a href="/tags/service-mesh/" style="font-size: 12.5px;">Service Mesh</a> <a href="/tags/system/" style="font-size: 10px;">System</a> <a href="/tags/systemd/" style="font-size: 12.5px;">Systemd</a> <a href="/tags/unit/" style="font-size: 10px;">Unit</a> <a href="/tags/vpn/" style="font-size: 10px;">VPN</a> <a href="/tags/vue/" style="font-size: 12.5px;">Vue</a> <a href="/tags/Yii/" style="font-size: 10px;">Yii</a> <a href="/tags/command/" style="font-size: 10px;">command</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/ects/" style="font-size: 10px;">ects</a> <a href="/tags/elastic/" style="font-size: 10px;">elastic</a> <a href="/tags/etcd/" style="font-size: 10px;">etcd</a> <a href="/tags/exec/" style="font-size: 10px;">exec</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/libra/" style="font-size: 10px;">libra</a> <a href="/tags/module/" style="font-size: 10px;">module</a> <a href="/tags/pipeline/" style="font-size: 10px;">pipeline</a> <a href="/tags/router/" style="font-size: 10px;">router</a> <a href="/tags/syscall/" style="font-size: 10px;">syscall</a> <a href="/tags/system/" style="font-size: 10px;">system</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/blockchain/" style="font-size: 10px;">区块链</a> <a href="/tags/authorization/" style="font-size: 10px;">用户鉴权</a>
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/acme-sh/">
+                        <span class="tag">ACME.sh</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/blog/">
+                        <span class="tag">Blog</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/cd/">
+                        <span class="tag">CD</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ci/">
+                        <span class="tag">CI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/cname/">
+                        <span class="tag">CNAME</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/cluster/">
+                        <span class="tag">Cluster</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/confd/">
+                        <span class="tag">Confd</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/config/">
+                        <span class="tag">Config</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Config-Manager/">
+                        <span class="tag">Config Manager</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/configuration/">
+                        <span class="tag">Configuration</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/consul/">
+                        <span class="tag">Consul</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/container/">
+                        <span class="tag">Container</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/dns/">
+                        <span class="tag">DNS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/daemon/">
+                        <span class="tag">Daemon</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/database/">
+                        <span class="tag">Database</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/devops/">
+                        <span class="tag">DevOps</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/docker/">
+                        <span class="tag">Docker</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ghost/">
+                        <span class="tag">Ghost</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/github/">
+                        <span class="tag">Github</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/gitlab/">
+                        <span class="tag">Gitlab</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/go/">
+                        <span class="tag">Go</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/https/">
+                        <span class="tag">HTTPS</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/init/">
+                        <span class="tag">Init</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/iris/">
+                        <span class="tag">Iris</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/lets-encrypt/">
+                        <span class="tag">Let&#39;s Encrypt</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/micro-service/">
+                        <span class="tag">Micro Service</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/node/">
+                        <span class="tag">Node</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/outline/">
+                        <span class="tag">Outline</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/php/">
+                        <span class="tag">PHP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/pages/">
+                        <span class="tag">Pages</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/process/">
+                        <span class="tag">Process</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/release/">
+                        <span class="tag">Release</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/runner/">
+                        <span class="tag">Runner</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/spa/">
+                        <span class="tag">SPA</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/seeder/">
+                        <span class="tag">Seeder</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/service/">
+                        <span class="tag">Service</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/service-mesh/">
+                        <span class="tag">Service Mesh</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/system/">
+                        <span class="tag">System</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/systemd/">
+                        <span class="tag">Systemd</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/unit/">
+                        <span class="tag">Unit</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/vpn/">
+                        <span class="tag">VPN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/vue/">
+                        <span class="tag">Vue</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Yii/">
+                        <span class="tag">Yii</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/command/">
+                        <span class="tag">command</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/crontab/">
+                        <span class="tag">crontab</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ects/">
+                        <span class="tag">ects</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/elastic/">
+                        <span class="tag">elastic</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/etcd/">
+                        <span class="tag">etcd</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/exec/">
+                        <span class="tag">exec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/job/">
+                        <span class="tag">job</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/libra/">
+                        <span class="tag">libra</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/module/">
+                        <span class="tag">module</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/pipeline/">
+                        <span class="tag">pipeline</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/router/">
+                        <span class="tag">router</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/syscall/">
+                        <span class="tag">syscall</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/system/">
+                        <span class="tag">system</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/task/">
+                        <span class="tag">task</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/vue/">
+                        <span class="tag">vue</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/blockchain/">
+                        <span class="tag">区块链</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/authorization/">
+                        <span class="tag">用户鉴权</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://www.betterde.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Betterde</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.betterde.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="自定义 Yii Module 路由" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 George King&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/jinrenjie/blog">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
