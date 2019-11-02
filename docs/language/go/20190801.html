@@ -2,21 +2,25 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>标签: task - George</title>
+<title>Go 时间的格式化 - George</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="keywords" content="Developer">
-<meta property="og:type" content="website">
-<meta property="og:title" content="George">
-<meta property="og:url" content="https://george.betterde.com/tags/task/index.html">
+    <meta name="description" content="Go 的 time.Time 在序列化和反序列化时默认使用 RFC3339 规范的格式进行解析或输出，我们需要将其转换成更易读的格式。">
+<meta name="keywords" content="Go">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go 时间的格式化">
+<meta property="og:url" content="https://george.betterde.com/language/go/20190801.html">
 <meta property="og:site_name" content="George">
+<meta property="og:description" content="Go 的 time.Time 在序列化和反序列化时默认使用 RFC3339 规范的格式进行解析或输出，我们需要将其转换成更易读的格式。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://george.betterde.com/images/og_image.png">
+<meta property="og:image" content="https://george.betterde.com/cover/20190801-go-time.png">
+<meta property="og:updated_time" content="2019-11-02T06:52:46.563Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="George">
-<meta name="twitter:image" content="https://george.betterde.com/images/og_image.png">
+<meta name="twitter:title" content="Go 时间的格式化">
+<meta name="twitter:description" content="Go 的 time.Time 在序列化和反序列化时默认使用 RFC3339 规范的格式进行解析或输出，我们需要将其转换成更易读的格式。">
+<meta name="twitter:image" content="https://george.betterde.com/cover/20190801-go-time.png">
 
 
 
@@ -77,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="George" height="28">
+                <img src="/images/logo.svg" alt="Go 时间的格式化" height="28">
             
             </a>
         </div>
@@ -107,6 +111,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -121,29 +129,18 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">task</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-image">
-        <a href="/language/go/20190915.html" class="image is-7by1">
-            <img class="thumbnail" src="/cover/20190915-ects.png" alt="ECTS 分布式定时任务管理系统">
-        </a>
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/cover/20190801-go-time.png" alt="Go 时间的格式化">
+        </span>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-15T05:15:46.000Z">2019-09-15</time>
+                <time class="level-item has-text-grey" datetime="2019-08-01T02:51:33.000Z">2019-08-01</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/language/">语言</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/language/go/">Go</a>
@@ -153,7 +150,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 761 个字)
+                    3 分钟 读完 (大约 444 个字)
                 </span>
                 
                 
@@ -162,33 +159,132 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/language/go/20190915.html">ECTS 分布式定时任务管理系统</a>
+                Go 时间的格式化
             
         </h1>
         <div class="content">
-            <p>很多团队目前仍然采用的依然是 Linux 系统自带的 <code>Crontab</code> 来进行管理的。这样一来，开发人员不得不 <code>SSH</code> 到线上服务器配置定时执行预先写好的脚本或命令。<br></p>
+            <p>Go 的 time.Time 在序列化和反序列化时默认使用 RFC3339 规范的格式进行解析或输出，我们需要将其转换成更易读的格式。<br><a id="more"></a></p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><h2 id="实现-MarshalJSON-接口"><a href="#实现-MarshalJSON-接口" class="headerlink" title="实现 MarshalJSON 接口"></a>实现 MarshalJSON 接口</h2><figure class="highlight go hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">type</span> Log <span class="hljs-keyword">struct</span> &#123;</span><br><span class="line">  Id        <span class="hljs-keyword">int64</span>     <span class="hljs-string">`json:"id"`</span></span><br><span class="line">  UserId    <span class="hljs-keyword">string</span>    <span class="hljs-string">`json:"user_id"`</span></span><br><span class="line">  Operation <span class="hljs-keyword">string</span>    <span class="hljs-string">`json:"operation"`</span></span><br><span class="line">  Result    <span class="hljs-keyword">string</span>    <span class="hljs-string">`json:"result"`</span></span><br><span class="line">  CreatedAt time.Time <span class="hljs-string">`json:"created_at"`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(log *Log)</span> <span class="hljs-title">MarshalJSON</span><span class="hljs-params">()</span> <span class="hljs-params">([]<span class="hljs-keyword">byte</span>, error)</span></span> &#123;</span><br><span class="line">  <span class="hljs-keyword">type</span> Alias Log</span><br><span class="line">  <span class="hljs-keyword">return</span> json.Marshal(&amp;<span class="hljs-keyword">struct</span> &#123;</span><br><span class="line">    Alias</span><br><span class="line">    CreatedAt <span class="hljs-keyword">string</span> <span class="hljs-string">`json:"created_at"`</span></span><br><span class="line">  &#125;&#123;</span><br><span class="line">    Alias:     Alias(*log),</span><br><span class="line">    CreatedAt: log.CreatedAt.Format(<span class="hljs-string">"2006-01-02 15:04:05"</span>),</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方式比较简单，但是如果你有很多 struct 都包含时间，那么需要为每个 struct 实现 MarshalJSON，比较麻烦。并且在反向序列化时也存在 created_at 为 null 则反序列化失败的问题。</p>
+<blockquote>
+<p>至于为什么时间格式是 2006-01-02 15:04:05，可以参考 time 这个包的 fromat.go 中定义的常量。</p>
+</blockquote>
+<h2 id="自已定一个-Time-数据类型"><a href="#自已定一个-Time-数据类型" class="headerlink" title="自已定一个 Time 数据类型"></a>自已定一个 Time 数据类型</h2><figure class="highlight go hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">package</span> utils</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> (</span><br><span class="line">  <span class="hljs-string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">type</span> (</span><br><span class="line">  Time time.Time</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> DefaultTimeFormat = <span class="hljs-string">"2006-01-02 15:04:05"</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(t *Time)</span> <span class="hljs-title">UnmarshalJSON</span><span class="hljs-params">(data []<span class="hljs-keyword">byte</span>)</span> <span class="hljs-title">error</span></span> &#123;</span><br><span class="line">  now, err := time.ParseInLocation(<span class="hljs-string">`"`</span>+DefaultTimeFormat+<span class="hljs-string">`"`</span>, <span class="hljs-keyword">string</span>(data), time.Local)</span><br><span class="line">  *t = Time(now)</span><br><span class="line">  <span class="hljs-keyword">return</span> err</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(t *Time)</span> <span class="hljs-title">MarshalJSON</span><span class="hljs-params">()</span> <span class="hljs-params">([]<span class="hljs-keyword">byte</span>, error)</span></span> &#123;</span><br><span class="line">  <span class="hljs-keyword">if</span> time.Time(*t).IsZero() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> []<span class="hljs-keyword">byte</span>(<span class="hljs-string">"null"</span>), <span class="hljs-literal">nil</span></span><br><span class="line">  &#125;</span><br><span class="line">  b := <span class="hljs-built_in">make</span>([]<span class="hljs-keyword">byte</span>, <span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(DefaultTimeFormat)+<span class="hljs-number">2</span>)</span><br><span class="line">  b = <span class="hljs-built_in">append</span>(b, <span class="hljs-string">'"'</span>)</span><br><span class="line">  b = time.Time(*t).AppendFormat(b, DefaultTimeFormat)</span><br><span class="line">  b = <span class="hljs-built_in">append</span>(b, <span class="hljs-string">'"'</span>)</span><br><span class="line">  <span class="hljs-keyword">return</span> b, <span class="hljs-literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(t Time)</span> <span class="hljs-title">String</span><span class="hljs-params">()</span> <span class="hljs-title">string</span></span> &#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> time.Time(t).Format(DefaultTimeFormat)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(t *Time)</span> <span class="hljs-title">IsZero</span><span class="hljs-params">()</span> <span class="hljs-title">bool</span></span> &#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> time.Time(*t).Second() == <span class="hljs-number">0</span> &amp;&amp; time.Time(*t).Nanosecond() == <span class="hljs-number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义好时间的类型后，在其他的 struct 中使用该类型作为时间的类型。</p>
+<figure class="highlight go hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Node <span class="hljs-keyword">struct</span> &#123;</span><br><span class="line">  Id          <span class="hljs-keyword">string</span>               <span class="hljs-string">`json:"id"`</span></span><br><span class="line">  Name        <span class="hljs-keyword">string</span>               <span class="hljs-string">`json:"name"`</span></span><br><span class="line">  CreatedAt   utils.Time           <span class="hljs-string">`json:"created_at"`</span></span><br><span class="line">  UpdatedAt   utils.Time           <span class="hljs-string">`json:"updated_at"`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样当 Node 在序列化和反序列化时会自动调用自定义 <code>utils.Time</code> 的 <code>MarshalJSON</code> 和 <code>UnmarshalJSON</code> 方法。</p>
+<blockquote>
+<p>注意：在 <code>MarshalJSON</code> 方法中，如果你的 utils.Time 为空，那么将其转换为 null，而不是 0001-01-01 00:00:00 +0000 UTC。</p>
+</blockquote>
+<p>如果你有更好的方案，请告诉我，谢谢！</p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/language/go/20190915.html#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/go/">Go</a>
                 </div>
             </div>
         </div>
         
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">捐款不会让你得到什么，不捐也不会让你失去什么</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/qrcode/alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/qrcode/wechatpay.jpg" alt="微信"></div>
+</a>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<a class="button is-warning donate" href="https://www.paypal.me/jinrenjie" target="_blank">
+    <span class="icon is-small">
+        <i class="fab fa-paypal"></i>
+    </span>
+    <span>Paypal</span>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/language/go/20190907.html">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">使用 GoReleaser 发布你的应用</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/technology/docker/20190701.html">
+                <span class="level-item">容器的发展之路</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '4d31f85f4e85c10cfdb5',
+        clientSecret: 'd97f370a5e43b6f988502e7eb5ac7f2198f40f99',
+        id: '62006f1c6418c6efbf3ba679780f96b5',
+        repo: 'blog',
+        owner: 'jinrenjie',
+        admin: "jinrenjie"
+    })
+    gitalk.render('comment-container')
+</script>
+
+    </div>
+</div>
 </div>
                 
 
@@ -303,6 +399,29 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#解决方案">
+        <span class="has-mr-6">1</span>
+        <span>解决方案</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#实现-MarshalJSON-接口">
+        <span class="has-mr-6">1.1</span>
+        <span>实现 MarshalJSON 接口</span>
+        </a></li><li>
+        <a class="is-flex" href="#自已定一个-Time-数据类型">
+        <span class="has-mr-6">1.2</span>
+        <span>自已定一个 Time 数据类型</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 <div class="card widget">
@@ -1994,7 +2113,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="George" height="28">
+                    <img src="/images/logo.svg" alt="Go 时间的格式化" height="28">
                 
                 </a>
                 <p class="is-size-7">
