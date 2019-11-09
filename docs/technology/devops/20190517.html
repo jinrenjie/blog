@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="zh">
-<head><meta name="generator" content="Hexo 3.9.0">
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>微服务之 Consul 集群搭建 - George</title>
+<title>Github Pages 自定义域名并开启HTTPS - George</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="随着单体应用的越发的庞大，我们不得不着力于拆分原有的单体应用为微服务。但与此同时遇到的问题就是如何管理这些服务？Consul 就是为了解决这一问题而诞生的！">
-<meta name="keywords" content="Consul,Cluster,Micro Service,Service Mesh,Golang">
+    <meta name="description" content="如果你的项目文档或博客是放在 Github Pages 上进行展示，并且自己有域名，需要吧自己的域名解析到某个项目的 Demo 或 Blog 上，那么本文就分享如何实现这一需求。">
+<meta name="keywords" content="HTTPS,Github,Pages,DNS,CNAME">
 <meta property="og:type" content="article">
-<meta property="og:title" content="微服务之 Consul 集群搭建">
-<meta property="og:url" content="https://george.betterde.com/technology/micro-service/20190527/index.html">
+<meta property="og:title" content="Github Pages 自定义域名并开启HTTPS">
+<meta property="og:url" content="https://george.betterde.com/technology/devops/20190517.html">
 <meta property="og:site_name" content="George">
-<meta property="og:description" content="随着单体应用的越发的庞大，我们不得不着力于拆分原有的单体应用为微服务。但与此同时遇到的问题就是如何管理这些服务？Consul 就是为了解决这一问题而诞生的！">
+<meta property="og:description" content="如果你的项目文档或博客是放在 Github Pages 上进行展示，并且自己有域名，需要吧自己的域名解析到某个项目的 Demo 或 Blog 上，那么本文就分享如何实现这一需求。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://george.betterde.com/cover/20190527-consul-cluster.png">
-<meta property="og:updated_time" content="2019-09-28T08:07:28.473Z">
+<meta property="og:image" content="https://george.betterde.com/cover/github-pages.png">
+<meta property="og:updated_time" content="2019-11-09T14:27:44.803Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="微服务之 Consul 集群搭建">
-<meta name="twitter:description" content="随着单体应用的越发的庞大，我们不得不着力于拆分原有的单体应用为微服务。但与此同时遇到的问题就是如何管理这些服务？Consul 就是为了解决这一问题而诞生的！">
-<meta name="twitter:image" content="https://george.betterde.com/cover/20190527-consul-cluster.png">
+<meta name="twitter:title" content="Github Pages 自定义域名并开启HTTPS">
+<meta name="twitter:description" content="如果你的项目文档或博客是放在 Github Pages 上进行展示，并且自己有域名，需要吧自己的域名解析到某个项目的 Demo 或 Blog 上，那么本文就分享如何实现这一需求。">
+<meta name="twitter:image" content="https://george.betterde.com/cover/github-pages.png">
 
 
 
@@ -44,6 +44,11 @@
 
     
     
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
     
     
     
@@ -81,7 +86,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="微服务之 Consul 集群搭建" height="28">
+                <img src="/images/logo.svg" alt="Github Pages 自定义域名并开启HTTPS" height="28">
             
             </a>
         </div>
@@ -132,7 +137,7 @@
     
     <div class="card-image">
         <span class="image is-7by1">
-            <img class="thumbnail" src="/cover/20190527-consul-cluster.png" alt="微服务之 Consul 集群搭建">
+            <img class="thumbnail" src="/cover/github-pages.png" alt="Github Pages 自定义域名并开启HTTPS">
         </span>
     </div>
     
@@ -140,17 +145,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-05-27T04:36:49.000Z">2019-05-27</time>
+                <time class="level-item has-text-grey" datetime="2019-05-17T07:59:52.000Z">2019-05-17</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/technology/">技术</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/technology/micro-service/">Micro Service</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/technology/service-mesh/">Service Mesh</a>
+                <a class="has-link-grey -link" href="/categories/technology/">技术</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/technology/devops/">DevOps</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1313 个字)
+                    2 分钟 读完 (大约 369 个字)
                 </span>
                 
                 
@@ -159,82 +164,23 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                微服务之 Consul 集群搭建
+                Github Pages 自定义域名并开启HTTPS
             
         </h1>
         <div class="content">
-            <p>随着单体应用的越发的庞大，我们不得不着力于拆分原有的单体应用为微服务。但与此同时遇到的问题就是如何管理这些服务？Consul 就是为了解决这一问题而诞生的！<br><a id="more"></a></p>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Consul 是基于 Golang 开发的 Service Mesh 解决方案，提供了功能齐全的控制平面。具有服务发现、配置管理和分割等功能。这些特性可以根据需要单独使用，也可以一起用于构建完整的服务网格。</p>
-<p>它内置了简单的服务代理，当然你可以可以选择使用其他第三方的代理，如 <a href="https://www.envoyproxy.io" target="_blank" rel="noopener">Envoy</a> 代理。</p>
-<p>配合 HashiCorp 开发的其他 Micro Service 生态工具集成，可以让用户更加简单的落地微服务。</p>
-<h2 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h2><h3 id="服务发现"><a href="#服务发现" class="headerlink" title="服务发现"></a>服务发现</h3><p>Consul 允许某个服务注册到数据中心，如 API 或 MySQL 等，其他客户端可以使用 Consul 来发现服务，使用内建的 DNS 可以更好的找到所依赖的服务。</p>
-<h3 id="健康检查"><a href="#健康检查" class="headerlink" title="健康检查"></a>健康检查</h3><p>Consul 可以提供服务的健康检查，管理员可以通过这个功能及时的获取集群的健康状况，同时服务发现组件可以通过该功能，避免流量被路由到无法提供服务的节点。</p>
-<h3 id="K-V-存储"><a href="#K-V-存储" class="headerlink" title="K/V 存储"></a>K/V 存储</h3><p>Consul 提供了分布式的 K/V 存储功能，该功能可以适用于<code>动态配置</code>，<code>特性标记</code>，<code>分布式锁</code>以及<code>集群 Leader 的选举</code>等，并且提供了易于使用的 HTTP API。</p>
-<h3 id="安全服务通信"><a href="#安全服务通信" class="headerlink" title="安全服务通信"></a>安全服务通信</h3><p>Consul 可以为服务颁发 TLS 证书，以建立相互的 TLS 连接。</p>
-<h3 id="多数据中心"><a href="#多数据中心" class="headerlink" title="多数据中心"></a>多数据中心</h3><p>Consul 支持多个数据中心的连接，即使规模庞大的企业，也可以轻松用它来构建自己的基础设施。</p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="需要使用的端口"><a href="#需要使用的端口" class="headerlink" title="需要使用的端口"></a>需要使用的端口</h2><table>
-<thead>
-<tr>
-<th>端口号</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>8600</td>
-<td>DNS 服务（TCP&amp;UDP）</td>
-</tr>
-<tr>
-<td>8500</td>
-<td>HTTP 服务（TCP）</td>
-</tr>
-<tr>
-<td>8301</td>
-<td>Serf 内网端口（TCP&amp;UDP）</td>
-</tr>
-<tr>
-<td>8302</td>
-<td>Serf 公网端口（TCP&amp;UDP）</td>
-</tr>
-<tr>
-<td>8300</td>
-<td>RPC（TCP）</td>
-</tr>
-<tr>
-<td>21000～21255</td>
-<td>自动分配服务 Sidecar 代理的端口</td>
-</tr>
-</tbody>
-</table>
-<p>考虑到实验环境的问题我这里采用 Docker 来部署 Consul 集群，如果你打算在多个节点上部署，配置和命令都差不多，只不过可能无需创建 Network。</p>
-<h2 id="Docker-Step-by-step"><a href="#Docker-Step-by-step" class="headerlink" title="Docker Step by step"></a>Docker Step by step</h2><p>创建一个网络环境</p>
-<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker network create betterde --subnet 10.0.0.0/28 --gateway 10.0.0.14</span><br></pre></td></tr></table></figure>
-<p>创建 ACL 配置文件</p>
-<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p /etc/consul/conf.d</span><br><span class="line">$ touch /etc/consul/conf.d/server.json</span><br></pre></td></tr></table></figure>
-<p>将如下配置写入 <code>/etc/consul/conf.d/server.json</code>，<code>acl.tokens.master</code> 是用于访问的凭证，你可以替换成自己的 Token。</p>
-<figure class="highlight json hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="hljs-attr">"acl"</span>: &#123;</span><br><span class="line">    <span class="hljs-attr">"enabled"</span>: <span class="hljs-literal">true</span>,</span><br><span class="line">    <span class="hljs-attr">"default_policy"</span>: <span class="hljs-string">"deny"</span>,</span><br><span class="line">    <span class="hljs-attr">"down_policy"</span>: <span class="hljs-string">"extend-cache"</span>,</span><br><span class="line">    <span class="hljs-attr">"tokens"</span>: &#123;</span><br><span class="line">      <span class="hljs-attr">"master"</span>: <span class="hljs-string">"508hFauW5uEc11SegVpK0fQlBhDEBiLZSpOCG+2gbeM"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>获取最新的镜像</p>
-<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull consul:latest</span><br></pre></td></tr></table></figure>
-<p>运行 Consul 节点</p>
-<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d \</span><br><span class="line">  -h consul-1 \</span><br><span class="line">  --name consul-1 \</span><br><span class="line">  --net=betterde --ip 10.0.0.1 \</span><br><span class="line">  -v /etc/consul/conf.d:/etc/consul/conf.d</span><br><span class="line">  consul agent -server -node=10.0.0.1 -datacenter=betterde -<span class="hljs-built_in">bind</span>=10.0.0.1 \</span><br><span class="line">  -ui -client=0.0.0.0 -bootstrap-expect=3 -config-dir=/etc/consul/conf.d</span><br><span class="line"></span><br><span class="line">$ docker run -d \</span><br><span class="line">  -h consul-salver-1 \</span><br><span class="line">  --name consul-salver-1 \</span><br><span class="line">  --net=betterde --ip 10.0.0.2 \</span><br><span class="line">  -v /etc/consul/conf.d:/etc/consul/conf.d</span><br><span class="line">  consul agent -server -node=10.0.0.2 -datacenter=betterde -<span class="hljs-built_in">bind</span>=10.0.0.2 \</span><br><span class="line">  -ui -join=10.0.0.1 -retry-join=10.0.0.1 -bootstrap-expect=3 -config-dir=/etc/consul/conf.d</span><br><span class="line"></span><br><span class="line">$ docker run -d \</span><br><span class="line">  -h consul-salver-2 \</span><br><span class="line">  --name consul-salver-2 \</span><br><span class="line">  --net=betterde --ip 10.0.0.3 \</span><br><span class="line">  -v /etc/consul/conf.d:/etc/consul/conf.d</span><br><span class="line">  consul agent -server -node=10.0.0.3 -datacenter=betterde -<span class="hljs-built_in">bind</span>=10.0.0.3 \</span><br><span class="line">  -ui -join=10.0.0.1 -retry-join=10.0.0.1 -bootstrap-expect=3 -config-dir=/etc/consul/conf.d</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>需要注意的是，为了避免脑裂 <code>-bootstrap-expect=3</code> 参数必须一致。</p>
-</blockquote>
-<p>创建 <code>/var/local/web/nginx.conf</code> 配置文件</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">user  nginx;</span><br><span class="line">worker_processes  2;</span><br><span class="line"></span><br><span class="line">error_log  /var/log/nginx/error.log warn;</span><br><span class="line">pid        /var/run/nginx.pid;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  102400;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       /etc/nginx/mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    log_format  main  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</span><br><span class="line">                      &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</span><br><span class="line">                      &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;</span><br><span class="line"></span><br><span class="line">    access_log  /var/log/nginx/access.log  main;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line"></span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br><span class="line"></span><br><span class="line">    upstream consul &#123;</span><br><span class="line">        server consul-4:8500;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen 80 default_server;</span><br><span class="line">        server_name  _;</span><br><span class="line"></span><br><span class="line">        access_log  /web/logs/consul/access.log;</span><br><span class="line">        error_log  /web/logs/consul/error.log;</span><br><span class="line">        root   html;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            proxy_pass  http://consul;</span><br><span class="line">            proxy_redirect     off;</span><br><span class="line">            proxy_set_header   Host             $host;</span><br><span class="line">            proxy_set_header   X-Real-IP        $remote_addr;</span><br><span class="line">            proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;</span><br><span class="line">            proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;</span><br><span class="line">            proxy_max_temp_file_size 0;</span><br><span class="line">            proxy_connect_timeout      90;</span><br><span class="line">            proxy_send_timeout         90;</span><br><span class="line">            proxy_read_timeout         90;</span><br><span class="line">            proxy_buffer_size          4k;</span><br><span class="line">            proxy_buffers              4 32k;</span><br><span class="line">            proxy_busy_buffers_size    64k;</span><br><span class="line">            proxy_temp_file_write_size 64k;</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>创建目录</p>
-<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p /var/<span class="hljs-built_in">local</span>/web/logs/consul</span><br></pre></td></tr></table></figure>
-<p>运行 Nginx 容器</p>
-<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -p 80:80 --name nginx --hostname nginx \</span><br><span class="line">  --net betterde --ip 10.0.0.253 \</span><br><span class="line">  -v /var/<span class="hljs-built_in">local</span>/web/nginx.conf:/etc/nginx/nginx.conf:ro \</span><br><span class="line">  -v /var/<span class="hljs-built_in">local</span>/web/logs:/web/logs -d nginx:latest</span><br></pre></td></tr></table></figure>
-<h2 id="Docker-Compose"><a href="#Docker-Compose" class="headerlink" title="Docker Compose"></a>Docker Compose</h2><p>另外我还提供了一个使用 Docker Compose 方式来启动集群的仓库<a href="https://github.com/betterde/architecture/tree/master/consul" target="_blank" rel="noopener">https://github.com/betterde/architecture/tree/master/consul</a></p>
-<p>启动方式：</p>
-<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="hljs-built_in">clone</span> git@github.com:betterde/architecture.git</span><br><span class="line">$ <span class="hljs-built_in">cd</span> architecture/consul</span><br><span class="line">$ docker-compose up -d</span><br></pre></td></tr></table></figure>
-<p>如果不出意外的话，此时访问 <a href="http://consul.betterde.com" target="_blank" rel="noopener">http://consul.betterde.com</a> （在配置文件中替换成你自己的域名） 就可以看到 Consul 的 Web UI 了。</p>
-<p><img src="/images/article/20190527-consul-cluster-in-docker.png" alt="Consul Cluster"></p>
-<blockquote>
-<p>因为开启了 ACL 所以，第一次访问需要点击 ACL 将 <code>server.json</code> 中的 <code>acl.tokens.master</code> 输入并进行验证，然后刷新浏览器，这样偶能正常访问数据了。</p>
-</blockquote>
-<p>接下来我将会发布更多的文章介绍 Consul 在不同场景下的使用方式，敬请期待！</p>
+            <p>如果你的项目文档或博客是放在 <code>Github Pages</code> 上进行展示，并且自己有域名，需要吧自己的域名解析到某个项目的 Demo 或 Blog 上，那么本文就分享如何实现这一需求。<br><a id="more"></a></p>
+<h2 id="添加域名解析记录"><a href="#添加域名解析记录" class="headerlink" title="添加域名解析记录"></a>添加域名解析记录</h2><p><img src="/images/article/github-pages.png" alt="两种解析方案"></p>
+<p>官方推荐使用 CNAME 这种方式因为这种方式的话，可以利用 CDN 做静态资源分发，如果直接 A 记录的话，在加载文章中的静态资源时可能会很慢。</p>
+<h3 id="添加-CNAME-解析记录"><a href="#添加-CNAME-解析记录" class="headerlink" title="添加 CNAME 解析记录"></a>添加 CNAME 解析记录</h3><p><img src="/images/article/aliyun-dns-record.png" alt="添加 CNAME 解析记录"></p>
+<h3 id="创建-CNAME-文件"><a href="#创建-CNAME-文件" class="headerlink" title="创建 CNAME 文件"></a>创建 CNAME 文件</h3><p>在 Github 项目仓库 <code>docs</code> 目录中创建 <code>CNAME</code> 文件，内容就是你的域名（无需 HTTP 协议）</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">george.betterde.tech</span><br></pre></td></tr></table></figure>
+<p>然后提交到项目仓库的 <code>master</code> 分支。</p>
+<h2 id="设置-HTTPS"><a href="#设置-HTTPS" class="headerlink" title="设置 HTTPS"></a>设置 HTTPS</h2><p><img src="/images/article/github-repository.png" alt="打开项目首页"></p>
+<p>进入首页后点击 <code>Settings</code> 进入设置面，找到 <code>Gitlab Pages</code> 一栏</p>
+<p><img src="/images/article/github-repository-setting-pages.png" alt="设置自定义域名"></p>
+<p>在 <code>Custom domain</code> 项的文本框中输入你的域名，然后点击 <code>Save</code> 保存， 最后勾选 <code>Enforce HTTPS</code> 选项，Github 将在后台为你的域名申请证书，次过程可能需要很久，请耐心等待。</p>
+<p><img src="/images/article/github-repository-dns-setting-success.png" alt="设置 HTTPS 成功"></p>
+<p>当你看到 <code>Your site is published at https://*****.****.com</code> 时则说明已经配置成功了！</p>
 
         </div>
         
@@ -242,7 +188,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/cluster/">Cluster</a>, <a class="has-link-grey -link" href="/tags/consul/">Consul</a>, <a class="has-link-grey -link" href="/tags/Golang/">Golang</a>, <a class="has-link-grey -link" href="/tags/micro-service/">Micro Service</a>, <a class="has-link-grey -link" href="/tags/service-mesh/">Service Mesh</a>
+                    <a class="has-link-grey -link" href="/tags/cname/">CNAME</a>, <a class="has-link-grey -link" href="/tags/dns/">DNS</a>, <a class="has-link-grey -link" href="/tags/github/">Github</a>, <a class="has-link-grey -link" href="/tags/https/">HTTPS</a>, <a class="has-link-grey -link" href="/tags/pages/">Pages</a>
                 </div>
             </div>
         </div>
@@ -303,16 +249,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/technology/devops/20190531/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/technology/devops/20190518.html">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">开启 Gitlab Pages 服务</span>
+                <span class="level-item">DevOps 之快速搭建 Gitlab 服务</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/technology/golang/20190526/">
-                <span class="level-item">Go 实现 Database Seeder</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/technology/hexo/20190516.html">
+                <span class="level-item">使用 Hexo 和 Github Pages 搭建博客</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -333,7 +279,7 @@
     var gitalk = new Gitalk({
         clientID: '4d31f85f4e85c10cfdb5',
         clientSecret: 'd97f370a5e43b6f988502e7eb5ac7f2198f40f99',
-        id: '8cb11037e24471bb649011afd8c745cb',
+        id: '5ebf5a67c1dbae6e6cd0d3cf13da6615',
         repo: 'blog',
         owner: 'jinrenjie',
         admin: "jinrenjie"
@@ -388,7 +334,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        21
+                        28
                     </p>
                 </div>
             </div>
@@ -398,7 +344,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        8
+                        20
                     </p>
                 </div>
             </div>
@@ -408,7 +354,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        60
+                        72
                     </p>
                 </div>
             </div>
@@ -464,50 +410,22 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#简介">
+        <a class="is-flex" href="#添加域名解析记录">
         <span class="has-mr-6">1</span>
-        <span>简介</span>
+        <span>添加域名解析记录</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#功能介绍">
+        <a class="is-flex" href="#添加-CNAME-解析记录">
         <span class="has-mr-6">1.1</span>
-        <span>功能介绍</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#服务发现">
-        <span class="has-mr-6">1.1.1</span>
-        <span>服务发现</span>
+        <span>添加 CNAME 解析记录</span>
         </a></li><li>
-        <a class="is-flex" href="#健康检查">
-        <span class="has-mr-6">1.1.2</span>
-        <span>健康检查</span>
-        </a></li><li>
-        <a class="is-flex" href="#K-V-存储">
-        <span class="has-mr-6">1.1.3</span>
-        <span>K/V 存储</span>
-        </a></li><li>
-        <a class="is-flex" href="#安全服务通信">
-        <span class="has-mr-6">1.1.4</span>
-        <span>安全服务通信</span>
-        </a></li><li>
-        <a class="is-flex" href="#多数据中心">
-        <span class="has-mr-6">1.1.5</span>
-        <span>多数据中心</span>
-        </a></li></ul></li></ul></li><li>
-        <a class="is-flex" href="#安装">
+        <a class="is-flex" href="#创建-CNAME-文件">
+        <span class="has-mr-6">1.2</span>
+        <span>创建 CNAME 文件</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#设置-HTTPS">
         <span class="has-mr-6">2</span>
-        <span>安装</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#需要使用的端口">
-        <span class="has-mr-6">2.1</span>
-        <span>需要使用的端口</span>
-        </a></li><li>
-        <a class="is-flex" href="#Docker-Step-by-step">
-        <span class="has-mr-6">2.2</span>
-        <span>Docker Step by step</span>
-        </a></li><li>
-        <a class="is-flex" href="#Docker-Compose">
-        <span class="has-mr-6">2.3</span>
-        <span>Docker Compose</span>
-        </a></li></ul></li></ul>
+        <span>设置 HTTPS</span>
+        </a></li></ul>
         </div>
     </div>
 </div>
@@ -522,7 +440,83 @@
         
         <article class="media">
             
-            <a href="/technology/golang/20190915/" class="media-left">
+            <a href="/technology/elastic-stack/20191107.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/cover/20191107-beats-metricbeta.png" alt="Beats 系列之 Metricbeat">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-07T15:59:13.000Z">2019-11-07</time></div>
+                    <a href="/technology/elastic-stack/20191107.html" class="has-link-black-ter is-size-6">Beats 系列之 Metricbeat</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/technology/">技术</a> / <a class="has-link-grey -link" href="/categories/technology/elastic-stack/">Elastic Stack</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/technology/devops/20191101.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/cover/20191101-travis-ci.png" alt="DevOps 之 Travis CI">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-06T00:50:09.000Z">2019-11-06</time></div>
+                    <a href="/technology/devops/20191101.html" class="has-link-black-ter is-size-6">DevOps 之 Travis CI</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/technology/">技术</a> / <a class="has-link-grey -link" href="/categories/technology/devops/">DevOps</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/technology/elastic-stack/20191103.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/cover/20191103-kibana-install.png" alt="Elastic Stack 之 Kibana">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-03T05:37:35.000Z">2019-11-03</time></div>
+                    <a href="/technology/elastic-stack/20191103.html" class="has-link-black-ter is-size-6">Elastic Stack 之 Kibana</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/technology/">技术</a> / <a class="has-link-grey -link" href="/categories/technology/elastic-stack/">Elastic Stack</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/technology/elastic-stack/20191102.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/cover/20191102-elasticsearch-install.png" alt="Elastic Stack 之 Elasticsearch">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-02T05:37:32.000Z">2019-11-02</time></div>
+                    <a href="/technology/elastic-stack/20191102.html" class="has-link-black-ter is-size-6">Elastic Stack 之 Elasticsearch</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/technology/">技术</a> / <a class="has-link-grey -link" href="/categories/technology/elastic-stack/">Elastic Stack</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/language/go/20190915.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/cover/20190915-ects.png" alt="ECTS 分布式定时任务管理系统">
                 </p>
@@ -531,85 +525,9 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-15T05:15:46.000Z">2019-09-15</time></div>
-                    <a href="/technology/golang/20190915/" class="has-link-black-ter is-size-6">ECTS 分布式定时任务管理系统</a>
+                    <a href="/language/go/20190915.html" class="has-link-black-ter is-size-6">ECTS 分布式定时任务管理系统</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/technology/">技术</a> / <a class="has-link-grey -link" href="/categories/technology/golang/">Golang</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/technology/golang/20190907/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/cover/2019-09-07-goreleaser.jpg" alt="使用 GoReleaser 发布你的应用">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-07T08:04:51.000Z">2019-09-07</time></div>
-                    <a href="/technology/golang/20190907/" class="has-link-black-ter is-size-6">使用 GoReleaser 发布你的应用</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/technology/">技术</a> / <a class="has-link-grey -link" href="/categories/technology/golang/">Golang</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/technology/golang/20190622/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/cover/20190622-exec.jpeg" alt="Golang 调用系统命令">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-22T06:36:53.000Z">2019-06-22</time></div>
-                    <a href="/technology/golang/20190622/" class="has-link-black-ter is-size-6">Golang 调用系统命令</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/technology/">技术</a> / <a class="has-link-grey -link" href="/categories/technology/golang/">Golang</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/technology/blockchain/20190621/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/cover/20190621-libra.jpeg" alt="Facebook 发布 Libra">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-21T09:55:03.000Z">2019-06-21</time></div>
-                    <a href="/technology/blockchain/20190621/" class="has-link-black-ter is-size-6">Facebook 发布 Libra</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/technology/">技术</a> / <a class="has-link-grey -link" href="/categories/technology/blockchain/">区块链</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/technology/frontend/20190618/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/cover/20190618-vue-spa.png" alt="Vue SPA 前端鉴权">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-18T11:30:54.000Z">2019-06-18</time></div>
-                    <a href="/technology/frontend/20190618/" class="has-link-black-ter is-size-6">Vue SPA 前端鉴权</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/technology/">技术</a> / <a class="has-link-grey -link" href="/categories/technology/frontend/">前端</a>
+                        <a class="has-link-grey -link" href="/categories/language/">语言</a> / <a class="has-link-grey -link" href="/categories/language/go/">Go</a>
                     </p>
                 </div>
             </div>
@@ -644,15 +562,39 @@
                 <span class="level-item">DevOps</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">5</span>
+                <span class="level-item tag">7</span>
             </span>
         </a></li><li>
-        <a class="level is-marginless" href="/categories/technology/golang/">
+        <a class="level is-marginless" href="/categories/technology/docker/">
             <span class="level-start">
-                <span class="level-item">Golang</span>
+                <span class="level-item">Docker</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/elastic-stack/">
+            <span class="level-start">
+                <span class="level-item">Elastic Stack</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/ghost/">
+            <span class="level-start">
+                <span class="level-item">Ghost</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/hexo/">
+            <span class="level-start">
+                <span class="level-item">Hexo</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/technology/micro-service/">
@@ -679,6 +621,22 @@
                 <span class="level-item tag">2</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/VPN/">
+            <span class="level-start">
+                <span class="level-item">VPN</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/confd/">
+            <span class="level-start">
+                <span class="level-item">confd</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/technology/frontend/">
             <span class="level-start">
                 <span class="level-item">前端</span>
@@ -690,6 +648,62 @@
         <a class="level is-marginless" href="/categories/technology/blockchain/">
             <span class="level-start">
                 <span class="level-item">区块链</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/network-protocol/">
+            <span class="level-start">
+                <span class="level-item">网络协议</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/framework/">
+            <span class="level-start">
+                <span class="level-item">框架</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/framework/Iris/">
+            <span class="level-start">
+                <span class="level-item">Iris</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/framework/yii/">
+            <span class="level-start">
+                <span class="level-item">Yii</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/language/">
+            <span class="level-start">
+                <span class="level-item">语言</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/language/go/">
+            <span class="level-start">
+                <span class="level-item">Go</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/language/php/">
+            <span class="level-start">
+                <span class="level-item">PHP</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -706,7 +720,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/ACME-sh/" style="font-size: 10px;">ACME.sh</a> <a href="/tags/blog/" style="font-size: 13.33px;">Blog</a> <a href="/tags/CD/" style="font-size: 13.33px;">CD</a> <a href="/tags/CI/" style="font-size: 13.33px;">CI</a> <a href="/tags/CNAME/" style="font-size: 10px;">CNAME</a> <a href="/tags/cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/confd/" style="font-size: 10px;">Confd</a> <a href="/tags/config/" style="font-size: 10px;">Config</a> <a href="/tags/Config-Manager/" style="font-size: 10px;">Config Manager</a> <a href="/tags/configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/consul/" style="font-size: 13.33px;">Consul</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Daemon/" style="font-size: 10px;">Daemon</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/devops/" style="font-size: 10px;">DevOps</a> <a href="/tags/docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/ghost/" style="font-size: 10px;">Ghost</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/github/" style="font-size: 13.33px;">Github</a> <a href="/tags/gitlab/" style="font-size: 16.67px;">Gitlab</a> <a href="/tags/golang/" style="font-size: 13.33px;">Go</a> <a href="/tags/Golang/" style="font-size: 16.67px;">Golang</a> <a href="/tags/https/" style="font-size: 20px;">HTTPS</a> <a href="/tags/hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Init/" style="font-size: 10px;">Init</a> <a href="/tags/iris/" style="font-size: 10px;">Iris</a> <a href="/tags/Let-s-Encrypt/" style="font-size: 10px;">Let's Encrypt</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/micro-service/" style="font-size: 10px;">Micro Service</a> <a href="/tags/node/" style="font-size: 10px;">Node</a> <a href="/tags/outline/" style="font-size: 10px;">Outline</a> <a href="/tags/Pages/" style="font-size: 13.33px;">Pages</a> <a href="/tags/Process/" style="font-size: 10px;">Process</a> <a href="/tags/Release/" style="font-size: 10px;">Release</a> <a href="/tags/runner/" style="font-size: 10px;">Runner</a> <a href="/tags/spa/" style="font-size: 13.33px;">SPA</a> <a href="/tags/Seeder/" style="font-size: 10px;">Seeder</a> <a href="/tags/Service/" style="font-size: 13.33px;">Service</a> <a href="/tags/service-mesh/" style="font-size: 13.33px;">Service Mesh</a> <a href="/tags/System/" style="font-size: 10px;">System</a> <a href="/tags/Systemd/" style="font-size: 13.33px;">Systemd</a> <a href="/tags/Unit/" style="font-size: 10px;">Unit</a> <a href="/tags/vpn/" style="font-size: 10px;">VPN</a> <a href="/tags/vue/" style="font-size: 13.33px;">Vue</a> <a href="/tags/command/" style="font-size: 10px;">command</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/ects/" style="font-size: 10px;">ects</a> <a href="/tags/elastic/" style="font-size: 10px;">elastic</a> <a href="/tags/etcd/" style="font-size: 10px;">etcd</a> <a href="/tags/exec/" style="font-size: 10px;">exec</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/libra/" style="font-size: 10px;">libra</a> <a href="/tags/pipeline/" style="font-size: 10px;">pipeline</a> <a href="/tags/syscall/" style="font-size: 10px;">syscall</a> <a href="/tags/system/" style="font-size: 10px;">system</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/blockchain/" style="font-size: 10px;">区块链</a> <a href="/tags/authorization/" style="font-size: 10px;">用户鉴权</a>
+        <a href="/tags/acme-sh/" style="font-size: 10px;">ACME.sh</a> <a href="/tags/Beats/" style="font-size: 10px;">Beats</a> <a href="/tags/blog/" style="font-size: 12.5px;">Blog</a> <a href="/tags/cd/" style="font-size: 15px;">CD</a> <a href="/tags/ci/" style="font-size: 15px;">CI</a> <a href="/tags/cname/" style="font-size: 10px;">CNAME</a> <a href="/tags/cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/confd/" style="font-size: 10px;">Confd</a> <a href="/tags/config/" style="font-size: 10px;">Config</a> <a href="/tags/Config-Manager/" style="font-size: 10px;">Config Manager</a> <a href="/tags/configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/consul/" style="font-size: 12.5px;">Consul</a> <a href="/tags/container/" style="font-size: 10px;">Container</a> <a href="/tags/dns/" style="font-size: 10px;">DNS</a> <a href="/tags/daemon/" style="font-size: 10px;">Daemon</a> <a href="/tags/database/" style="font-size: 10px;">Database</a> <a href="/tags/devops/" style="font-size: 10px;">DevOps</a> <a href="/tags/docker/" style="font-size: 15px;">Docker</a> <a href="/tags/es/" style="font-size: 12.5px;">ES</a> <a href="/tags/Elastic-Stack/" style="font-size: 10px;">Elastic Stack</a> <a href="/tags/elasticsearch/" style="font-size: 15px;">Elasticsearch</a> <a href="/tags/ghost/" style="font-size: 10px;">Ghost</a> <a href="/tags/git/" style="font-size: 10px;">Git</a> <a href="/tags/github/" style="font-size: 12.5px;">Github</a> <a href="/tags/gitlab/" style="font-size: 15px;">Gitlab</a> <a href="/tags/go/" style="font-size: 20px;">Go</a> <a href="/tags/https/" style="font-size: 17.5px;">HTTPS</a> <a href="/tags/hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/init/" style="font-size: 10px;">Init</a> <a href="/tags/iris/" style="font-size: 10px;">Iris</a> <a href="/tags/kibana/" style="font-size: 12.5px;">Kibana</a> <a href="/tags/lets-encrypt/" style="font-size: 10px;">Let's Encrypt</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Metric/" style="font-size: 10px;">Metric</a> <a href="/tags/Metricbeat/" style="font-size: 10px;">Metricbeat</a> <a href="/tags/micro-service/" style="font-size: 10px;">Micro Service</a> <a href="/tags/Monitor/" style="font-size: 10px;">Monitor</a> <a href="/tags/node/" style="font-size: 10px;">Node</a> <a href="/tags/outline/" style="font-size: 10px;">Outline</a> <a href="/tags/php/" style="font-size: 10px;">PHP</a> <a href="/tags/pages/" style="font-size: 12.5px;">Pages</a> <a href="/tags/process/" style="font-size: 10px;">Process</a> <a href="/tags/release/" style="font-size: 10px;">Release</a> <a href="/tags/runner/" style="font-size: 10px;">Runner</a> <a href="/tags/spa/" style="font-size: 12.5px;">SPA</a> <a href="/tags/seeder/" style="font-size: 10px;">Seeder</a> <a href="/tags/service/" style="font-size: 12.5px;">Service</a> <a href="/tags/service-mesh/" style="font-size: 12.5px;">Service Mesh</a> <a href="/tags/system/" style="font-size: 10px;">System</a> <a href="/tags/systemd/" style="font-size: 12.5px;">Systemd</a> <a href="/tags/unit/" style="font-size: 10px;">Unit</a> <a href="/tags/vpn/" style="font-size: 10px;">VPN</a> <a href="/tags/vue/" style="font-size: 12.5px;">Vue</a> <a href="/tags/Yii/" style="font-size: 10px;">Yii</a> <a href="/tags/command/" style="font-size: 10px;">command</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/ects/" style="font-size: 10px;">ects</a> <a href="/tags/elastic/" style="font-size: 10px;">elastic</a> <a href="/tags/etcd/" style="font-size: 10px;">etcd</a> <a href="/tags/exec/" style="font-size: 10px;">exec</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/libra/" style="font-size: 10px;">libra</a> <a href="/tags/module/" style="font-size: 10px;">module</a> <a href="/tags/pipeline/" style="font-size: 10px;">pipeline</a> <a href="/tags/router/" style="font-size: 10px;">router</a> <a href="/tags/syscall/" style="font-size: 10px;">syscall</a> <a href="/tags/system/" style="font-size: 10px;">system</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/blockchain/" style="font-size: 10px;">区块链</a> <a href="/tags/search-engine/" style="font-size: 12.5px;">搜索引擎</a> <a href="/tags/authorization/" style="font-size: 10px;">用户鉴权</a>
     </div>
 </div>
 
@@ -720,12 +734,45 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2019/09/">
                 <span class="level-start">
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -791,7 +838,7 @@
                     <span class="level-item">一月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -810,8 +857,15 @@
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/ACME-sh/">
+                    <a class="tags has-addons" href="/tags/acme-sh/">
                         <span class="tag">ACME.sh</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Beats/">
+                        <span class="tag">Beats</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -824,21 +878,21 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/CD/">
+                    <a class="tags has-addons" href="/tags/cd/">
                         <span class="tag">CD</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/CI/">
+                    <a class="tags has-addons" href="/tags/ci/">
                         <span class="tag">CI</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/CNAME/">
+                    <a class="tags has-addons" href="/tags/cname/">
                         <span class="tag">CNAME</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -887,21 +941,28 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/DNS/">
+                    <a class="tags has-addons" href="/tags/container/">
+                        <span class="tag">Container</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/dns/">
                         <span class="tag">DNS</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Daemon/">
+                    <a class="tags has-addons" href="/tags/daemon/">
                         <span class="tag">Daemon</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Database/">
+                    <a class="tags has-addons" href="/tags/database/">
                         <span class="tag">Database</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -917,7 +978,28 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/docker/">
                         <span class="tag">Docker</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/es/">
+                        <span class="tag">ES</span>
                         <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Elastic-Stack/">
+                        <span class="tag">Elastic Stack</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/elasticsearch/">
+                        <span class="tag">Elasticsearch</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -929,7 +1011,7 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Git/">
+                    <a class="tags has-addons" href="/tags/git/">
                         <span class="tag">Git</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -950,16 +1032,9 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/golang/">
+                    <a class="tags has-addons" href="/tags/go/">
                         <span class="tag">Go</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Golang/">
-                        <span class="tag">Golang</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -978,7 +1053,7 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Init/">
+                    <a class="tags has-addons" href="/tags/init/">
                         <span class="tag">Init</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -992,7 +1067,14 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Let-s-Encrypt/">
+                    <a class="tags has-addons" href="/tags/kibana/">
+                        <span class="tag">Kibana</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/lets-encrypt/">
                         <span class="tag">Let&#39;s Encrypt</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -1006,8 +1088,29 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Metric/">
+                        <span class="tag">Metric</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Metricbeat/">
+                        <span class="tag">Metricbeat</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/micro-service/">
                         <span class="tag">Micro Service</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Monitor/">
+                        <span class="tag">Monitor</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1027,21 +1130,28 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Pages/">
+                    <a class="tags has-addons" href="/tags/php/">
+                        <span class="tag">PHP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/pages/">
                         <span class="tag">Pages</span>
                         <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Process/">
+                    <a class="tags has-addons" href="/tags/process/">
                         <span class="tag">Process</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Release/">
+                    <a class="tags has-addons" href="/tags/release/">
                         <span class="tag">Release</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -1062,14 +1172,14 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Seeder/">
+                    <a class="tags has-addons" href="/tags/seeder/">
                         <span class="tag">Seeder</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Service/">
+                    <a class="tags has-addons" href="/tags/service/">
                         <span class="tag">Service</span>
                         <span class="tag is-grey">2</span>
                     </a>
@@ -1083,21 +1193,21 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/System/">
+                    <a class="tags has-addons" href="/tags/system/">
                         <span class="tag">System</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Systemd/">
+                    <a class="tags has-addons" href="/tags/systemd/">
                         <span class="tag">Systemd</span>
                         <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Unit/">
+                    <a class="tags has-addons" href="/tags/unit/">
                         <span class="tag">Unit</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -1114,6 +1224,13 @@
                     <a class="tags has-addons" href="/tags/vue/">
                         <span class="tag">Vue</span>
                         <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Yii/">
+                        <span class="tag">Yii</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -1160,13 +1277,6 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/golang/">
-                        <span class="tag">golang</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/job/">
                         <span class="tag">job</span>
                         <span class="tag is-grey">1</span>
@@ -1181,8 +1291,22 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/module/">
+                        <span class="tag">module</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/pipeline/">
                         <span class="tag">pipeline</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/router/">
+                        <span class="tag">router</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1219,6 +1343,13 @@
                     <a class="tags has-addons" href="/tags/blockchain/">
                         <span class="tag">区块链</span>
                         <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/search-engine/">
+                        <span class="tag">搜索引擎</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1295,15 +1426,39 @@
                 <span class="level-item">DevOps</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">5</span>
+                <span class="level-item tag">7</span>
             </span>
         </a></li><li>
-        <a class="level is-marginless" href="/categories/technology/golang/">
+        <a class="level is-marginless" href="/categories/technology/docker/">
             <span class="level-start">
-                <span class="level-item">Golang</span>
+                <span class="level-item">Docker</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/elastic-stack/">
+            <span class="level-start">
+                <span class="level-item">Elastic Stack</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/ghost/">
+            <span class="level-start">
+                <span class="level-item">Ghost</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/hexo/">
+            <span class="level-start">
+                <span class="level-item">Hexo</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/technology/micro-service/">
@@ -1330,6 +1485,22 @@
                 <span class="level-item tag">2</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/VPN/">
+            <span class="level-start">
+                <span class="level-item">VPN</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/confd/">
+            <span class="level-start">
+                <span class="level-item">confd</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/technology/frontend/">
             <span class="level-start">
                 <span class="level-item">前端</span>
@@ -1341,6 +1512,62 @@
         <a class="level is-marginless" href="/categories/technology/blockchain/">
             <span class="level-start">
                 <span class="level-item">区块链</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/technology/network-protocol/">
+            <span class="level-start">
+                <span class="level-item">网络协议</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/framework/">
+            <span class="level-start">
+                <span class="level-item">框架</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/framework/Iris/">
+            <span class="level-start">
+                <span class="level-item">Iris</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/framework/yii/">
+            <span class="level-start">
+                <span class="level-item">Yii</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/language/">
+            <span class="level-start">
+                <span class="level-item">语言</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/language/go/">
+            <span class="level-start">
+                <span class="level-item">Go</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/language/php/">
+            <span class="level-start">
+                <span class="level-item">PHP</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -1357,7 +1584,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/ACME-sh/" style="font-size: 10px;">ACME.sh</a> <a href="/tags/blog/" style="font-size: 13.33px;">Blog</a> <a href="/tags/CD/" style="font-size: 13.33px;">CD</a> <a href="/tags/CI/" style="font-size: 13.33px;">CI</a> <a href="/tags/CNAME/" style="font-size: 10px;">CNAME</a> <a href="/tags/cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/confd/" style="font-size: 10px;">Confd</a> <a href="/tags/config/" style="font-size: 10px;">Config</a> <a href="/tags/Config-Manager/" style="font-size: 10px;">Config Manager</a> <a href="/tags/configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/consul/" style="font-size: 13.33px;">Consul</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Daemon/" style="font-size: 10px;">Daemon</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/devops/" style="font-size: 10px;">DevOps</a> <a href="/tags/docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/ghost/" style="font-size: 10px;">Ghost</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/github/" style="font-size: 13.33px;">Github</a> <a href="/tags/gitlab/" style="font-size: 16.67px;">Gitlab</a> <a href="/tags/golang/" style="font-size: 13.33px;">Go</a> <a href="/tags/Golang/" style="font-size: 16.67px;">Golang</a> <a href="/tags/https/" style="font-size: 20px;">HTTPS</a> <a href="/tags/hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Init/" style="font-size: 10px;">Init</a> <a href="/tags/iris/" style="font-size: 10px;">Iris</a> <a href="/tags/Let-s-Encrypt/" style="font-size: 10px;">Let's Encrypt</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/micro-service/" style="font-size: 10px;">Micro Service</a> <a href="/tags/node/" style="font-size: 10px;">Node</a> <a href="/tags/outline/" style="font-size: 10px;">Outline</a> <a href="/tags/Pages/" style="font-size: 13.33px;">Pages</a> <a href="/tags/Process/" style="font-size: 10px;">Process</a> <a href="/tags/Release/" style="font-size: 10px;">Release</a> <a href="/tags/runner/" style="font-size: 10px;">Runner</a> <a href="/tags/spa/" style="font-size: 13.33px;">SPA</a> <a href="/tags/Seeder/" style="font-size: 10px;">Seeder</a> <a href="/tags/Service/" style="font-size: 13.33px;">Service</a> <a href="/tags/service-mesh/" style="font-size: 13.33px;">Service Mesh</a> <a href="/tags/System/" style="font-size: 10px;">System</a> <a href="/tags/Systemd/" style="font-size: 13.33px;">Systemd</a> <a href="/tags/Unit/" style="font-size: 10px;">Unit</a> <a href="/tags/vpn/" style="font-size: 10px;">VPN</a> <a href="/tags/vue/" style="font-size: 13.33px;">Vue</a> <a href="/tags/command/" style="font-size: 10px;">command</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/ects/" style="font-size: 10px;">ects</a> <a href="/tags/elastic/" style="font-size: 10px;">elastic</a> <a href="/tags/etcd/" style="font-size: 10px;">etcd</a> <a href="/tags/exec/" style="font-size: 10px;">exec</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/libra/" style="font-size: 10px;">libra</a> <a href="/tags/pipeline/" style="font-size: 10px;">pipeline</a> <a href="/tags/syscall/" style="font-size: 10px;">syscall</a> <a href="/tags/system/" style="font-size: 10px;">system</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/blockchain/" style="font-size: 10px;">区块链</a> <a href="/tags/authorization/" style="font-size: 10px;">用户鉴权</a>
+        <a href="/tags/acme-sh/" style="font-size: 10px;">ACME.sh</a> <a href="/tags/Beats/" style="font-size: 10px;">Beats</a> <a href="/tags/blog/" style="font-size: 12.5px;">Blog</a> <a href="/tags/cd/" style="font-size: 15px;">CD</a> <a href="/tags/ci/" style="font-size: 15px;">CI</a> <a href="/tags/cname/" style="font-size: 10px;">CNAME</a> <a href="/tags/cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/confd/" style="font-size: 10px;">Confd</a> <a href="/tags/config/" style="font-size: 10px;">Config</a> <a href="/tags/Config-Manager/" style="font-size: 10px;">Config Manager</a> <a href="/tags/configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/consul/" style="font-size: 12.5px;">Consul</a> <a href="/tags/container/" style="font-size: 10px;">Container</a> <a href="/tags/dns/" style="font-size: 10px;">DNS</a> <a href="/tags/daemon/" style="font-size: 10px;">Daemon</a> <a href="/tags/database/" style="font-size: 10px;">Database</a> <a href="/tags/devops/" style="font-size: 10px;">DevOps</a> <a href="/tags/docker/" style="font-size: 15px;">Docker</a> <a href="/tags/es/" style="font-size: 12.5px;">ES</a> <a href="/tags/Elastic-Stack/" style="font-size: 10px;">Elastic Stack</a> <a href="/tags/elasticsearch/" style="font-size: 15px;">Elasticsearch</a> <a href="/tags/ghost/" style="font-size: 10px;">Ghost</a> <a href="/tags/git/" style="font-size: 10px;">Git</a> <a href="/tags/github/" style="font-size: 12.5px;">Github</a> <a href="/tags/gitlab/" style="font-size: 15px;">Gitlab</a> <a href="/tags/go/" style="font-size: 20px;">Go</a> <a href="/tags/https/" style="font-size: 17.5px;">HTTPS</a> <a href="/tags/hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/init/" style="font-size: 10px;">Init</a> <a href="/tags/iris/" style="font-size: 10px;">Iris</a> <a href="/tags/kibana/" style="font-size: 12.5px;">Kibana</a> <a href="/tags/lets-encrypt/" style="font-size: 10px;">Let's Encrypt</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Metric/" style="font-size: 10px;">Metric</a> <a href="/tags/Metricbeat/" style="font-size: 10px;">Metricbeat</a> <a href="/tags/micro-service/" style="font-size: 10px;">Micro Service</a> <a href="/tags/Monitor/" style="font-size: 10px;">Monitor</a> <a href="/tags/node/" style="font-size: 10px;">Node</a> <a href="/tags/outline/" style="font-size: 10px;">Outline</a> <a href="/tags/php/" style="font-size: 10px;">PHP</a> <a href="/tags/pages/" style="font-size: 12.5px;">Pages</a> <a href="/tags/process/" style="font-size: 10px;">Process</a> <a href="/tags/release/" style="font-size: 10px;">Release</a> <a href="/tags/runner/" style="font-size: 10px;">Runner</a> <a href="/tags/spa/" style="font-size: 12.5px;">SPA</a> <a href="/tags/seeder/" style="font-size: 10px;">Seeder</a> <a href="/tags/service/" style="font-size: 12.5px;">Service</a> <a href="/tags/service-mesh/" style="font-size: 12.5px;">Service Mesh</a> <a href="/tags/system/" style="font-size: 10px;">System</a> <a href="/tags/systemd/" style="font-size: 12.5px;">Systemd</a> <a href="/tags/unit/" style="font-size: 10px;">Unit</a> <a href="/tags/vpn/" style="font-size: 10px;">VPN</a> <a href="/tags/vue/" style="font-size: 12.5px;">Vue</a> <a href="/tags/Yii/" style="font-size: 10px;">Yii</a> <a href="/tags/command/" style="font-size: 10px;">command</a> <a href="/tags/crontab/" style="font-size: 10px;">crontab</a> <a href="/tags/ects/" style="font-size: 10px;">ects</a> <a href="/tags/elastic/" style="font-size: 10px;">elastic</a> <a href="/tags/etcd/" style="font-size: 10px;">etcd</a> <a href="/tags/exec/" style="font-size: 10px;">exec</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/libra/" style="font-size: 10px;">libra</a> <a href="/tags/module/" style="font-size: 10px;">module</a> <a href="/tags/pipeline/" style="font-size: 10px;">pipeline</a> <a href="/tags/router/" style="font-size: 10px;">router</a> <a href="/tags/syscall/" style="font-size: 10px;">syscall</a> <a href="/tags/system/" style="font-size: 10px;">system</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/blockchain/" style="font-size: 10px;">区块链</a> <a href="/tags/search-engine/" style="font-size: 12.5px;">搜索引擎</a> <a href="/tags/authorization/" style="font-size: 10px;">用户鉴权</a>
     </div>
 </div>
 
@@ -1371,12 +1598,45 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2019/09/">
                 <span class="level-start">
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -1442,7 +1702,7 @@
                     <span class="level-item">一月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1461,8 +1721,15 @@
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/ACME-sh/">
+                    <a class="tags has-addons" href="/tags/acme-sh/">
                         <span class="tag">ACME.sh</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Beats/">
+                        <span class="tag">Beats</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1475,21 +1742,21 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/CD/">
+                    <a class="tags has-addons" href="/tags/cd/">
                         <span class="tag">CD</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/CI/">
+                    <a class="tags has-addons" href="/tags/ci/">
                         <span class="tag">CI</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/CNAME/">
+                    <a class="tags has-addons" href="/tags/cname/">
                         <span class="tag">CNAME</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -1538,21 +1805,28 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/DNS/">
+                    <a class="tags has-addons" href="/tags/container/">
+                        <span class="tag">Container</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/dns/">
                         <span class="tag">DNS</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Daemon/">
+                    <a class="tags has-addons" href="/tags/daemon/">
                         <span class="tag">Daemon</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Database/">
+                    <a class="tags has-addons" href="/tags/database/">
                         <span class="tag">Database</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -1568,7 +1842,28 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/docker/">
                         <span class="tag">Docker</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/es/">
+                        <span class="tag">ES</span>
                         <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Elastic-Stack/">
+                        <span class="tag">Elastic Stack</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/elasticsearch/">
+                        <span class="tag">Elasticsearch</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1580,7 +1875,7 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Git/">
+                    <a class="tags has-addons" href="/tags/git/">
                         <span class="tag">Git</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -1601,16 +1896,9 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/golang/">
+                    <a class="tags has-addons" href="/tags/go/">
                         <span class="tag">Go</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Golang/">
-                        <span class="tag">Golang</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -1629,7 +1917,7 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Init/">
+                    <a class="tags has-addons" href="/tags/init/">
                         <span class="tag">Init</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -1643,7 +1931,14 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Let-s-Encrypt/">
+                    <a class="tags has-addons" href="/tags/kibana/">
+                        <span class="tag">Kibana</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/lets-encrypt/">
                         <span class="tag">Let&#39;s Encrypt</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -1657,8 +1952,29 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Metric/">
+                        <span class="tag">Metric</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Metricbeat/">
+                        <span class="tag">Metricbeat</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/micro-service/">
                         <span class="tag">Micro Service</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Monitor/">
+                        <span class="tag">Monitor</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1678,21 +1994,28 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Pages/">
+                    <a class="tags has-addons" href="/tags/php/">
+                        <span class="tag">PHP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/pages/">
                         <span class="tag">Pages</span>
                         <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Process/">
+                    <a class="tags has-addons" href="/tags/process/">
                         <span class="tag">Process</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Release/">
+                    <a class="tags has-addons" href="/tags/release/">
                         <span class="tag">Release</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -1713,14 +2036,14 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Seeder/">
+                    <a class="tags has-addons" href="/tags/seeder/">
                         <span class="tag">Seeder</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Service/">
+                    <a class="tags has-addons" href="/tags/service/">
                         <span class="tag">Service</span>
                         <span class="tag is-grey">2</span>
                     </a>
@@ -1734,21 +2057,21 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/System/">
+                    <a class="tags has-addons" href="/tags/system/">
                         <span class="tag">System</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Systemd/">
+                    <a class="tags has-addons" href="/tags/systemd/">
                         <span class="tag">Systemd</span>
                         <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Unit/">
+                    <a class="tags has-addons" href="/tags/unit/">
                         <span class="tag">Unit</span>
                         <span class="tag is-grey">1</span>
                     </a>
@@ -1765,6 +2088,13 @@
                     <a class="tags has-addons" href="/tags/vue/">
                         <span class="tag">Vue</span>
                         <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Yii/">
+                        <span class="tag">Yii</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -1811,13 +2141,6 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/golang/">
-                        <span class="tag">golang</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/job/">
                         <span class="tag">job</span>
                         <span class="tag is-grey">1</span>
@@ -1832,8 +2155,22 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/module/">
+                        <span class="tag">module</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/pipeline/">
                         <span class="tag">pipeline</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/router/">
+                        <span class="tag">router</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1870,6 +2207,13 @@
                     <a class="tags has-addons" href="/tags/blockchain/">
                         <span class="tag">区块链</span>
                         <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/search-engine/">
+                        <span class="tag">搜索引擎</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1925,7 +2269,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="微服务之 Consul 集群搭建" height="28">
+                    <img src="/images/logo.svg" alt="Github Pages 自定义域名并开启HTTPS" height="28">
                 
                 </a>
                 <p class="is-size-7">
@@ -1982,6 +2326,12 @@
 
     
     
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
     
     
     

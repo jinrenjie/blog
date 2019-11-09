@@ -15,8 +15,8 @@ timezone: PRC
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://george.betterde.com
 root: /
-permalink: :category/:title.html
-permalink_defaults: :category/:title.html
+permalink: :title.html
+permalink_defaults: :title.html
 
 # Directory
 source_dir: source
@@ -71,6 +71,8 @@ category_map:
   Elastic Stack: elastic-stack
   PHP: php
   Yii: yii
+  博客: blog
+  网络协议: network-protocol
 tag_map:
   DevOps: devops
   Ghost: ghost
