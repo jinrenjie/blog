@@ -68,6 +68,7 @@ category_map:
   Docker: docker
   Service Mesh: service-mesh
   Micro Service: micro-service
+  Elastic Stack: elastic-stack
   PHP: php
   Yii: yii
 tag_map:
@@ -120,6 +121,11 @@ tag_map:
   前端: frontend
   区块链: blockchain
   用户鉴权: authorization
+  搜索引擎: search-engine
+  Kibana: kibana
+  ES: es
+  ELK: elk
+  Elasticsearch: elasticsearch
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date

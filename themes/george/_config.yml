@@ -190,7 +190,7 @@ plugins:
     animejs: true
     # Enable the lightGallery and Justified Gallery plugins
     # https://ppoffice.github.io/hexo-theme-icarus/Plugins/General/gallery-plugin/
-    gallery: false
+    gallery: true
     # Enable the Outdated Browser plugin
     # http://outdatedbrowser.com/
     outdated-browser: false
