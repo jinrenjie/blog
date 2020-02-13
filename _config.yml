@@ -73,6 +73,7 @@ category_map:
   Yii: yii
   博客: blog
   网络协议: network-protocol
+  SSH: ssh
 tag_map:
   DevOps: devops
   Ghost: ghost
@@ -128,6 +129,7 @@ tag_map:
   ES: es
   ELK: elk
   Elasticsearch: elasticsearch
+  SSH: ssh
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
