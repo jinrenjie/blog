@@ -75,6 +75,7 @@ category_map:
   网络协议: network-protocol
   SSH: ssh
 tag_map:
+  SEO: seo
   DevOps: devops
   Ghost: ghost
   Docker: docker
@@ -115,6 +116,7 @@ tag_map:
   VPN: vpn
   Hexo: hexo
   Vue: vue
+  React: react
   Blog: blog
   Iris: iris
   Github: github
@@ -126,10 +128,13 @@ tag_map:
   用户鉴权: authorization
   搜索引擎: search-engine
   Kibana: kibana
+  爬虫: spider
   ES: es
   ELK: elk
   Elasticsearch: elasticsearch
   SSH: ssh
+  Chrome: chrome
+  SSR: ssr
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
