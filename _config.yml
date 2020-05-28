@@ -71,6 +71,7 @@ category_map:
   Elastic Stack: elastic-stack
   PHP: php
   Yii: yii
+  Laravel: laravel
   博客: blog
   网络协议: network-protocol
   SSH: ssh
@@ -135,6 +136,9 @@ tag_map:
   SSH: ssh
   Chrome: chrome
   SSR: ssr
+  Socks5: socks5
+  cURL: curl
+  Laravel: laravel
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
