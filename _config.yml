@@ -75,7 +75,11 @@ category_map:
   博客: blog
   网络协议: network-protocol
   SSH: ssh
+  Proxy: proxy
 tag_map:
+  Privoxy: privoxy
+  Shadowsocks: shadowsocks
+  Proxy: proxy
   SEO: seo
   DevOps: devops
   Ghost: ghost
