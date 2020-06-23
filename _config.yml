@@ -76,9 +76,13 @@ category_map:
   网络协议: network-protocol
   SSH: ssh
   Proxy: proxy
+  Virtualization: virtualization
 tag_map:
   Privoxy: privoxy
   Shadowsocks: shadowsocks
+  Virtualization: virtualization
+  VirtualBox: virtual-box
+  Vagrant: vagrant
   Proxy: proxy
   SEO: seo
   DevOps: devops
