@@ -139,10 +139,10 @@ widgets:
                 url: 'https://facebook.com'
             Twitter:
                 icon: fab fa-twitter
-                url: 'https://twitter.com'
+                url: 'https://twitter.com/George2Betterde'
             Dribbble:
                 icon: fab fa-dribbble
-                url: 'https://dribbble.com'
+                url: 'https://dribbble.com/GeorgeKing'
             RSS:
                 icon: fas fa-rss
                 url: /
@@ -184,6 +184,7 @@ widgets:
         # Links to be shown in the links widget
         links:
             Betterde: 'https://www.betterde.com'
+            卡拉搜索: 'https://kalasearch.cn'
 # Other plugin settings
 plugins:
     # Enable page animations

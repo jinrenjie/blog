@@ -13,7 +13,7 @@ const cdn_providers = {
 };
 
 const icon_providers = {
-    fontawesome: 'https://use.fontawesome.com/releases/v5.4.1/css/all.css'
+    fontawesome: 'https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.min.css'
 };
 
 module.exports = function (hexo) {
