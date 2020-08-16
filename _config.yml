@@ -64,6 +64,8 @@ category_map:
   工具: tools
   前端: frontend
   DevOps: devops
+  CI/CD: ci-cd
+  配置管理: configuration-management
   System: system
   Go: go
   Docker: docker
