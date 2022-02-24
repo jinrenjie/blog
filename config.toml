@@ -1,5 +1,5 @@
 baseurl = "/"
-# uglyURLs = true
+uglyURLs = true
 languageCode = "en-us"
 theme = "terminal"
 paginate = 5
@@ -87,8 +87,8 @@ paginate = 5
       [[languages.en.menu.main]]
         identifier = "technology"
         name = "Technology"
-        url = "/technology"
+        url = "/technology.html"
       [[languages.en.menu.main]]
         identifier = "sentiment"
         name = "Sentiment"
-        url = "/sentiment"
+        url = "/sentiment.html"
