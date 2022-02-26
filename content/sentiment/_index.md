@@ -1,9 +1,9 @@
-+++
-title = ""
-keywords = ["George", "Developer", "Technology", "Blog", "Engineer"]
-description = "Hi there this is my blog article list"
-framed = true
-+++
+---
+title: Sentiment Blog
+keywords: ["George", "Developer", "Sentiment", "Blog", "Engineer"]
+description: "Hi there this is my blog article list"
+framed: true
+---
 
 # Hi there
 
