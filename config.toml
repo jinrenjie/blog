@@ -4,6 +4,8 @@ languageCode = "en-us"
 theme = "terminal"
 paginate = 5
 
+googleAnalytics = 'GTM-NCN7DC2'
+
 [params]
   # dir name of your main content (default is `content/posts`).
   # the list of set content will show up on your index page (baseurl).
