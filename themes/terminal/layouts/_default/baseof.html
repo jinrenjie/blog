@@ -5,6 +5,7 @@
     <title>{{ if .IsHome }}{{ $.Site.Title }}{{ else }}{{ .Title }} :: {{ $.Site.Title }}{{ end }}</title>
   {{ end }}
   {{ partial "head.html" . }}
+  <meta name="google-site-verification" content="YOtuz456NesJE4X-nm_qzZ_MOWLy7lCz95EvIJ9iCyI" />
 </head>
 <body class="{{- ( or .Params.color $.Site.Params.ThemeColor ) -}}">
 {{ $container := cond ($.Site.Params.FullWidthTheme | default false) "container full" (cond ($.Site.Params.CenterTheme | default false) "container center" "container") }}
