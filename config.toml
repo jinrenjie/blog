@@ -4,7 +4,8 @@ languageCode = "en-us"
 theme = "terminal"
 paginate = 5
 
-googleAnalytics = 'GTM-NCN7DC2'
+# Google Analytics 4
+googleAnalytics = 'G-DEKQB2ZNKD'
 
 [params]
   # dir name of your main content (default is `content/posts`).
