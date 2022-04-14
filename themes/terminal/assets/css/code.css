@@ -82,3 +82,19 @@
     margin: 0;
   }
 }
+
+.command-line {
+  span.token.output {
+    background: none;
+    user-select: none;
+  }
+
+  span.token.lf {
+    user-select: none;
+    display: none;
+  }
+
+  span.token.space:before {
+    content: none;
+  }
+}

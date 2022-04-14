@@ -16,10 +16,14 @@
       {{- if .Get "host" }} data-host="{{ .Get "host" }}"{{ end }}
       {{- if .Get "prompt" }} data-prompt="{{ .Get "prompt" }}"{{ end }}
       {{- if .Get "output" }} data-output="{{ .Get "output" }}"{{ end }}
+      {{- if .Get "filter-output" }} data-filter-output="{{ .Get "filter-output" }}"{{ end }}
+      {{- if .Get "continuation-str" }} data-continuation-str="{{ .Get "continuation-str" }}"{{ end }}
+      {{- if .Get "continuation-prompt" }} data-continuation-prompt="{{ .Get "continuation-prompt" }}"{{ end }}
       ><code {{ if .Get "lang" }}class="language-{{ .Get "lang" }}"{{ end }}
       >{{ $inner }}</code></pre>
   {{ else }}
     <pre class="language-{{ .Get 0 }}">
-      <code class="language-{{ .Get 0 }}">{{ $inner }}</code></pre>
+      <code class="language-{{ .Get 0 }}">{{ $inner }}</code>
+    </pre>
   {{ end }}
 {{ end }}

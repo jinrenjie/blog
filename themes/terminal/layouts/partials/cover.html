@@ -18,11 +18,6 @@
 {{if $cover -}}
   <!-- Cover image found -->
   <div class="card-image">
-    <a href="{{.RelPermalink}}">
-      <img src="{{ $cover }}"
-        class="thumbnail"
-        alt="{{ .Title | plainify | default " " }}"
-        title="{{ .Params.CoverCredit |plainify|default "Cover Image" }}" />
-    </a>
+    <img src="{{ $cover }}" class="thumbnail" alt="{{ .Title | plainify | default " " }}" title="{{ .Params.CoverCredit |plainify|default "Cover Image" }}" />
   </div>
 {{- end }}
