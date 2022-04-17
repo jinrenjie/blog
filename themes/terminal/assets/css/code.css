@@ -76,11 +76,23 @@
     &::first-line {
       line-height: 0;
     }
+
+    span.token.lf:before {
+      content: none;
+    }
+  
+    span.token.space:before {
+      content: none;
+    }
   }
 
   .code-toolbar {
     margin: 0;
   }
+}
+
+code>span.token.lf:before {
+  content: none;
 }
 
 .command-line {

@@ -264,11 +264,11 @@ pre[class*="language-"].line-numbers > code {
 	content: '\240D\240A';
 }
 .token.lf:before {
-	content: '\240A';
+	content: none;
 }
 
 .token.space:before {
-	content: '\00B7';
+	content: none;
 }
 
 .token a {
