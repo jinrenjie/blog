@@ -359,3 +359,11 @@ sup {
   overflow: hidden;
   border: 20px solid var(--accent);
 }
+
+a.footnote-ref::before {
+  content: '[';
+}
+
+a.footnote-ref::after {
+  content: ']';
+}
