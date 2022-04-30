@@ -1,7 +1,7 @@
 ---
 title: Technology Blog
 keywords: ["George", "Developer", "Technology", "Blog", "Engineer"]
-description: "Hi there this is my blog /article list"
+description: "Hi there this is my blog /technology list"
 framed: true
 ---
 
