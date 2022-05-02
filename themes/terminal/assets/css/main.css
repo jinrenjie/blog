@@ -369,3 +369,30 @@ a.footnote-ref::before {
 a.footnote-ref::after {
   content: ']';
 }
+
+.social {
+  margin: 10px;
+  text-align: center;
+}
+
+.list-reset {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.social .social__item {
+  display: inline-block;
+}
+
+ion-icon {
+  color: var(--light-color-secondary);
+  font-size: 1.5rem;
+  --ionicon-stroke-width: 24px;
+}
+
+ion-icon:hover {
+  color: #78E2A0;
+  font-size: 1.5rem;
+  --ionicon-stroke-width: 24px;
+}

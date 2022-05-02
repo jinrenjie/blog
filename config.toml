@@ -73,6 +73,11 @@ googleAnalytics = 'G-2YEZM50G74'
   creator = "GeorgeBornAgain"
   site = "GeorgeBornAgain"
 
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  example = "examples"
+
 [languages]
   [languages.en]
     languageName = "English"
@@ -105,9 +110,9 @@ googleAnalytics = 'G-2YEZM50G74'
         url = "/about.html"
         weight = 2
       [[languages.en.menu.main]]
-        identifier = "resume"
-        name = "Resume"
-        url = "/resume.html"
+        identifier = "github"
+        name = "Github"
+        url = "https://github.com/jinrenjie"
         weight = 3
       [[languages.en.menu.main]]
         identifier = "technology"
