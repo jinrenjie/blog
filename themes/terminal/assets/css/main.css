@@ -396,3 +396,23 @@ ion-icon:hover {
   font-size: 1.5rem;
   --ionicon-stroke-width: 24px;
 }
+
+.link-item {
+  margin: 10px 0;
+  color: #78E2A0;
+  & .link-item-name {
+    width: 120px;
+    display: inline-block;
+  }
+  & .link-item-desc {
+    display: inline-block;
+  }
+}
+
+.link-item-name a {
+  text-decoration: none;
+}
+
+.link-item-name a:hover {
+  text-decoration: underline;
+}
