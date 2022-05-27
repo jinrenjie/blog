@@ -15,6 +15,6 @@ List all friendly links. If you want to exchange links with me, Please contact!
 
 {{< links name="Laravel" url="https://vercel.com/" word="Laravel is a PHP web application framework with expressive, elegant syntax." >}}
 
-{{< links name="又拍云" url="https://www.upyun.com/" word="国内知名企业级云服务商，全球1100多个自建CDN节点." >}}
+{{< links name="又拍云" url="https://www.upyun.com/" word="国内知名企业级云服务商，全球1100多个自建CDN节点。" >}}
 
 {{< links name="卡拉云" url="https://kalacloud.com/" word="卡拉云是一站式低代码解决方案，用卡拉云帮你极大提升开发效率，降低业务系统的开发和运营成本。" >}}
