@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
+        fetch-depth: 0
+
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: 'latest'
+        extended: true
+
+    - name: Gereate static files
+      run: hugo --minify --enableGitInfo
+    
+    - name: Deploy to UPYUN
+      uses: bwcxyk/upyun-upx-action@main
+      env:
+        bucket: ${{ secrets.BUCKET }}
+        operator: ${{ secrets.OPERATOR }}
+        operator_password: ${{ secrets.OPERATOR_PASSWORD }}
+        local_path: ./public/
+        remote_path: /
+    
+    - name: Cache UPX
+      uses: actions/cache@v3
+      with:
+        path: $HOME/.upx.db
