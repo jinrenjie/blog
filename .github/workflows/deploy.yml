@@ -22,6 +22,12 @@ jobs:
 
       - name: Gereate static files
         run: hugo --minify --enableGitInfo
+
+      - name: Cache UPX
+        uses: actions/cache@v3
+        with:
+          key: blog-upx.db
+          path: $HOME/.upx.db
       
       - name: Deploy to UPYUN
         uses: bwcxyk/upyun-upx-action@main
@@ -31,8 +37,3 @@ jobs:
           operator_password: ${{ secrets.OPERATOR_PASSWORD }}
           local_path: ./public/
           remote_path: /
-      
-      - name: Cache UPX
-        uses: actions/cache@v3
-        with:
-          path: $HOME/.upx.db
