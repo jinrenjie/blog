@@ -24,7 +24,7 @@ googleAnalytics = 'G-2YEZM50G74'
   themeColor = "green"
 
   # if you set this to 0, only submenu trigger will be visible
-  showMenuItems = 5
+  showMenuItems = 4
 
   # show selector to switch language
   showLanguageSelector = true
@@ -105,32 +105,37 @@ googleAnalytics = 'G-2YEZM50G74'
         url = "/"
         weight = 1
       [[languages.en.menu.main]]
+        identifier = "cloudnative"
+        name = "Cloud Native"
+        url = "/cloud-native.html"
+        weight = 2
+      [[languages.en.menu.main]]
         identifier = "technology"
         name = "Technology"
         url = "/technology.html"
-        weight = 2
+        weight = 3
       [[languages.en.menu.main]]
         identifier = "system"
         name = "Operating System"
         url = "/system.html"
-        weight = 3
+        weight = 4
       [[languages.en.menu.main]]
         identifier = "links"
         name = "Links"
         url = "/links.html"
-        weight = 4
+        weight = 5
       [[languages.en.menu.main]]
         identifier = "github"
         name = "Github"
         url = "https://github.com/jinrenjie"
-        weight = 5
+        weight = 6
       [[languages.en.menu.main]]
         identifier = "insights"
         name = "Insights"
         url = "/insights.html"
-        weight = 6
+        weight = 7
       [[languages.en.menu.main]]
         identifier = "about"
         name = "About"
         url = "/about.html"
-        weight = 7
+        weight = 8
