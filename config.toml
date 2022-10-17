@@ -1,7 +1,7 @@
 theme = "terminal"
 baseurl = "/"
 uglyURLs = true
-paginate = 5
+paginate = 10
 languageCode = "en-us"
 MetaDataFormat = "toml"
 
@@ -24,7 +24,7 @@ googleAnalytics = 'G-2YEZM50G74'
   themeColor = "green"
 
   # if you set this to 0, only submenu trigger will be visible
-  showMenuItems = 4
+  showMenuItems = 6
 
   # show selector to switch language
   showLanguageSelector = true
@@ -105,37 +105,37 @@ googleAnalytics = 'G-2YEZM50G74'
         url = "/"
         weight = 1
       [[languages.en.menu.main]]
+        identifier = "devops"
+        name = "DevOps"
+        url = "/devops.html"
+        weight = 2
+      [[languages.en.menu.main]]
         identifier = "cloudnative"
         name = "Cloud Native"
         url = "/cloud-native.html"
-        weight = 2
+        weight = 3
       [[languages.en.menu.main]]
         identifier = "technology"
         name = "Technology"
         url = "/technology.html"
-        weight = 3
+        weight = 4
+      [[languages.en.menu.main]]
+        identifier = "database"
+        name = "Database"
+        url = "/database.html"
+        weight = 5
       [[languages.en.menu.main]]
         identifier = "system"
         name = "Operating System"
         url = "/system.html"
-        weight = 4
+        weight = 6
       [[languages.en.menu.main]]
         identifier = "links"
         name = "Links"
         url = "/links.html"
-        weight = 5
-      [[languages.en.menu.main]]
-        identifier = "github"
-        name = "Github"
-        url = "https://github.com/jinrenjie"
-        weight = 6
+        weight = 7
       [[languages.en.menu.main]]
         identifier = "insights"
         name = "Insights"
         url = "/insights.html"
-        weight = 7
-      [[languages.en.menu.main]]
-        identifier = "about"
-        name = "About"
-        url = "/about.html"
         weight = 8
