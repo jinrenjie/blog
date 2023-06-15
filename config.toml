@@ -66,6 +66,9 @@ googleAnalytics = 'G-2YEZM50G74'
 
   framed = true
 
+  readMore = "Read more"
+  menuMore = "Show more"
+
 [params.twitter]
   # set Twitter handles for Twitter cards
   # see https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started#card-and-content-attribution
@@ -79,20 +82,20 @@ googleAnalytics = 'G-2YEZM50G74'
   example = "examples"
 
 [languages]
-  [languages.en]
-    languageName = "English"
-    title = "George's Blog"
-    subtitle = "When given the choice between being right or being kind, choose kind."
-    owner = "George"
-    keywords = "George, Blog"
-    copyright = "George"
-    menuMore = "Show more"
-    readMore = "Read more"
-    readOtherPosts = "Read other posts"
-    newerPosts = "Newer posts"
-    olderPosts = "Older posts"
-    missingContentMessage = "Page not found..."
-    missingBackButtonLabel = "Back to home page"
+[languages.en]
+  title = "George's Blog"
+  languageCode = "en"
+  languageName = "English"
+[language.en.params]
+  owner = "George"
+  keywords = "George, Blog"
+  copyright = "George"
+  readOtherPosts = "Read other posts"
+  subtitle = "When given the choice between being right or being kind, choose kind."
+  newerPosts = "Newer posts"
+  olderPosts = "Older posts"
+  missingContentMessage = "Page not found..."
+  missingBackButtonLabel = "Back to home page"
 
     [languages.en.params.logo]
       logoText = "George's Blog"
