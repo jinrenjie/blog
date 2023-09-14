@@ -2,6 +2,7 @@ theme = "terminal"
 baseurl = "/"
 uglyURLs = true
 paginate = 10
+copyright = "George"
 languageCode = "en-us"
 MetaDataFormat = "toml"
 
