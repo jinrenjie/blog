@@ -10,8 +10,8 @@ MetaDataFormat = "toml"
 googleAnalytics = 'G-2YEZM50G74'
 
 [indexes]
-    tag = "tags"
-    topic = "topics"
+  tag = "tags"
+  topic = "topics"
 
 [params]
   author = 'George King'
@@ -79,8 +79,9 @@ googleAnalytics = 'G-2YEZM50G74'
 
 [taxonomies]
   tag = "tags"
+  series = "series"
+  keyword = "keywords"
   category = "categories"
-  example = "examples"
 
 [languages]
 [languages.en]

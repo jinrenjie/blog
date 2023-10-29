@@ -8,11 +8,13 @@
     {{ $isntDefault := not (or (eq (trim $.Site.Params.contentTypeName " ") "posts") (eq (trim $.Site.Params.contentTypeName " ") "")) }}
     {{ $contentTypeName := cond $isntDefault (string $.Site.Params.contentTypeName) "posts" }}
 
-    {{ $PageContext := . }}
-    {{ if .IsHome }}
-      {{ $PageContext = .Site }}
+    {{ $PageContext := .Site }}
+    {{ $paginator := .Paginate (where $PageContext.RegularPages "Type" "not in" (slice "links" "insights")) }}
+  
+    {{ if ne .IsHome false }}
+      {{ $PageContext := . }}
+      {{ $paginator = .Paginate (where $PageContext.RegularPages "Type" $contentTypeName) }}
     {{ end }}
-    {{ $paginator := .Paginate (where $PageContext.RegularPages "Type" $contentTypeName) }}
 
     {{ range $paginator.Pages }}
       <div class="post on-list">
@@ -31,7 +33,7 @@
         {{ if .Params.tags }}
           <span class="post-tags">
             {{ range .Params.tags }}
-            #<a href="{{ (urlize (printf "tags/%s/" . )) | absLangURL }}">
+            #<a href="{{ (urlize (printf "tags/%s.html" . )) | absLangURL }}">
               {{- . -}}
             </a>&nbsp;
             {{ end }}
