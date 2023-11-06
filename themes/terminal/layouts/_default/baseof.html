@@ -6,21 +6,6 @@
   {{ end }}
   {{ partial "head.html" . }}
   <meta name="google-site-verification" content="YOtuz456NesJE4X-nm_qzZ_MOWLy7lCz95EvIJ9iCyI" />
-  <!-- Start of Howxm client code snippet -->
-  <script>
-    function _howxm(){_howxmQueue.push(arguments)}
-    window._howxmQueue=window._howxmQueue||[];
-    _howxm('setAppID','62343840-bd9e-4910-ba4a-ef3e84198fc6');
-    (function(){var scriptId='howxm_script';
-    if(!document.getElementById(scriptId)){
-    var e=document.createElement('script'),
-    t=document.getElementsByTagName('script')[0];
-    e.setAttribute('id',scriptId);
-    e.type='text/javascript';e.async=!0;
-    e.src='https://static.howxm.com/sdk.js';
-    t.parentNode.insertBefore(e,t)}})();
-    </script>
-    <!-- End of Howxm client code snippet -->
 </head>
 <body class="{{- ( or .Params.color $.Site.Params.ThemeColor ) -}}">
 {{ $container := cond ($.Site.Params.FullWidthTheme | default false) "container full" (cond ($.Site.Params.CenterTheme | default false) "container center" "container") }}
