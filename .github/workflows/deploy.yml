@@ -21,7 +21,7 @@ jobs:
           extended: true
 
       - name: Gereate static files
-        run: hugo --gc --minify --enableGitInfo
+        run: hugo --gc --enableGitInfo
 
       - name: Cache UPX
         uses: actions/cache@v3
