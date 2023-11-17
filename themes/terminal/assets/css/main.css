@@ -134,8 +134,8 @@ code, kbd {
   font-feature-settings: normal;
   background: color-mod(var(--accent) a(20%));
   color: var(--accent);
-  padding: 1px 6px;
-  margin: 0 2px;
+  padding: 0 4px;
+  border-radius: 4px;
   font-size: .95rem;
 
   code, kbd {
@@ -165,12 +165,17 @@ pre {
   }
 
   code {
+    word-wrap: break-word;
     background: none !important;
     margin: 0;
     padding: 0;
     font-size: inherit;
     border: none;
   }
+}
+
+code {
+  word-wrap: break-word;
 }
 
 blockquote {
@@ -230,10 +235,16 @@ blockquote {
 }
 
 table {
-  table-layout: auto;
   border-collapse: collapse;
   width: 100%;
   margin: 40px 0;
+}
+
+@media screen and (max-width: 800px) {
+  table {
+    display: block;
+    overflow-x: auto;
+  }
 }
 
 table,
@@ -241,6 +252,10 @@ th,
 td {
   border: 1px dashed var(--accent);
   padding: 10px;
+}
+
+thead {
+  width: 100%;
 }
 
 th {
