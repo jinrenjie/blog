@@ -176,7 +176,7 @@ pre {
 
 code {
   word-wrap: break-word;
-  text-shadow: 0 0 8px var(--accent), 0 0 16px var(--accent), 0 0 20px var(--accent);
+  text-shadow: 0 0 8px var(--accent);
 }
 
 blockquote {
