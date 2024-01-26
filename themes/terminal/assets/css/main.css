@@ -432,3 +432,11 @@ ion-icon:hover {
 .link-item-name a:hover {
   text-decoration: underline;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+}
