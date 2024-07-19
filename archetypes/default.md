@@ -1,13 +1,15 @@
 ---
 title: {{ replace .TranslationBaseName "-" " " | title }}
 date: {{ .Date }}
-author: George
-authorTwitter: GeorgeBornAgain
-cover: covers/
 tags: []
+draft: false
+cover: covers/
+images:
+  - covers/
+author: George
 keywords: []
 description: 
-showFullContent: false
 readingTime: true
-draft: true
+authorTwitter: GeorgeBornAgain
+showFullContent: false
 ---
