@@ -15,6 +15,7 @@ googleAnalytics = 'G-2YEZM50G74'
 
 [params]
   author = 'George King'
+  subtitle = 'Hi, there!'
   description = "When given the choice between being right or being kind, choose kind."
 
   # dir name of your main content (default is `content/posts`).
@@ -74,8 +75,9 @@ googleAnalytics = 'G-2YEZM50G74'
   # set Twitter handles for Twitter cards
   # see https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started#card-and-content-attribution
   # do not include @
-  creator = "GeorgeBornAgain"
   site = "GeorgeBornAgain"
+  image = "/img/favicon/green.png"
+  creator = "GeorgeBornAgain"
 
 [taxonomies]
   tag = "tags"
@@ -91,11 +93,11 @@ googleAnalytics = 'G-2YEZM50G74'
 [language.en.params]
   owner = "George"
   keywords = "George, Blog"
-  copyright = "George"
-  readOtherPosts = "Read other posts"
   subtitle = "When given the choice between being right or being kind, choose kind."
+  copyright = "George"
   newerPosts = "Newer posts"
   olderPosts = "Older posts"
+  readOtherPosts = "Read other posts"
   missingContentMessage = "Page not found..."
   missingBackButtonLabel = "Back to home page"
 

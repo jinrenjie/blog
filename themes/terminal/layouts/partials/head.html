@@ -32,7 +32,16 @@
   {{ if (isset $.Site.Params.Twitter "site") }}
     <meta name="twitter:site" content="{{ $.Site.Params.Twitter.site }}" />
   {{ end }}
-    <meta name="twitter:creator" content="{{ if .IsHome }}{{ $.Site.Params.Twitter.creator }}{{ else if isset .Params "authortwitter" }}{{ .Params.authorTwitter }}{{ else }}{{ .Params.Author }}{{ end }}" />
+  {{ if and (not .IsHome) (isset .Params "cover") }}
+  <meta property="twitter:image" content="{{ .Param "cover" | absURL }}">
+  {{ else }}
+    {{ if isset $.Site.Params "favicon" }}
+      <meta property="twitter:image" content="{{ $.Site.Params.favicon | absURL }}">
+    {{ else }}
+      <meta property="twitter:image" content="{{ printf "img/favicon/%s.png" $.Site.Params.ThemeColor | absURL }}">
+    {{ end }}
+  {{ end }}
+    <meta property="twitter:creator" content="{{ if .IsHome }}{{ $.Site.Params.Twitter.creator }}{{ else if isset .Params "authortwitter" }}{{ .Params.authorTwitter }}{{ else }}{{ .Params.Author }}{{ end }}" />
 {{ end }}
 
 <!-- OG data -->
