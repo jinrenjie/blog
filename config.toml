@@ -92,7 +92,7 @@ googleAnalytics = 'G-2YEZM50G74'
   languageName = "English"
 [language.en.params]
   owner = "George"
-  keywords = "George, Blog"
+  keywords = "George's Blog"
   subtitle = "When given the choice between being right or being kind, choose kind."
   copyright = "George"
   newerPosts = "Newer posts"
