@@ -1,7 +1,6 @@
 theme = "terminal"
 baseurl = "/"
 uglyURLs = true
-paginate = 10
 copyright = "George"
 languageCode = "en-us"
 MetaDataFormat = "toml"
@@ -78,6 +77,9 @@ googleAnalytics = 'G-2YEZM50G74'
   site = "GeorgeBornAgain"
   image = "/img/favicon/green.png"
   creator = "GeorgeBornAgain"
+
+[pagination]
+  pagerSize = 10
 
 [taxonomies]
   tag = "tags"
