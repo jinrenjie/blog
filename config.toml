@@ -5,6 +5,8 @@ copyright = "George"
 languageCode = "en-us"
 MetaDataFormat = "toml"
 
+ignoreLogs = ['warning-goldmark-raw-html']
+
 # Google Analytics 4
 googleAnalytics = 'G-2YEZM50G74'
 
