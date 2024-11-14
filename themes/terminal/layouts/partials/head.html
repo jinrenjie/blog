@@ -18,6 +18,12 @@
   <link rel="stylesheet" href="{{ "style.css" | absURL }}">
 {{- end }}
 
+<!-- Custom CSS to override theme properties (/assets/asciinema-player.css) -->
+{{ if (fileExists "/assets/asciinema-player.css") -}}
+  <link rel="stylesheet" href="{{ "assets/asciinema-player.css" | absURL }}">
+{{- end }}
+<link rel="stylesheet" href="{{ "assets/asciinema-player.css" | absURL }}">
+
 <!-- Icons -->
 <link rel="apple-touch-icon" href="{{ "img/apple-touch-icon-192x192.png" | absURL }}">
 {{ if isset $.Site.Params "favicon" }}
