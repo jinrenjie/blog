@@ -316,7 +316,7 @@ mark {
   display: flex;
   flex-direction: column;
   padding: 40px;
-  max-width: 1024px;
+  max-width: 1280px;
   min-height: 100vh;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
 
@@ -439,4 +439,8 @@ ion-icon:hover {
 
 ::-webkit-scrollbar-track {
   background: none;
+}
+
+.header .menu .language-selector .language-selector__more li {
+  margin: 0;
 }

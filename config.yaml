@@ -1,0 +1,134 @@
+theme: terminal
+params:
+  framed: true
+  author: George King
+  subtitle: Hi, there!
+  autoCover: true
+  themeColor: green
+  readingTime: true
+  centerTheme: true
+  description: When given the choice between being right or being kind, choose kind.
+  showMenuItems: 6
+  fullWidthTheme: false
+  showLastUpdated: true
+  defaultLanguage: cn
+  contentTypeName: technology
+  showLanguageSelector: true
+indexes:
+  - tag: tags
+  - topic: topics
+baseurl: /
+uglyURLs: true
+copyright: George
+
+languages:
+  en:
+    menu:
+      main:
+        - url: /en
+          name: Home
+          weight: 1
+          identifier: home
+        - url: /en/devops
+          name: DevOps
+          weight: 2
+          identifier: devops
+        - url: /en/cloud-native
+          name: Cloud Native
+          weight: 3
+          identifier: cloudnative
+        - url: /en/technology
+          name: Technology
+          weight: 4
+          identifier: technology
+        - url: /en/database
+          name: Database
+          weight: 5
+          identifier: database
+        - url: /en/system
+          name: Operating System
+          weight: 6
+          identifier: system
+        - url: /en/links
+          name: Links
+          weight: 7
+          identifier: links
+        - url: /en/insights
+          name: Insights
+          weight: 8
+          identifier: insights
+    title: George's Blog
+    weight: 1
+    params:
+      logo:
+        logoText: George's Blog
+        logoHomeLink: /en
+      keywords: George's Blog
+      subtitle: 你好呀！
+      readMore: Read more
+      menuMore: Show more
+      description: When given the choice between being right or being kind, choose kind.
+    languageName: English
+  cn:
+    menu:
+      main:
+        - url: /cn
+          name: 首页
+          weight: 1
+          identifier: home
+        - url: /cn/devops
+          name: DevOps
+          weight: 2
+          identifier: devops
+        - url: /cn/cloud-native
+          name: 云原生
+          weight: 3
+          identifier: cloudnative
+        - url: /cn/technology
+          name: 技术分享
+          weight: 4
+          identifier: technology
+        - url: /cn/database
+          name: 数据库
+          weight: 5
+          identifier: database
+        - url: /cn/system
+          name: 操作系统
+          weight: 6
+          identifier: system
+        - url: /cn/links
+          name: 链接
+          weight: 7
+          identifier: links
+        - url: /cn/insights
+          name: 感悟
+          weight: 8
+          identifier: insights
+    title: George's Blog
+    weight: 2
+    params:
+      logo:
+        logoText: George's Blog
+        logoHomeLink: /cn
+      owner: George
+      keywords: George's Blog
+      subtitle: 你好呀！
+      readMore: 阅读更多
+      menuMore: 展示跟多
+      copyright: George
+      newerPosts: 最近更新
+      olderPosts: 很久以前
+      description: 在面对“正确”与“善良”的选择时，请选择善良。
+      showMenuItems: 6
+      readOtherPosts: Read other posts
+      missingContentMessage: Page not found...
+      missingBackButtonLabel: Back to home page
+    languageName: Chinese
+
+ignoreLogs:
+  - warning-goldmark-raw-html
+languageCode: en
+MetaDataFormat: yaml
+googleAnalytics: G-2YEZM50G74
+defaultContentLanguage: cn
+defaultContentLanguageInSubdir: true

@@ -42,31 +42,15 @@ module.exports = (env, { mode }) => ({
         },
       },
       {
-        test: /\.(png|jpg|woff|woff2|ttf|eot|svg)$/,
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              limit: 8192,
-            },
-          },
-        ],
+        test: /\.(png|jpe?g|gif|woff|woff2|ttf|eot|svg)$/,
+        type: 'asset/resource',
       },
       {
         test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
-          {
-            loader: "css-loader",
-            options: {
-              modules: {
-                localIdentName: "[local]",
-              },
-              import: true,
-              importLoaders: 1,
-            },
-          },
-          "postcss-loader",
+          'css-loader',
+          'postcss-loader',
         ],
       },
     ],

@@ -1,0 +1,30 @@
+{
+  "routes": [
+    {
+      "src": "/(.*)",
+      "has": [
+        {
+            "type": "cookie",
+            "key": "language",
+            "value": "cn"
+        }
+      ],
+      "dest": "/cn/$1"
+    },
+    {
+      "src": "/(.*)",
+      "has": [
+        {
+            "type": "cookie",
+            "key": "language",
+            "value": "en"
+        }
+      ],
+      "dest": "/en/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/en/$1"
+    }
+  ]
+}
