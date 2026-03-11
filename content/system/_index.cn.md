@@ -5,6 +5,6 @@ description: "Hi there this is my blog article list"
 framed: true
 ---
 
-# Hi there
+# 你好呀
 
-When given the choice between being right or being kind, choose kind.
+在计算机世界里没有什么魔法；之所以觉得它神奇，只是因为你对它了解得还不够。

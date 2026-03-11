@@ -1,7 +1,9 @@
 theme: terminal
 params:
   framed: true
-  author: George King
+  author:
+    name: George King
+    email: george@betterde.com
   subtitle: Hi, there!
   autoCover: true
   themeColor: green

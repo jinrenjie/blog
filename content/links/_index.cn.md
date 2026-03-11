@@ -1,13 +1,13 @@
 ---
-title: Links
+title: 友情链接
 keywords: ["links", "friendly links", "Technology", "Blog"]
-description: "Hi there this is my blog links list"
+description: "你好呀，这是我的博客链接列表。"
 framed: true
 ---
 
-# Hi there
+# 你好呀，
 
-List all friendly links. If you want to exchange links with me, Please contact! 😊
+列出所有友情链接。如果你想与我交换链接，请联系我！😊
 
 {{< links name="Hugo" url="https://gohugo.io/" word="The world’s fastest framework for building websites." >}}
 
