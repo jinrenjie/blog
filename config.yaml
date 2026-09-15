@@ -25,6 +25,7 @@ copyright: George
 
 languages:
   en:
+    locale: en
     menu:
       main:
         - url: /en
@@ -70,8 +71,9 @@ languages:
       readMore: Read more
       menuMore: Show more
       description: When given the choice between being right or being kind, choose kind.
-    languageName: English
+    label: English
   cn:
+    locale: zh-CN
     menu:
       main:
         - url: /cn
@@ -125,11 +127,10 @@ languages:
       readOtherPosts: Read other posts
       missingContentMessage: Page not found...
       missingBackButtonLabel: Back to home page
-    languageName: Chinese
+    label: Chinese
 
 ignoreLogs:
   - warning-goldmark-raw-html
-languageCode: en
 MetaDataFormat: yaml
 googleAnalytics: G-2YEZM50G74
 defaultContentLanguage: en

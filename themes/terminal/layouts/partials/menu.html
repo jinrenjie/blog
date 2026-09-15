@@ -31,11 +31,11 @@
     <div class="spacer"></div>
     <ul class="language-selector">
       <ul class="language-selector-current">
-          <li>{{ .Language.LanguageName }} ▾</li>
+          <li>{{ .Language.Label }} ▾</li>
       </ul>
       <ul class="language-selector__more hidden">
         {{ range $.Site.Home.AllTranslations }}
-        <li><a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></li>
+        <li><a href="{{ .Permalink }}">{{ .Language.Label }}</a></li>
         {{ end }}
       </ul>
     </ul>
@@ -52,7 +52,7 @@
     <hr />
       {{ range $.Site.Home.AllTranslations }}
         <li>
-          <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+          <a href="{{ .Permalink }}">{{ .Language.Label }}</a>
         </li>
       {{ end }}
     {{ end }}
